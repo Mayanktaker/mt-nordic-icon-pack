@@ -1,6 +1,7 @@
 # generated output
 build/
 dist/
+src/cursors/.*.tmp/
 # python
 __pycache__/
 *.pyc

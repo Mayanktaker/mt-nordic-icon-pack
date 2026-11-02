@@ -19,6 +19,7 @@ so artwork can be versioned and released independently — **this repo must not 
 
 ## Commands
 - Contrast gate: `python3 tools/dev/check_contrast.py` (icon ink/tile/accent pairs, both variants).
+- Cursor guard: `python3 tools/dev/check_cursor_build.py` (a build with no usable source fails loudly).
 - Build: `python3 tools/icons/generate_icons.py --variant both` (or `--variant dark|light`) → `src/icons/<pack>`.
 - Lookup gate: `python3 tools/dev/check_icon_contexts.py` (shadowing + dangling aliases; run after every icon build).
 - Preview: `python3 tools/icons/preview_sheet.py --variant light` → contact sheets in `build/preview/<variant>/`.
@@ -46,6 +47,7 @@ so artwork can be versioned and released independently — **this repo must not 
 - Dark generation must stay backward-compatible when touching shared artwork.
 
 ## Conventions
-- Every file starts with the © header line.
+- Every file starts with the © header line; executable scripts keep `#!` on line 1 with the © line
+  immediately after it.
 - Every function/block gets one ≤1-line comment.
 - License: GPL-3.0 (code) + CC BY-SA 4.0 (artwork). Commit at verified milestones, never force-push.

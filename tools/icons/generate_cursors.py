@@ -20,6 +20,13 @@ COLOR = CURSORS["color"]
 OUT_DIR = REPO_ROOT / "src" / "cursors" / TECH_NAME
 SYSTEM_NORDIC_CURSORS = Path.home() / ".icons" / "Nordic-cursors" / "cursors"
 
+# Xcursor file layout constants (see the Xcursor file format spec).
+XCURSOR_MAGIC = 0x72756358
+XCURSOR_IMAGE_TYPE = 0xFFFD0002
+XCURSOR_HEADER = 16  # magic, header size, version, toc entry count
+XCURSOR_TOC_ENTRY = 12  # type, subtype, chunk offset
+XCURSOR_IMAGE_HEADER = 36  # chunk header plus width/height/hotspot/delay
+
 INDEX_THEME = f"""[Icon Theme]
 Name={TECH_NAME}-Cursors
 Comment=Authentic Nordic cursor suite for {DISPLAY_NAME}
@@ -99,57 +106,84 @@ def recolor_bgra_chunk(bgra_bytes: bytes, w: int, h: int) -> bytes:
     return np.stack([out_b, out_g, out_r, a.astype(np.uint8)], axis=-1).tobytes()
 
 
+def recolor_image_chunk(src_path: Path, chunk: bytes) -> bytes:
+    # Recolour one image chunk's pixels, refusing chunks whose header and pixel data disagree.
+    if len(chunk) < XCURSOR_IMAGE_HEADER:
+        raise SystemExit(f"{src_path}: truncated Xcursor image chunk")
+    width, height = struct.unpack("<2I", chunk[16:24])
+    pixel_bytes = width * height * 4
+    if len(chunk) < XCURSOR_IMAGE_HEADER + pixel_bytes:
+        raise SystemExit(
+            f"{src_path}: image chunk declares {width}x{height} but holds "
+            f"{len(chunk) - XCURSOR_IMAGE_HEADER} pixel bytes"
+        )
+    pixels = chunk[XCURSOR_IMAGE_HEADER : XCURSOR_IMAGE_HEADER + pixel_bytes]
+    return chunk[:XCURSOR_IMAGE_HEADER] + recolor_bgra_chunk(pixels, width, height)
+
+
 def process_xcursor_file(src_path: Path, dst_path: Path) -> None:
-    # Parse an Xcursor file, recolor all image frames across all resolutions, and write to destination.
+    # Recolour every image frame of an Xcursor file and carry any other chunk through untouched.
     data = src_path.read_bytes()
-    magic, hdr_size, ver, ntoc = struct.unpack("<IIII", data[:16])
-    if magic != 0x72756358:
-        # Not a valid Xcursor, copy directly
+    if len(data) < XCURSOR_HEADER:
+        raise SystemExit(f"{src_path}: truncated Xcursor header")
+    magic, _header_size, version, toc_count = struct.unpack("<4I", data[:XCURSOR_HEADER])
+    if magic != XCURSOR_MAGIC:
+        # Not an Xcursor binary; copy it through unchanged.
         dst_path.write_bytes(data)
         return
 
+    # Each TOC entry names a chunk; a chunk ends where the next one begins.
+    entries = []
+    for index in range(toc_count):
+        start = XCURSOR_HEADER + index * XCURSOR_TOC_ENTRY
+        entries.append(struct.unpack("<3I", data[start : start + XCURSOR_TOC_ENTRY]))
+    offsets = sorted(entry[2] for entry in entries)
+    ends = dict(zip(offsets, offsets[1:] + [len(data)]))
+
     new_chunks = []
     toc_entries = []
-    cur_offset = 16 + ntoc * 12
-
-    for i in range(ntoc):
-        type_, subtype, offset = struct.unpack("<III", data[16 + i * 12 : 28 + i * 12])
-        img_hdr = struct.unpack("<IIIIIIIII", data[offset : offset + 36])
-        w, h = img_hdr[4], img_hdr[5]
-        pixel_bytes = data[offset + 36 : offset + 36 + w * h * 4]
-        recolored_pixels = recolor_bgra_chunk(pixel_bytes, w, h)
-        chunk = data[offset : offset + 36] + recolored_pixels
+    cursor_offset = XCURSOR_HEADER + toc_count * XCURSOR_TOC_ENTRY
+    for chunk_type, subtype, offset in entries:
+        chunk = data[offset : ends[offset]]
+        # Only image chunks carry pixels; comments and unknown types stay byte-identical.
+        if chunk_type == XCURSOR_IMAGE_TYPE:
+            chunk = recolor_image_chunk(src_path, chunk)
         new_chunks.append(chunk)
-        toc_entries.append(struct.pack("<III", type_, subtype, cur_offset))
-        cur_offset += len(chunk)
+        toc_entries.append(struct.pack("<3I", chunk_type, subtype, cursor_offset))
+        cursor_offset += len(chunk)
 
-    new_data = struct.pack("<IIII", magic, hdr_size, ver, ntoc) + b"".join(toc_entries) + b"".join(new_chunks)
-    dst_path.write_bytes(new_data)
+    header = struct.pack("<4I", magic, XCURSOR_HEADER, version, toc_count)
+    dst_path.write_bytes(header + b"".join(toc_entries) + b"".join(new_chunks))
+
+
+def source_cursors() -> tuple[list[Path], list[Path]]:
+    # Real cursor files and alias symlinks from the source suite; aborts when unusable.
+    if not SYSTEM_NORDIC_CURSORS.is_dir():
+        raise SystemExit(f"source Nordic cursors not found at {SYSTEM_NORDIC_CURSORS}; nothing to build")
+    real_files = [p for p in SYSTEM_NORDIC_CURSORS.iterdir() if p.is_file() and not p.is_symlink()]
+    symlinks = [p for p in SYSTEM_NORDIC_CURSORS.iterdir() if p.is_symlink()]
+    if not real_files:
+        raise SystemExit(f"source Nordic cursors at {SYSTEM_NORDIC_CURSORS} hold no cursor files; nothing to build")
+    return real_files, symlinks
 
 
 def build_cursors() -> None:
-    # Build complete authentic Nordic Xcursor suite.
-    cursors_dir = OUT_DIR / "cursors"
-    if OUT_DIR.exists():
-        shutil.rmtree(OUT_DIR)
-    cursors_dir.mkdir(parents=True, exist_ok=True)
+    # Build into a staging copy, then swap it in, so a crash never leaves a partial pack published.
+    real_files, symlinks = source_cursors()
+    staging = OUT_DIR.with_name(f".{OUT_DIR.name}.tmp")
+    if staging.exists():
+        shutil.rmtree(staging)
+    cursors_dir = staging / "cursors"
+    cursors_dir.mkdir(parents=True)
 
-    # 1. Write index.theme
-    (OUT_DIR / "index.theme").write_text(INDEX_THEME)
+    # Write the theme metadata the cursor pack is discovered by.
+    (staging / "index.theme").write_text(INDEX_THEME)
 
-    # 2. Check source cursors
-    if not SYSTEM_NORDIC_CURSORS.exists():
-        print(f"[ERROR] Source Nordic cursors not found at {SYSTEM_NORDIC_CURSORS}")
-        return
-
-    # 3. Process all real files
-    real_files = [p for p in SYSTEM_NORDIC_CURSORS.iterdir() if p.is_file() and not p.is_symlink()]
-    symlinks = [p for p in SYSTEM_NORDIC_CURSORS.iterdir() if p.is_symlink()]
-
+    # Recolour every source cursor frame into the Nordic palette.
     for p in real_files:
         process_xcursor_file(p, cursors_dir / p.name)
 
-    # 4. Replicate all symlinks
+    # Replicate the source alias symlinks so names like left_ptr keep resolving.
     for p in symlinks:
         target = os.readlink(p)
         link_dest = cursors_dir / p.name
@@ -157,6 +191,10 @@ def build_cursors() -> None:
             link_dest.unlink()
         link_dest.symlink_to(target)
 
+    # Publish only a finished pack: drop the old one and move staging into place.
+    if OUT_DIR.exists():
+        shutil.rmtree(OUT_DIR)
+    staging.rename(OUT_DIR)
     print(f"Generated {len(real_files)} authentic Nordic cursors + {len(symlinks)} symlinks in {OUT_DIR}")
 
 

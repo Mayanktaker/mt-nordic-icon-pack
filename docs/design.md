@@ -3,7 +3,10 @@
 © Mayanktaker Computers & Web Development | https://mayanktaker.com
 
 Single source of truth for colours: `palette/icons.json`. Generators read the `color.icon` block per
-variant; artwork literals are remapped for the light suite. No hex values in code.
+variant and pass it in as `{COLOR_*}` placeholders. Hand-drawn artwork may still carry literal hexes;
+those are the one exception, remapped for the light suite through `LIGHT_HEX_MAP` in
+`tools/icons/icon_palette.py`. A literal missing from that map silently keeps its dark value, so map
+any new colour when you add it.
 
 ## Principles
 - **One catalog, two variants.** Dark and light suites share every shape; only colour differs, so
