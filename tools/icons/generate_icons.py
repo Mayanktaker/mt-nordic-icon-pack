@@ -1456,8 +1456,10 @@ def build_symbolic() -> None:
 
     def write_icon(target_contexts: list[str], icon_name: str, svg_content: str, scalable: bool = True) -> None:
         # Write an icon into the given contexts; scalable=False keeps it in the symbolic tree only.
+        # Context order must be stable: it decides which copy becomes the real file and which
+        # become symlinks, so a set() here would make the build host-dependent.
         filename = f"{icon_name}.svg" if not icon_name.endswith(".svg") else icon_name
-        for ctx in target_contexts:
+        for ctx in [c for c in contexts if c in target_contexts]:
             targets = []
             if scalable and ctx in scalable_dirs:
                 targets.append(scalable_dirs[ctx] / filename)
@@ -1519,10 +1521,10 @@ def build_symbolic() -> None:
 
         # Bare names that already own color art must not shadow it from scalable/status|actions.
         if name in color_icon_names:
-            write_icon(list(set(ctx_list)), name, svg_content, scalable=False)
+            write_icon(ctx_list, name, svg_content, scalable=False)
             continue
 
-        write_icon(list(set(ctx_list)), name, svg_content)
+        write_icon(ctx_list, name, svg_content)
 
     # 6. Storage symbolic aliases
     storage_sym_aliases = {

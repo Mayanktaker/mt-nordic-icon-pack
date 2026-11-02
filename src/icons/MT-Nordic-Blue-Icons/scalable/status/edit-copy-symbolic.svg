@@ -1,1 +1,3 @@
-../actions/edit-copy-symbolic.svg
+<svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <path fill="currentColor" d="M 5 1 C 4.45 1 4 1.45 4 2 L 4 10 C 4 10.55 4.45 11 5 11 L 12 11 C 12.55 11 13 10.55 13 10 L 13 2 C 13 1.45 12.55 1 12 1 Z M 2 4 L 2 12.5 C 2 13.88 3.12 15 4.5 15 L 11 15 L 11 13.5 L 4.5 13.5 C 3.95 13.5 3.5 13.05 3.5 12.5 L 3.5 4 Z"/>
+</svg>
