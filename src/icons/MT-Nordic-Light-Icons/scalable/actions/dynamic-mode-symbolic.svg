@@ -13,25 +13,7 @@
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
      id="defs5" />
-  <sodipodi:namedview
-     id="namedview5"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="44.75"
-     inkscape:cx="7.9888268"
-     inkscape:cy="8"
-     inkscape:window-width="1500"
-     inkscape:window-height="963"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg5"
-     showguides="true" />
+  
   <path
      d="m 11.5,11.34375 a 5.75,5.75 0 0 1 -1,0.134766 v 2.234375 C 10.5,14.425813 9.9258135,15 9.2128906,15 H 2.2871094 C 1.5741865,15 1,14.425813 1,13.712891 V 6.7871094 C 1,6.0741865 1.5741865,5.5 2.2871094,5.5 h 2.234375 A 5.75,5.75 0 0 1 4.65625,4.5 H 1.5585937 C 0.69558189,4.5 0,5.1955819 0,6.0585937 V 14.441406 C 0,15.304418 0.69558189,16 1.5585937,16 H 9.9414063 C 10.804418,16 11.5,15.304418 11.5,14.441406 Z"
      style="opacity:1;fill:currentColor;stroke-linejoin:round"

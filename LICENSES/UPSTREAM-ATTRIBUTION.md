@@ -25,16 +25,30 @@ compatibility granted by Creative Commons; the derived files remain available un
 
 ## Cursor artwork
 
-`MT-Nordic-Blue-Cursors` is a recolour of the **Nordic-cursors** theme installed on the build host
-at `~/.icons/Nordic-cursors`. That theme is not part of this repository, and its authorship/licence
-is **not recorded in the pack itself** — confirm it with the upstream source before publishing a
-release. Until then the cursor pack must not be presented as wholly original artwork.
+`MT-Nordic-Blue-Cursors` is a recolour of **Nordic-cursors** from
+[EliverLara/Nordic](https://github.com/EliverLara/Nordic) (`kde/cursors/Nordic-cursors`), which is
+**GPL-3.0**. Provenance was verified in two ways: the shipped `index.theme` is byte-identical to
+upstream, and the `wait` and `fleur` cursor binaries are byte-identical before recolouring.
+
+Only colour is changed — geometry, hotspots and frame timing are untouched. Because GPL-3.0 is
+copyleft, **the cursor pack is distributed under GPL-3.0**, not CC BY-SA 4.0. The source theme is not
+committed here; rebuild it by installing Nordic-cursors and running
+`python3 tools/icons/generate_cursors.py`.
 
 ## Application trademarks
 
 App tile artwork identifies third-party applications. Names and logos are trademarks of their
 respective owners and are used only to identify the corresponding software.
 
-## Code
+## License texts
 
-All build tooling (`tools/`, `install.sh`, CI) is GPL-3.0; see `LICENSES/GPL-3.0.txt`.
+| File | Covers |
+|---|---|
+| `LICENSES/GPL-3.0.txt` | build tooling, installers, CI, the cursor pack |
+| `LICENSES/CC-BY-SA-4.0.txt` | original icon artwork |
+| `LICENSES/GPL-2.0.txt` | vendored GNOME Shell glyphs |
+| `LICENSES/LGPL-3.0.txt` | vendored libadwaita glyphs |
+| `LICENSES/CC-BY-SA-3.0.txt` | vendored libadwaita artwork |
+
+Each `tools/icons/upstream/<set>/LICENSE` names the exact terms for that set, and
+`tools/icons/upstream/provenance.json` records the same per file hash.

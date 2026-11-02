@@ -29,7 +29,11 @@
         "adw-tab-overflow-symbolic.svg": "e30e2ff696542ec2cb1ac2788840e182827d05b545e2a81c8ec4bc9e1627ecc7",
         "adw-tab-unpin-symbolic.svg": "ea96d58669b3df70422e4f9f5f25b0e9e650cc7be03d147d954c3bee8caa2c1e"
       },
-      "license": "LGPL-3.0-or-later",
+      "license": "LGPL-3.0-or-later for the code, CC-BY-SA-3.0 for the artwork",
+      "license_files": [
+        "LICENSES/LGPL-3.0.txt",
+        "LICENSES/CC-BY-SA-3.0.txt"
+      ],
       "origin": "libadwaita GResource"
     },
     "blur-my-shell": {
@@ -55,8 +59,11 @@
         "static-mode-symbolic.svg": "4261dfff17a8dbfc271405227408f3380c088bd34846278085819aba79300a1a",
         "window-list-symbolic.svg": "b390e4500a74d8d838474189a622118ddfb88f4466f2b8b79e38e2db2f9beaa6"
       },
-      "license": "GPL-3.0-or-later",
-      "origin": "/home/mayanktakeroffice/.local/share/gnome-shell/extensions/blur-my-shell@aunetx/icons/hicolor/scalable/actions"
+      "license": "GPL-3.0",
+      "license_files": [
+        "LICENSES/GPL-3.0.txt"
+      ],
+      "origin": "~/.local/share/gnome-shell/extensions/blur-my-shell@aunetx"
     },
     "gnome-shell": {
       "count": 70,
@@ -133,6 +140,9 @@
         "wellbeing-symbolic.svg": "32a1370995ffc6d27aa3639e7da211aaa5082342f6b818d43ade8735ef5c9aa7"
       },
       "license": "GPL-2.0-or-later",
+      "license_files": [
+        "LICENSES/GPL-2.0.txt"
+      ],
       "origin": "gnome-shell-icons.gresource"
     },
     "tiling-shell": {
@@ -150,8 +160,11 @@
         "prefs-symbolic.svg": "ee7db534fb5d6e2d9b7997d7c7d234e18918843657dd759b7a6e9933a6c13718",
         "save-symbolic.svg": "8ebec8518ef78fafef3ba71c81502c9b73729f15cb204f88850bbaa666e2c34b"
       },
-      "license": "GPL-3.0-or-later",
-      "origin": "/home/mayanktakeroffice/.local/share/gnome-shell/extensions/tilingshell@ferrarodomenico.com/icons"
+      "license": "GPL-3.0",
+      "license_files": [
+        "LICENSES/GPL-3.0.txt"
+      ],
+      "origin": "~/.local/share/gnome-shell/extensions/tilingshell@ferrarodomenico.com"
     }
   }
 }

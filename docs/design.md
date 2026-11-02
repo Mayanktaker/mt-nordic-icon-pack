@@ -42,6 +42,12 @@ artwork literal makes the remap rewrite it and the light palette value is lost
   vendored copies in `tools/icons/upstream/` (see `provenance.json` for origin and licence).
 - Detail knockouts (camera lenses) are evenodd subpaths, so the ring stays transparent on any surface.
 
+## Storage
+- A glyph is written once and referenced from its other contexts by relative symlink, so
+  `scalable/status`, `scalable/actions`, `scalable/ui` and the `symbolic/` mirror never hold copies.
+- Editor state (`sodipodi:namedview`) is stripped during sanitisation; `<metadata>` and `dc:creator`
+  are kept because they carry upstream attribution.
+
 ## Fallback chains
 - Dark: `Tela-circle,Adwaita,breeze-dark,breeze,hicolor`
 - Light: `Tela-circle,Adwaita,breeze,hicolor` (never falls back to a dark pack)

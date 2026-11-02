@@ -46,9 +46,7 @@ cp -r "${REPO_ROOT}/src/cursors/${CURSORS}" "${STAGE}/src/cursors/"
 
 # Licenses, palette and the same installer users get from the checkout.
 mkdir -p "${STAGE}/LICENSES" "${STAGE}/palette"
-cp "${REPO_ROOT}/LICENSES/GPL-3.0.txt" "${STAGE}/LICENSES/"
-cp "${REPO_ROOT}/LICENSES/CC-BY-SA-4.0.txt" "${STAGE}/LICENSES/"
-cp "${REPO_ROOT}/LICENSES/UPSTREAM-ATTRIBUTION.md" "${STAGE}/LICENSES/"
+cp "${REPO_ROOT}"/LICENSES/* "${STAGE}/LICENSES/"
 cp "${REPO_ROOT}/palette/icons.json" "${STAGE}/palette/icons.json"
 cp "${REPO_ROOT}/install.sh" "${STAGE}/install.sh"
 chmod +x "${STAGE}/install.sh"

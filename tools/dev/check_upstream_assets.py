@@ -36,6 +36,13 @@ def verify_set(name: str, record: dict) -> list[str]:
         errors.append(f"{name}: manifest count {record.get('count')} != {len(expected)} recorded icons")
     if not record.get("license"):
         errors.append(f"{name}: no upstream license recorded")
+    if not (folder / "LICENSE").is_file():
+        errors.append(f"{name}: missing the per-set LICENSE note")
+    for license_file in record.get("license_files", []):
+        if not (REPO_ROOT / license_file).is_file():
+            errors.append(f"{name}: license text missing ({license_file})")
+    if not record.get("license_files"):
+        errors.append(f"{name}: no license text recorded")
     return errors
 
 

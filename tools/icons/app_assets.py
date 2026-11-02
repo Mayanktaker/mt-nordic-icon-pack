@@ -762,8 +762,6 @@ EXTENDED_APP_ALIASES = {
     "epiphany": "org.gnome.Epiphany",
     "web-browser": "org.gnome.Epiphany",
     "gnome-web": "org.gnome.Epiphany",
-    "camera-on-symbolic": "cctv",
-    "camera-off-symbolic": "cctv",
     "WebApp-CCTV": "cctv",
     "fetchflow": "com.mayanktaker.fetchflow",
     "meld": "org.gnome.Meld",

@@ -1425,8 +1425,13 @@ def build_apps() -> None:
                 dst_png.unlink()
             dst_png.symlink_to(f"{target}.png")
 
+# Inkscape/Sodipodi editor state: not rendering, not attribution, and it carries stray hex colours.
+EDITOR_STATE = re.compile(r"<sodipodi:namedview\b[^>]*/>", re.IGNORECASE | re.DOTALL)
+
+
 def sanitize_symbolic(svg_text: str) -> str:
     # Point baked-in fills at currentColor so symbolic glyphs follow the active theme ink.
+    svg_text = EDITOR_STATE.sub("", svg_text)
     svg_text = SVG_ROOT_TAG.sub(lambda match: f'{match.group(0)} fill="currentColor"', svg_text, count=1)
     svg_text = STYLE_ATTRIBUTE.sub(rewrite_style_attribute, svg_text)
     svg_text = PAINT_ATTRIBUTE.sub(rewrite_paint_attribute, svg_text)
@@ -1445,14 +1450,30 @@ def build_symbolic() -> None:
     for d in list(scalable_dirs.values()) + list(symbolic_dirs.values()):
         d.mkdir(parents=True, exist_ok=True)
 
+    # First written path per icon name; every later context becomes a relative symlink to it, so
+    # the same glyph is stored once instead of copied across status/actions/ui and the symbolic tree.
+    primary: dict[str, Path] = {}
+
     def write_icon(target_contexts: list[str], icon_name: str, svg_content: str, scalable: bool = True) -> None:
         # Write an icon into the given contexts; scalable=False keeps it in the symbolic tree only.
         filename = f"{icon_name}.svg" if not icon_name.endswith(".svg") else icon_name
         for ctx in target_contexts:
+            targets = []
             if scalable and ctx in scalable_dirs:
-                (scalable_dirs[ctx] / filename).write_text(svg_content)
+                targets.append(scalable_dirs[ctx] / filename)
             if ctx in symbolic_dirs:
-                (symbolic_dirs[ctx] / filename).write_text(svg_content)
+                targets.append(symbolic_dirs[ctx] / filename)
+            for path in targets:
+                if filename not in primary:
+                    path.write_text(svg_content)
+                    primary[filename] = path
+                elif primary[filename] == path:
+                    # A later, higher-priority source redefines the glyph; links follow it.
+                    path.write_text(svg_content)
+                else:
+                    if path.exists() or path.is_symlink():
+                        path.unlink()
+                    path.symlink_to(os.path.relpath(primary[filename], path.parent))
 
     # 1. Vendored upstream glyphs (GNOME Shell, libadwaita, shell extensions). They are committed
     # under tools/icons/upstream so a build never depends on the host desktop.
@@ -1546,6 +1567,10 @@ def build_symbolic() -> None:
         # Key/lock daemon symbolics (GOA daemon borrows the password key glyph)
         "dialog-password-symbolic": "dialog-password",
         "org.gnome.goa-daemon-symbolic": "dialog-password",
+        # Coverage aliases: same artwork, names that GTK/FreeDesktop also request
+        "document-new-symbolic": "document-new",
+        "emblem-favorite-symbolic": "starred-symbolic",
+        "camera-on-symbolic": "camera-photo-symbolic",
     }
     for alias, target in ui_sym_aliases.items():
         if target in SYMBOLIC_ICONS:

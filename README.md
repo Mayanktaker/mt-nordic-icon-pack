@@ -14,8 +14,8 @@ Two full icon suites and one cursor pack ship together:
 | `MT-Nordic-Blue-Cursors` | both | Nordic pointer set used by either mode |
 
 Coverage: ~370 app icons plus ~400 aliases, 120 MIME types, 26 GNOME Settings panels,
-FreeDesktop symbolics and device/media icons, generated from one catalog so both variants never
-drift apart.
+FreeDesktop symbolics (folder, edit, document, dialog, media, device and MIME families) and
+device/media icons, generated from one catalog so both variants never drift apart.
 
 ## Install
 
@@ -74,5 +74,9 @@ icon themes only when these packs are installed).
 
 ## License
 
-- Code and build tooling: GPL-3.0 (`LICENSES/GPL-3.0.txt`)
-- Artwork: CC BY-SA 4.0 (`LICENSES/CC-BY-SA-4.0.txt`)
+- Build tooling, installers and CI: GPL-3.0 (`LICENSES/GPL-3.0.txt`)
+- Original icon artwork: CC BY-SA 4.0 (`LICENSES/CC-BY-SA-4.0.txt`)
+- Cursor pack: GPL-3.0, derived from [EliverLara/Nordic](https://github.com/EliverLara/Nordic)
+- Vendored GNOME Shell / libadwaita / extension glyphs: their upstream terms (GPL-2.0+,
+  LGPL-3.0, CC BY-SA 3.0, GPL-3.0). Per-set notes live in `tools/icons/upstream/<set>/LICENSE`;
+  see `LICENSES/UPSTREAM-ATTRIBUTION.md`.

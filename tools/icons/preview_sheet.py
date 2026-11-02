@@ -47,11 +47,21 @@ def sheet_background(variant: str) -> tuple[float, float, float]:
 
 
 def collect(theme_dir: Path, context: str) -> list[Path]:
-    # Real SVGs of one context, aliases (symlinks) excluded to keep the sheet readable.
+    # SVGs of one context; symlinked glyphs count once and alias duplicates are skipped.
     folder = theme_dir / "scalable" / context
     if not folder.is_dir():
         return []
-    return sorted(p for p in folder.iterdir() if p.suffix == ".svg" and not p.is_symlink())
+    seen = set()
+    icons = []
+    for path in sorted(folder.iterdir()):
+        if path.suffix != ".svg":
+            continue
+        resolved = path.resolve()
+        if resolved in seen:
+            continue
+        seen.add(resolved)
+        icons.append(path)
+    return icons
 
 
 def draw_sheet(variant: str, theme_dir: Path, context: str, out_path: Path) -> int:

@@ -117,14 +117,18 @@ def classify(svg_text: str) -> str:
 
 
 def symbolic_glyphs(theme_dir: Path) -> list[Path]:
-    # Every symbolic glyph: `-symbolic` names anywhere plus everything in the symbolic tree.
+    # Every symbolic glyph, following the dedupe symlinks so each real file is checked once.
     glyphs = []
-    for svg in theme_dir.rglob("*.svg"):
-        if svg.is_symlink():
+    seen = set()
+    for svg in sorted(theme_dir.rglob("*.svg")):
+        if "-symbolic" not in svg.stem and "symbolic" not in svg.relative_to(theme_dir).parts[0]:
             continue
-        if "-symbolic" in svg.stem or "symbolic" in svg.relative_to(theme_dir).parts[0]:
-            glyphs.append(svg)
-    return sorted(glyphs)
+        target = svg.resolve()
+        if target in seen:
+            continue
+        seen.add(target)
+        glyphs.append(svg)
+    return glyphs
 
 
 def main() -> int:

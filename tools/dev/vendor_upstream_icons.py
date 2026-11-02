@@ -27,19 +27,31 @@ SETS = {
     "gnome-shell": {
         "origin": "gnome-shell-icons.gresource",
         "license": "GPL-2.0-or-later",
+        "license_files": ("LICENSES/GPL-2.0.txt",),
         "subpaths": ("/org/gnome/shell/icons/scalable/actions", "/org/gnome/shell/icons/scalable/status"),
     },
     "adwaita": {
         "origin": "libadwaita GResource",
-        "license": "LGPL-3.0-or-later",
+        "license": "LGPL-3.0-or-later for the code, CC-BY-SA-3.0 for the artwork",
+        "license_files": ("LICENSES/LGPL-3.0.txt", "LICENSES/CC-BY-SA-3.0.txt"),
         "subpaths": ("/org/gnome/Adwaita/icons/scalable/actions",),
     },
 }
 
 # Extensions whose icon sets were previously folded into the pack at build time.
 EXTENSIONS = {
-    "blur-my-shell": Path.home() / ".local/share/gnome-shell/extensions/blur-my-shell@aunetx/icons/hicolor/scalable/actions",
-    "tiling-shell": Path.home() / ".local/share/gnome-shell/extensions/tilingshell@ferrarodomenico.com/icons",
+    "blur-my-shell": {
+        "home": "blur-my-shell@aunetx",
+        "folder": Path.home() / ".local/share/gnome-shell/extensions/blur-my-shell@aunetx/icons/hicolor/scalable/actions",
+        "license": "GPL-3.0",
+        "license_files": ("LICENSES/GPL-3.0.txt",),
+    },
+    "tiling-shell": {
+        "home": "tilingshell@ferrarodomenico.com",
+        "folder": Path.home() / ".local/share/gnome-shell/extensions/tilingshell@ferrarodomenico.com/icons",
+        "license": "GPL-3.0",
+        "license_files": ("LICENSES/GPL-3.0.txt",),
+    },
 }
 
 
@@ -61,8 +73,8 @@ def gnome_shell_version() -> str:
         return "unknown"
 
 
-def write_set(name: str, icons: dict[str, str], manifest: dict) -> int:
-    # Write one vendored set and record a hash per file.
+def write_set(name: str, icons: dict[str, str], manifest: dict, record: dict) -> int:
+    # Write one vendored set, its licence note and a hash per file.
     target = UPSTREAM_ROOT / name
     if target.exists():
         shutil.rmtree(target)
@@ -71,6 +83,14 @@ def write_set(name: str, icons: dict[str, str], manifest: dict) -> int:
     for filename, text in sorted(icons.items()):
         (target / filename).write_text(text)
         hashes[filename] = hashlib.sha256(text.encode("utf-8")).hexdigest()
+    (target / "LICENSE").write_text(
+        f"{name} — {record['license']}\n"
+        f"Source: {record['origin']}\n"
+        f"Full text: {', '.join(record['license_files'])}\n"
+        "These files keep their upstream terms; they are not relicensed by this project.\n"
+        "Vendored by tools/dev/vendor_upstream_icons.py — do not edit by hand.\n"
+    )
+    manifest["sets"][name].update(record)
     manifest["sets"][name]["icons"] = hashes
     manifest["sets"][name]["count"] = len(hashes)
     return len(hashes)
@@ -127,15 +147,23 @@ def main() -> int:
     }
     total = 0
     for name, spec in SETS.items():
-        manifest["sets"][name] = {"origin": spec["origin"], "license": spec["license"]}
+        manifest["sets"][name] = {}
         icons = harvest_resources(name, errors)
-        total += write_set(name, icons, manifest)
+        total += write_set(name, icons, manifest, {
+            "origin": spec["origin"],
+            "license": spec["license"],
+            "license_files": list(spec["license_files"]),
+        })
         print(f"  {name}: {len(icons)} icon(s)")
-    for name, folder in EXTENSIONS.items():
-        manifest["sets"][name] = {"origin": str(folder), "license": "GPL-3.0-or-later"}
-        icons = harvest_extension(name, folder, errors)
+    for name, spec in EXTENSIONS.items():
+        manifest["sets"][name] = {}
+        icons = harvest_extension(name, spec["folder"], errors)
         if icons:
-            total += write_set(name, icons, manifest)
+            total += write_set(name, icons, manifest, {
+                "origin": f"~/.local/share/gnome-shell/extensions/{spec['home']}",
+                "license": spec["license"],
+                "license_files": list(spec["license_files"]),
+            })
             print(f"  {name}: {len(icons)} icon(s)")
     if errors:
         for line in errors:

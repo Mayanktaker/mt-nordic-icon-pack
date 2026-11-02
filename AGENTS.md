@@ -54,8 +54,10 @@ so artwork can be versioned and released independently — **this repo must not 
 - Artwork modules run before `remap()`, so any colour they interpolate must be a `{COLOR_*}`
   placeholder (resolved after the remap) rather than a baked hex — a baked hex whose value is also
   a dark literal gets rewritten and the light palette value is lost.
-- Symbolic glyphs are `currentColor`; upstream resources are sanitized at extraction time
+- Symbolic glyphs are `currentColor`; vendored upstream resources are sanitized at build time
   (`sanitize_symbolic`) and camera lenses use an evenodd knockout, never a painted background.
+- Each glyph is written once: repeated contexts and the `symbolic/` mirror are relative symlinks,
+  which is why the pack ships ~820 real SVGs alongside ~2,000 links.
 - App tiles share one edge weight (`icon.tile_border`, 1.5px); folder edges use their own tokens.
 - Dark generation must stay backward-compatible when touching shared artwork.
 
