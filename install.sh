@@ -1,7 +1,7 @@
 #!/bin/sh
 # © Mayanktaker Computers & Web Development | https://mayanktaker.com
 # Installs the MT Nordic icon packs and cursors into the user's ~/.icons ONLY.
-# Usage: ./install.sh [--dark|--light|--both] [--no-activate] [--icons-only|--cursors-only]
+# Usage: ./install.sh [--dark|--light|--both] [--no-activate] [--icons-only|--cursors-only|--uninstall]
 
 set -eu
 
@@ -24,6 +24,7 @@ print('PACK_NAME=' + shlex.quote(doc['meta']['tech_name']))
 WANT_ICONS=1
 WANT_CURSORS=1
 ACTIVATE=1
+UNINSTALL=0
 VARIANT="auto"
 
 while [ $# -gt 0 ]; do
@@ -34,11 +35,13 @@ while [ $# -gt 0 ]; do
     --no-activate) ACTIVATE=0 ;;
     --icons-only) WANT_CURSORS=0 ;;
     --cursors-only) WANT_ICONS=0 ;;
+    --uninstall) UNINSTALL=1 ;;
     -h|--help)
       sed -n '2,4p' "$0" | sed 's/^# \{0,1\}//'
       echo "  --dark | --light | --both   activate that icon variant (default: match the desktop)"
       echo "  --no-activate               install files only"
       echo "  --icons-only | --cursors-only"
+      echo "  --uninstall                 remove both icon suites and the cursor pack"
       exit 0
       ;;
     *)
@@ -82,6 +85,18 @@ current_variant() {
   esac
 }
 
+# Removal only deletes packs this repository owns; the active theme is left to the user.
+if [ "${UNINSTALL}" -eq 1 ]; then
+  for pack in "${ICONS_DARK}" "${ICONS_LIGHT}" "${CURSORS}"; do
+    if [ -d "${ICONS_DIR:?}/${pack}" ]; then
+      rm -rf "${ICONS_DIR:?}/${pack}"
+      echo "  ✗ removed ${pack}"
+    fi
+  done
+  echo "Uninstalled ${PACK_NAME}. Pick another icon theme with gsettings if one is still active."
+  exit 0
+fi
+
 mkdir -p "${ICONS_DIR}"
 echo "Installing ${PACK_NAME} into ${ICONS_DIR}"
 
@@ -104,10 +119,12 @@ if [ "${ACTIVATE}" -eq 1 ]; then
         *) if [ "$(current_variant)" = "light" ]; then target="${ICONS_LIGHT}"; else target="${ICONS_DARK}"; fi ;;
       esac
       gsettings set org.gnome.desktop.interface icon-theme "${target}" 2>/dev/null || true
-      # GTK3 reads settings.ini before the session bus, so keep its icon name in sync.
-      if [ -f "${HOME}/.config/gtk-3.0/settings.ini" ] && grep -q "^gtk-icon-theme-name=" "${HOME}/.config/gtk-3.0/settings.ini"; then
-        sed -i "s|^gtk-icon-theme-name=.*|gtk-icon-theme-name=${target}|" "${HOME}/.config/gtk-3.0/settings.ini"
-      fi
+      # GTK3/GTK4 read settings.ini before the session bus, so keep their icon name in sync.
+      for ini in "${HOME}/.config/gtk-3.0/settings.ini" "${HOME}/.config/gtk-4.0/settings.ini"; do
+        if [ -f "${ini}" ] && grep -q "^gtk-icon-theme-name=" "${ini}"; then
+          sed -i "s|^gtk-icon-theme-name=.*|gtk-icon-theme-name=${target}|" "${ini}"
+        fi
+      done
       echo "Activated icon theme: ${target}"
     fi
     if [ "${WANT_CURSORS}" -eq 1 ]; then

@@ -21,6 +21,8 @@ so artwork can be versioned and released independently — **this repo must not 
 - Contrast gate: `python3 tools/dev/check_contrast.py` (icon ink/tile/accent pairs, both variants).
 - Remap gate: `python3 tools/dev/check_light_remap.py` (baked colour tokens must survive the
   dark→light map, or be `{COLOR_*}` placeholders).
+- Upstream gate: `python3 tools/dev/check_upstream_assets.py` (vendored glyphs match
+  `tools/icons/upstream/provenance.json`; refresh with `tools/dev/vendor_upstream_icons.py --force`).
 - Cursor guard: `python3 tools/dev/check_cursor_build.py` (a build with no usable source fails loudly).
 - Build: `python3 tools/icons/generate_icons.py --variant both` (or `--variant dark|light`) → `src/icons/<pack>`.
 - Lookup gate: `python3 tools/dev/check_icon_contexts.py` (shadowing + dangling aliases; run after every icon build).
@@ -41,6 +43,7 @@ so artwork can be versioned and released independently — **this repo must not 
 - `src/icons/` — generated `MT-Nordic-Blue-Icons` and `MT-Nordic-Light-Icons` (committed artifacts)
 - `src/cursors/` — generated `MT-Nordic-Blue-Cursors`
 - `tools/icons/` — generators, artwork catalog, `icon_palette.py`, `package.sh`
+- `tools/icons/upstream/` — vendored GNOME Shell / libadwaita / extension glyphs + `provenance.json`
 - `tools/dev/` — contrast gate, lookup gate, gallery builder
 - `docs/` — `design.md` (palette rules), `gallery/` (curated preview SVGs)
 - `build/`, `dist/` — generated output (gitignored)

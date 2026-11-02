@@ -10,28 +10,31 @@ cd "${REPO_ROOT}"
 
 VERSION="${1:-}"
 
-echo "1/9 contrast gate"
+echo "1/10 contrast gate"
 python3 tools/dev/check_contrast.py
 
-echo "2/9 light remap gate"
+echo "2/10 light remap gate"
 python3 tools/dev/check_light_remap.py
 
-echo "3/9 cursor build guard"
+echo "3/10 cursor build guard"
 python3 tools/dev/check_cursor_build.py
 
-echo "4/9 icon suites (dark + light)"
+echo "4/10 vendored asset gate"
+python3 tools/dev/check_upstream_assets.py
+
+echo "5/10 icon suites (dark + light)"
 python3 tools/icons/generate_icons.py --variant both
 
-echo "5/9 icon lookup gate"
+echo "6/10 icon lookup gate"
 python3 tools/dev/check_icon_contexts.py
 
-echo "6/9 symbolic render gate"
+echo "7/10 symbolic render gate"
 python3 tools/dev/check_symbolic_render.py
 
-echo "7/9 cursors"
+echo "8/10 cursors"
 python3 tools/icons/generate_cursors.py
 
-echo "8/9 packaging"
+echo "9/10 packaging"
 if [ -n "${VERSION}" ]; then
   sh tools/icons/package.sh "${VERSION}"
   TARBALL="dist/mt-nordic-icon-pack-v${VERSION}.tar.xz"
@@ -40,7 +43,7 @@ else
   TARBALL=""
 fi
 
-echo "9/9 release archive gate"
+echo "10/10 release archive gate"
 python3 tools/dev/check_release_archive.py ${TARBALL}
 
 echo "Done. Attach the tarball in dist/ to the GitHub release."

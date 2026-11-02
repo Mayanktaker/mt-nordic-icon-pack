@@ -1,0 +1,53 @@
+name: gates
+
+# Runs the artwork and packaging gates on every push and pull request, not only on release tags.
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-gi python3-cairo gir1.2-rsvg-2.0 librsvg2-bin python3-numpy
+
+      - name: Contrast gate
+        run: python3 tools/dev/check_contrast.py
+
+      - name: Light remap gate
+        run: python3 tools/dev/check_light_remap.py
+
+      - name: Vendored asset gate
+        run: python3 tools/dev/check_upstream_assets.py
+
+      - name: Cursor build guard
+        run: python3 tools/dev/check_cursor_build.py
+
+      - name: Build icon suites
+        run: python3 tools/icons/generate_icons.py --variant both
+
+      - name: Icon lookup gate
+        run: python3 tools/dev/check_icon_contexts.py
+
+      - name: Symbolic render gate
+        run: python3 tools/dev/check_symbolic_render.py
+
+      - name: Build cursors
+        run: python3 tools/icons/generate_cursors.py --reuse-existing
+
+      # SVG output is pure Python, so it must match the committed artwork exactly.
+      # PNGs depend on the local librsvg build and are not compared byte for byte.
+      - name: Committed SVG artwork is up to date
+        run: git diff --exit-code -- ':(glob)src/icons/**/*.svg' 'src/cursors'
+
+      - name: Package and validate the archive
+        run: |
+          sh tools/icons/package.sh
+          python3 tools/dev/check_release_archive.py

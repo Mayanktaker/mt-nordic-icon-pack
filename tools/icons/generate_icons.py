@@ -50,9 +50,12 @@ set_variant("dark" if REQUESTED_VARIANT == "both" else REQUESTED_VARIANT)
 import cairo
 import gi
 gi.require_version("Rsvg", "2.0")
-gi.require_version("Adw", "1")
-gi.require_version("Gio", "2.0")
-from gi.repository import Rsvg, Adw, Gio
+from gi.repository import Rsvg
+
+try:
+    from upstream_assets import ADWAITA_ICONS, EXTENSION_ICONS, GNOME_SHELL_ICONS
+except ImportError:
+    from tools.icons.upstream_assets import ADWAITA_ICONS, EXTENSION_ICONS, GNOME_SHELL_ICONS
 
 try:
     from symbolic_assets import EXTENDED_SYMBOLIC_ICONS
@@ -1451,54 +1454,18 @@ def build_symbolic() -> None:
             if ctx in symbolic_dirs:
                 (symbolic_dirs[ctx] / filename).write_text(svg_content)
 
-    # 1. Extract and bundle GNOME Shell internal symbolic icons
-    gs_res_path = Path("/usr/share/gnome-shell/gnome-shell-icons.gresource")
-    if gs_res_path.exists():
-        try:
-            res = Gio.Resource.load(str(gs_res_path))
-            Gio.resources_register(res)
-            for subpath, ctx_targets in [
-                ("/org/gnome/shell/icons/scalable/actions", ["actions", "status", "ui"]),
-                ("/org/gnome/shell/icons/scalable/status", ["status", "actions", "ui"]),
-            ]:
-                try:
-                    for icon in Gio.resources_enumerate_children(subpath, Gio.ResourceLookupFlags.NONE):
-                        try:
-                            data = Gio.resources_lookup_data(f"{subpath}/{icon}", Gio.ResourceLookupFlags.NONE)
-                            svg_text = data.get_data().decode("utf-8")
-                            write_icon(ctx_targets, icon, sanitize_symbolic(svg_text))
-                        except Exception:
-                            pass
-                except Exception:
-                    pass
-        except Exception as e:
-            print(f"Notice: GNOME Shell icons resource lookup skipped ({e})")
-
-    # 2. Extract and bundle all Libadwaita internal symbolic icons (sanitizing grappa foreground)
-    try:
-        Adw.init()
-        adw_icons = Gio.resources_enumerate_children("/org/gnome/Adwaita/icons/scalable/actions", Gio.ResourceLookupFlags.NONE)
-        for icon in adw_icons:
-            try:
-                data = Gio.resources_lookup_data(f"/org/gnome/Adwaita/icons/scalable/actions/{icon}", Gio.ResourceLookupFlags.NONE)
-                svg_text = data.get_data().decode("utf-8")
-                write_icon(["actions", "status", "ui"], icon, sanitize_symbolic(svg_text))
-            except Exception:
-                pass
-    except Exception as e:
-        print(f"Notice: Adw resource lookup skipped ({e})")
-
-    # 3. Integrate Blur my Shell extension icons if present
-    bms_dir = Path.home() / ".local" / "share" / "gnome-shell" / "extensions" / "blur-my-shell@aunetx" / "icons" / "hicolor" / "scalable" / "actions"
-    if bms_dir.exists():
-        for bms_svg in bms_dir.glob("*.svg"):
-            write_icon(["actions", "status", "ui"], bms_svg.name, sanitize_symbolic(bms_svg.read_text()))
-
-    # 4. Integrate Tiling Shell extension icons if present
-    ts_dir = Path.home() / ".local" / "share" / "gnome-shell" / "extensions" / "tilingshell@ferrarodomenico.com" / "icons"
-    if ts_dir.exists():
-        for ts_svg in ts_dir.glob("*.svg"):
-            write_icon(["actions", "status", "ui"], ts_svg.name, sanitize_symbolic(ts_svg.read_text()))
+    # 1. Vendored upstream glyphs (GNOME Shell, libadwaita, shell extensions). They are committed
+    # under tools/icons/upstream so a build never depends on the host desktop.
+    upstream_sources = (
+        ("GNOME Shell", GNOME_SHELL_ICONS),
+        ("libadwaita", ADWAITA_ICONS),
+        ("shell extensions", EXTENSION_ICONS),
+    )
+    for source, icons in upstream_sources:
+        for icon, svg_text in icons.items():
+            write_icon(["actions", "status", "ui"], icon, sanitize_symbolic(svg_text))
+    vendored = {icon for _name, icons in upstream_sources for icon in icons}
+    print(f"  Vendored upstream glyphs: {len(vendored)} unique across {len(upstream_sources)} sets")
 
     # 5. Write curated MT-Nordic-Blue symbolic SVGs (takes precedence over extracted icons)
     # Guard: never replace an existing full-color icon inside its scalable context.

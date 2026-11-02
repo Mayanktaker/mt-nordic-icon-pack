@@ -38,7 +38,8 @@ artwork literal makes the remap rewrite it and the light palette value is lost
 ## Symbolic artwork
 - Every symbolic glyph renders in `currentColor`; nothing carries a literal colour.
 - Upstream GNOME Shell, Adwaita and extension icons ship hardcoded near-blacks (`#241f31`,
-  `#363636`, `#dedede`, `#0e141d`); `sanitize_symbolic()` rewrites them at extraction time.
+  `#363636`, `#dedede`, `#0e141d`); `sanitize_symbolic()` rewrites them at build time from the
+  vendored copies in `tools/icons/upstream/` (see `provenance.json` for origin and licence).
 - Detail knockouts (camera lenses) are evenodd subpaths, so the ring stays transparent on any surface.
 
 ## Fallback chains

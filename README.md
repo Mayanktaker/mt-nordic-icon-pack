@@ -36,10 +36,11 @@ Missing icons fall back through `Tela-circle,Adwaita,breeze-dark,breeze,hicolor`
 
 ## Build from source
 
-Requires Python 3 with PyGObject, pycairo, librsvg **and libadwaita** typelibs, plus numpy for the
-cursors. Rebuilding the symbolic set also harvests whatever GNOME Shell / libadwaita resources the
-build host provides, so a different host can produce a different glyph set — commit the regenerated
-`src/icons/` whenever that happens.
+Requires Python 3 with PyGObject, pycairo and librsvg typelibs, plus numpy for the cursors.
+Upstream symbolic glyphs are vendored under `tools/icons/upstream/`, so the build is hermetic: the
+same commit produces the same suites on any machine. To refresh them against a newer GNOME, run
+`python3 tools/dev/vendor_upstream_icons.py --force` on a host with gnome-shell and libadwaita
+installed (that script needs the `Adw` typelib; the build itself does not).
 
 The cursor pack is recoloured from the **Nordic-cursors** theme installed at
 `~/.icons/Nordic-cursors`. Without that source the build fails loudly; pass `--reuse-existing` to
@@ -48,6 +49,7 @@ keep the committed pack instead (this is what CI does).
 ```bash
 python3 tools/dev/check_contrast.py             # palette legibility gate
 python3 tools/dev/check_light_remap.py          # palette vs dark->light remap gate
+python3 tools/dev/check_upstream_assets.py      # vendored glyphs match provenance.json
 python3 tools/icons/generate_icons.py --variant both
 python3 tools/dev/check_icon_contexts.py        # lookup-order and alias gate
 python3 tools/dev/check_symbolic_render.py      # every -symbolic glyph honours the ink
