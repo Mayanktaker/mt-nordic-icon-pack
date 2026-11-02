@@ -29,18 +29,26 @@ mkdir -p "${DIST_ROOT}"
 rm -rf "${STAGE}"
 mkdir -p "${STAGE}"
 
-# Ship both icon variants plus the cursor pack; the installer picks what to activate.
+# Ship both icon variants plus the cursor pack under the layout install.sh reads.
+mkdir -p "${STAGE}/src/icons" "${STAGE}/src/cursors"
 for ICON_PACK in "${ICONS_DARK}" "${ICONS_LIGHT}"; do
-  if [ -d "${REPO_ROOT}/src/icons/${ICON_PACK}" ]; then
-    cp -r "${REPO_ROOT}/src/icons/${ICON_PACK}" "${STAGE}/"
+  if [ ! -d "${REPO_ROOT}/src/icons/${ICON_PACK}" ]; then
+    echo "missing src/icons/${ICON_PACK}; run tools/icons/generate_icons.py --variant both" >&2
+    exit 1
   fi
+  cp -r "${REPO_ROOT}/src/icons/${ICON_PACK}" "${STAGE}/src/icons/"
 done
-cp -r "${REPO_ROOT}/src/cursors/${CURSORS}" "${STAGE}/"
+if [ ! -d "${REPO_ROOT}/src/cursors/${CURSORS}" ]; then
+  echo "missing src/cursors/${CURSORS}; run tools/icons/generate_cursors.py" >&2
+  exit 1
+fi
+cp -r "${REPO_ROOT}/src/cursors/${CURSORS}" "${STAGE}/src/cursors/"
 
 # Licenses, palette and the same installer users get from the checkout.
 mkdir -p "${STAGE}/LICENSES" "${STAGE}/palette"
 cp "${REPO_ROOT}/LICENSES/GPL-3.0.txt" "${STAGE}/LICENSES/"
 cp "${REPO_ROOT}/LICENSES/CC-BY-SA-4.0.txt" "${STAGE}/LICENSES/"
+cp "${REPO_ROOT}/LICENSES/UPSTREAM-ATTRIBUTION.md" "${STAGE}/LICENSES/"
 cp "${REPO_ROOT}/palette/icons.json" "${STAGE}/palette/icons.json"
 cp "${REPO_ROOT}/install.sh" "${STAGE}/install.sh"
 chmod +x "${STAGE}/install.sh"

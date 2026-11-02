@@ -10,5 +10,5 @@
 
 <rect x="15" y="17" width="30" height="20" rx="4" fill="none" stroke="#4C719C" stroke-width="2"/>
 <path d="M 21 31 L 21 41 L 30 41" fill="none" stroke="#0099CC" stroke-width="2.4" stroke-linejoin="round"/>
-<path d="M 27 29 L 47 29 L 47 43 L 36 43 L 30 49 L 30 43 L 27 43 Z" fill="#2E3440" stroke="#0099CC" stroke-width="2" stroke-linejoin="round"/>
+<path d="M 27 29 L 47 29 L 47 43 L 36 43 L 30 49 L 30 43 L 27 43 Z" fill="#ECEFF4" stroke="#0099CC" stroke-width="2" stroke-linejoin="round"/>
 </svg>

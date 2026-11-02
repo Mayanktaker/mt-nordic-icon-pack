@@ -37,6 +37,17 @@ DARK_CEILING = 70
 LIGHT_FLOOR = 245
 MAX_REPORTED = 20
 
+# Paint declarations that carry no colour of their own and must not be flagged.
+NEUTRAL_PAINTS = {"", "none", "currentcolor", "inherit", "transparent", "context-fill", "context-stroke"}
+
+# `-inkscape-stroke`, `stop-color` and friends are metadata, not painted geometry.
+PAINT_ATTRIBUTE = re.compile(r'(?<![-\w])(fill|stroke)\s*=\s*"([^"]*)"', re.IGNORECASE)
+PAINT_DECLARATION = re.compile(r'(?<![-\w])(fill|stroke)\s*:\s*([^;"]+)', re.IGNORECASE)
+
+# Glyphs that deliberately paint a colour instead of inheriting the theme ink, with the values
+# they are allowed to keep. A colour picker showing a swatch is the only sanctioned case.
+COLOUR_ALLOWLIST = {"color-pick": {"#50dbb5"}}
+
 
 def intrinsic_size(svg_text: str) -> tuple[float, float]:
     # Coordinate-system size, so a glyph is fitted instead of clipped by its own canvas.
@@ -77,6 +88,18 @@ def ink_histogram(svg_text: str) -> Counter:
     return counts
 
 
+def fixed_paints(svg_text: str, stem: str) -> set[str]:
+    # Every paint that hard-codes a colour instead of following the theme ink.
+    allowed = COLOUR_ALLOWLIST.get(stem, set())
+    found = set()
+    for _name, value in PAINT_ATTRIBUTE.findall(svg_text) + PAINT_DECLARATION.findall(svg_text):
+        paint = value.strip().lower()
+        if paint in NEUTRAL_PAINTS or paint.startswith("url(") or paint in allowed:
+            continue
+        found.add(paint)
+    return found
+
+
 def classify(svg_text: str) -> str:
     # ok, blank, fixed-dark, fixed-light or accent, judged by the colour the glyph mostly paints.
     # A handful of stray antialiasing pixels must not fail a glyph that renders correctly.
@@ -93,6 +116,17 @@ def classify(svg_text: str) -> str:
     return "accent"
 
 
+def symbolic_glyphs(theme_dir: Path) -> list[Path]:
+    # Every symbolic glyph: `-symbolic` names anywhere plus everything in the symbolic tree.
+    glyphs = []
+    for svg in theme_dir.rglob("*.svg"):
+        if svg.is_symlink():
+            continue
+        if "-symbolic" in svg.stem or "symbolic" in svg.relative_to(theme_dir).parts[0]:
+            glyphs.append(svg)
+    return sorted(glyphs)
+
+
 def main() -> int:
     # Check every unique symbolic glyph across both suites.
     failures = []
@@ -104,17 +138,16 @@ def main() -> int:
         if not theme_dir.is_dir():
             failures.append(f"theme directory missing: {theme_dir}")
             continue
-        for svg in sorted(theme_dir.rglob("*-symbolic*.svg")):
-            if svg.is_symlink():
-                continue
+        for svg in symbolic_glyphs(theme_dir):
             digest = hashlib.sha256(svg.read_bytes()).hexdigest()
             if digest in seen:
                 continue
             seen.add(digest)
             checked += 1
             name = str(svg.relative_to(theme_dir))
+            text = svg.read_text(errors="ignore")
             try:
-                result = classify(svg.read_text(errors="ignore"))
+                result = classify(text)
             except Exception as exc:  # noqa: BLE001 - an unreadable glyph is a gate failure
                 failures.append(f"render failed: {name} ({exc})")
                 continue
@@ -122,6 +155,8 @@ def main() -> int:
                 failures.append(f"{result}: {name}")
             elif result == "accent":
                 accents.append(name)
+            for paint in sorted(fixed_paints(text, svg.stem)):
+                failures.append(f"fixed-paint {paint}: {name}")
 
     for line in failures[:MAX_REPORTED]:
         print(f"FAIL  {line}")

@@ -8,6 +8,11 @@ those are the one exception, remapped for the light suite through `LIGHT_HEX_MAP
 `tools/icons/icon_palette.py`. A literal missing from that map silently keeps its dark value, so map
 any new colour when you add it.
 
+Artwork modules (`apps_popular_common.py` and friends) are imported *before* `remap()` runs, so a
+colour they interpolate must be a `{COLOR_*}` placeholder: baking a hex whose value is also a dark
+artwork literal makes the remap rewrite it and the light palette value is lost
+(`tools/dev/check_light_remap.py` guards this).
+
 ## Principles
 - **One catalog, two variants.** Dark and light suites share every shape; only colour differs, so
   coverage and aliases can never drift between modes.

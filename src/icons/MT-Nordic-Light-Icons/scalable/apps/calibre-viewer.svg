@@ -8,7 +8,7 @@
 <rect x="6" y="6" width="52" height="52" rx="14" fill="url(#bg-calibre-viewer)" stroke="#A5B4C7" stroke-width="1.5"/>
 <rect x="8.5" y="8.5" width="47" height="4" rx="2" fill="#4C719C" fill-opacity="0.25"/>
 
-<rect x="14" y="14" width="36" height="36" rx="3" fill="#2E3440" stroke="#4C719C" stroke-width="2.2"/>
+<rect x="14" y="14" width="36" height="36" rx="3" fill="#ECEFF4" stroke="#4C719C" stroke-width="2.2"/>
 <path d="M 20 30 C 24 24 40 24 44 30 C 40 36 24 36 20 30 Z" fill="none" stroke="#0099CC" stroke-width="2"/>
 <circle cx="32" cy="30" r="3" fill="#0099CC"/>
 <line x1="20" y1="42" x2="44" y2="42" stroke="#4C719C" stroke-width="2" stroke-linecap="round"/>

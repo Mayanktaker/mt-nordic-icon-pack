@@ -8,7 +8,7 @@
 <rect x="6" y="6" width="52" height="52" rx="14" fill="url(#bg-caffeine)" stroke="#A5B4C7" stroke-width="1.5"/>
 <rect x="8.5" y="8.5" width="47" height="4" rx="2" fill="#4C719C" fill-opacity="0.25"/>
 
-<path d="M 18 24 L 40 24 L 38 44 L 20 44 Z" fill="#2E3440" stroke="#4C719C" stroke-width="2.2"/>
+<path d="M 18 24 L 40 24 L 38 44 L 20 44 Z" fill="#ECEFF4" stroke="#4C719C" stroke-width="2.2"/>
 <path d="M 40 28 L 46 28 C 48 28 48 34 46 34 L 39 34" fill="none" stroke="#4C719C" stroke-width="2"/>
 <path d="M 24 18 C 24 15 27 15 27 12 M 31 18 C 31 15 34 15 34 12" stroke="#0099CC" stroke-width="2" stroke-linecap="round"/>
 </svg>

@@ -8,6 +8,6 @@
 <rect x="6" y="6" width="52" height="52" rx="14" fill="url(#bg-ghostwriter)" stroke="#A5B4C7" stroke-width="1.5"/>
 <rect x="8.5" y="8.5" width="47" height="4" rx="2" fill="#4C719C" fill-opacity="0.25"/>
 
-<path d="M 48 14 C 38 18 28 26 22 38 L 18 50 L 30 46 C 42 40 48 28 48 14 Z" fill="#2E3440" stroke="#0099CC" stroke-width="2.2"/>
+<path d="M 48 14 C 38 18 28 26 22 38 L 18 50 L 30 46 C 42 40 48 28 48 14 Z" fill="#ECEFF4" stroke="#0099CC" stroke-width="2.2"/>
 <path d="M 22 38 L 34 26" stroke="#4C719C" stroke-width="1.8"/>
 </svg>

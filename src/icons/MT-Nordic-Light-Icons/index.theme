@@ -1,5 +1,5 @@
 [Icon Theme]
-Name=MT-Nordic-Light-Icons
+Name=MT Nordic Light
 Comment=High-definition light icon suite for MT Nordic Light by Mayanktaker (https://mayanktaker.com)
 Inherits=Tela-circle,Adwaita,breeze,hicolor
 Example=folder
@@ -72,7 +72,7 @@ Type=Scalable
 Size=16
 MinSize=8
 MaxSize=512
-Context=UI
+Context=Actions
 Type=Scalable
 
 [scalable/mimetypes]
@@ -110,27 +110,6 @@ MaxSize=512
 Context=Devices
 Type=Scalable
 
-[symbolic/emblems]
-Size=16
-MinSize=8
-MaxSize=512
-Context=Emblems
-Type=Scalable
-
-[symbolic/emotes]
-Size=16
-MinSize=8
-MaxSize=512
-Context=Emotes
-Type=Scalable
-
-[symbolic/mimetypes]
-Size=16
-MinSize=8
-MaxSize=512
-Context=MimeTypes
-Type=Scalable
-
 [symbolic/places]
 Size=16
 MinSize=8
@@ -149,14 +128,7 @@ Type=Scalable
 Size=16
 MinSize=8
 MaxSize=512
-Context=UI
-Type=Scalable
-
-[symbolic/legacy]
-Size=16
-MinSize=8
-MaxSize=512
-Context=Legacy
+Context=Actions
 Type=Scalable
 
 [32x32/places]

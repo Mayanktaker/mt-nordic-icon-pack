@@ -1,8 +1,10 @@
 # © Mayanktaker Computers & Web Development | https://mayanktaker.com
 # Generates companion Xcursor suite: authentic high-definition Nordic cursors in MT Nordic Blue.
 # Multi-resolution (30x30, 45x45, 60x60) with Deep Polar Night body, Frost Cyan borders & Electric Cyan accents.
+# --reuse-existing keeps the committed pack when the upstream source theme is not installed.
 
 import os
+import sys
 from pathlib import Path
 import shutil
 import struct
@@ -198,5 +200,14 @@ def build_cursors() -> None:
     print(f"Generated {len(real_files)} authentic Nordic cursors + {len(symlinks)} symlinks in {OUT_DIR}")
 
 
-if __name__ == "__main__":
+def main() -> None:
+    # Rebuild the cursor pack; --reuse-existing tolerates a build host without the source theme.
+    if "--reuse-existing" in sys.argv[1:]:
+        if not SYSTEM_NORDIC_CURSORS.is_dir() and (OUT_DIR / "index.theme").is_file():
+            print(f"Notice: no source at {SYSTEM_NORDIC_CURSORS}; keeping committed {OUT_DIR.name}")
+            return
     build_cursors()
+
+
+if __name__ == "__main__":
+    main()

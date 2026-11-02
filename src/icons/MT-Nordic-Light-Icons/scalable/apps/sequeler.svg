@@ -9,7 +9,7 @@
 <rect x="8.5" y="8.5" width="47" height="4" rx="2" fill="#4C719C" fill-opacity="0.25"/>
 
 <ellipse cx="32" cy="22" rx="14" ry="4" fill="#4C719C"/>
-<path d="M 18 22 L 18 44 C 18 46 24 48 32 48 C 40 48 46 46 46 44 L 46 22" fill="#2E3440" stroke="#0099CC" stroke-width="2"/>
+<path d="M 18 22 L 18 44 C 18 46 24 48 32 48 C 40 48 46 46 46 44 L 46 22" fill="#ECEFF4" stroke="#0099CC" stroke-width="2"/>
 <line x1="18" y1="32" x2="46" y2="32" stroke="#4C719C" stroke-width="1.6"/>
 <line x1="32" y1="26" x2="32" y2="46" stroke="#4C719C" stroke-width="1.4"/>
 </svg>

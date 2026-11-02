@@ -9,5 +9,5 @@
 <rect x="8.5" y="8.5" width="47" height="4" rx="2" fill="#4C719C" fill-opacity="0.25"/>
 
 <path d="M 32 12 C 40 20 42 30 36 44 L 32 50 L 28 44 C 22 30 24 20 32 12 Z" fill="#5B7A45" fill-opacity="0.85"/>
-<line x1="32" y1="16" x2="32" y2="50" stroke="#2E3440" stroke-width="1.6"/>
+<line x1="32" y1="16" x2="32" y2="50" stroke="#ECEFF4" stroke-width="1.6"/>
 </svg>

@@ -1060,7 +1060,7 @@ DEVICE_ALIASES = {
 VARIANT_LABEL = "dark" if active_variant() == "dark" else "light"
 
 INDEX_THEME = f"""[Icon Theme]
-Name={theme_name()}
+Name={palette()['name']}
 Comment=High-definition {VARIANT_LABEL} icon suite for {palette()['name']} by Mayanktaker (https://mayanktaker.com)
 Inherits={inherits()}
 Example=folder
@@ -1133,7 +1133,7 @@ Type=Scalable
 Size=16
 MinSize=8
 MaxSize=512
-Context=UI
+Context=Actions
 Type=Scalable
 
 [scalable/mimetypes]
@@ -1171,27 +1171,6 @@ MaxSize=512
 Context=Devices
 Type=Scalable
 
-[symbolic/emblems]
-Size=16
-MinSize=8
-MaxSize=512
-Context=Emblems
-Type=Scalable
-
-[symbolic/emotes]
-Size=16
-MinSize=8
-MaxSize=512
-Context=Emotes
-Type=Scalable
-
-[symbolic/mimetypes]
-Size=16
-MinSize=8
-MaxSize=512
-Context=MimeTypes
-Type=Scalable
-
 [symbolic/places]
 Size=16
 MinSize=8
@@ -1210,14 +1189,7 @@ Type=Scalable
 Size=16
 MinSize=8
 MaxSize=512
-Context=UI
-Type=Scalable
-
-[symbolic/legacy]
-Size=16
-MinSize=8
-MaxSize=512
-Context=Legacy
+Context=Actions
 Type=Scalable
 
 [32x32/places]
@@ -1661,7 +1633,7 @@ def build_variant() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     (OUT_DIR / "index.theme").write_text(INDEX_THEME)
 
-    print(f"Building {TECH_NAME}-Icons [{active_variant()}]...")
+    print(f"Building {TECH_NAME} [{active_variant()}]...")
     print("  Places Icons...")
     build_places()
 
@@ -1677,7 +1649,7 @@ def build_variant() -> None:
     print("  MIME Type Icons...")
     build_mimetypes()
 
-    print(f"  {TECH_NAME}-Icons suite assembled in {OUT_DIR}")
+    print(f"  {TECH_NAME} suite assembled in {OUT_DIR}")
 
 
 def main() -> None:

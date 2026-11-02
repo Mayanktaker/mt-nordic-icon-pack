@@ -52,21 +52,26 @@ done
 # Reuse the icon cache so newly installed packs appear without a re-login.
 refresh_cache() {
   if command -v gtk-update-icon-cache >/dev/null 2>&1; then
-    gtk-update-icon-cache -f -t "${ICONS_DIR}/$1" >/dev/null 2>&1 || true
+    gtk-update-icon-cache -f -t "${ICONS_DIR:?}/$1" >/dev/null 2>&1 || true
   fi
 }
 
-# Copy one pack, replacing any previous install of it.
+# Copy one pack next to its final location, then swap it in, so a failed copy never
+# leaves the user without icons.
 install_pack() {
-  src="${REPO_ROOT}/src/$2/$1"
+  pack="${1:?missing pack name}"
+  src="${REPO_ROOT}/src/${2:?missing pack kind}/${pack}"
   if [ ! -d "${src}" ]; then
     echo "  ! missing ${src} (build it first: $3)" >&2
     return 1
   fi
-  rm -rf "${ICONS_DIR}/$1"
-  cp -r "${src}" "${ICONS_DIR}/"
-  refresh_cache "$1"
-  echo "  ✓ $1"
+  staging="${ICONS_DIR:?}/.${pack}.tmp"
+  rm -rf "${staging}"
+  cp -r "${src}" "${staging}"
+  rm -rf "${ICONS_DIR:?}/${pack}"
+  mv "${staging}" "${ICONS_DIR:?}/${pack}"
+  refresh_cache "${pack}"
+  echo "  ✓ ${pack}"
 }
 
 # Which icon variant the desktop is currently using.

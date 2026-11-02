@@ -10,7 +10,7 @@
 
 <ellipse cx="26" cy="27" rx="11" ry="9" fill="none" stroke="#5B7A45" stroke-width="2.2"/>
 <path d="M 19 35 L 17 41 L 24 36" fill="none" stroke="#5B7A45" stroke-width="2.2" stroke-linejoin="round"/>
-<ellipse cx="38" cy="37" rx="9" ry="7.5" fill="#2E3440" stroke="#4C719C" stroke-width="2"/>
+<ellipse cx="38" cy="37" rx="9" ry="7.5" fill="#ECEFF4" stroke="#4C719C" stroke-width="2"/>
 <circle cx="22" cy="26" r="1.5" fill="#5B7A45"/><circle cx="30" cy="26" r="1.5" fill="#5B7A45"/>
 <circle cx="35" cy="36" r="1.2" fill="#4C719C"/><circle cx="41" cy="36" r="1.2" fill="#4C719C"/>
 </svg>

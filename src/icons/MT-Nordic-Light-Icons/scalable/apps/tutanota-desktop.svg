@@ -8,7 +8,7 @@
 <rect x="6" y="6" width="52" height="52" rx="14" fill="url(#bg-tutanota-desktop)" stroke="#A5B4C7" stroke-width="1.5"/>
 <rect x="8.5" y="8.5" width="47" height="4" rx="2" fill="#4C719C" fill-opacity="0.25"/>
 
-<rect x="13" y="20" width="38" height="24" rx="3" fill="#2E3440" stroke="#0099CC" stroke-width="2.2"/>
+<rect x="13" y="20" width="38" height="24" rx="3" fill="#ECEFF4" stroke="#0099CC" stroke-width="2.2"/>
 <path d="M 13 22 L 32 34 L 51 22" fill="none" stroke="#4C719C" stroke-width="2.2"/>
 <rect x="26" y="30" width="12" height="9" rx="2" fill="#B0664F"/>
 <path d="M 29 30 L 29 27 C 29 24.5 35 24.5 35 27 L 35 30" stroke="#B0664F" stroke-width="2" fill="none"/>

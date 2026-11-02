@@ -9,7 +9,7 @@
 <rect x="8.5" y="8.5" width="47" height="4" rx="2" fill="#4C719C" fill-opacity="0.25"/>
 
 <rect x="14" y="17" width="26" height="16" rx="3" fill="none" stroke="#4C719C" stroke-width="2"/>
-<rect x="24" y="25" width="26" height="16" rx="3" fill="#2E3440" stroke="#0099CC" stroke-width="2"/>
+<rect x="24" y="25" width="26" height="16" rx="3" fill="#ECEFF4" stroke="#0099CC" stroke-width="2"/>
 <line x1="29" y1="32" x2="45" y2="32" stroke="#0099CC" stroke-width="1.8" stroke-linecap="round"/>
 <line x1="29" y1="37" x2="39" y2="37" stroke="#4C719C" stroke-width="1.6" stroke-linecap="round"/>
 </svg>

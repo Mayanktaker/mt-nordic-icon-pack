@@ -18,8 +18,10 @@ RED = _TOKENS["status"]["destructive"]
 GREEN = _TOKENS["status"]["success"]
 PURPLE = _TOKENS["status"]["petal_decorative"]
 ORANGE = _TOKENS["accent_flavors"]["blaze"]
-TILE_FILL = _TOKENS["bg"]["tile"]
-BORDER = _TOKENS["border"]["default"]
+# Placeholders, not literals: these values collide with dark artwork hexes, so they must be
+# resolved after the dark->light remap instead of being baked in at import time.
+TILE_FILL = "{COLOR_TILE_FILL}"
+BORDER = "{COLOR_BORDER_DEFAULT}"
 BASE = _TOKENS["bg"]["base"]
 
 # Tile surface is variant-owned so light tiles keep a visible edge on light windows.

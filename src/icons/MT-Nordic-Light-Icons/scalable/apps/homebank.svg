@@ -8,7 +8,7 @@
 <rect x="6" y="6" width="52" height="52" rx="14" fill="url(#bg-homebank)" stroke="#A5B4C7" stroke-width="1.5"/>
 <rect x="8.5" y="8.5" width="47" height="4" rx="2" fill="#4C719C" fill-opacity="0.25"/>
 
-<path d="M 32 14 L 50 30 L 46 30 L 46 48 L 18 48 L 18 30 L 14 30 Z" fill="#2E3440" stroke="#0099CC" stroke-width="2.2" stroke-linejoin="round"/>
+<path d="M 32 14 L 50 30 L 46 30 L 46 48 L 18 48 L 18 30 L 14 30 Z" fill="#ECEFF4" stroke="#0099CC" stroke-width="2.2" stroke-linejoin="round"/>
 <circle cx="32" cy="38" r="6" fill="#B0664F"/>
-<text x="32" y="41.5" font-size="9" font-weight="bold" fill="#2E3440" text-anchor="middle" font-family="sans-serif">$</text>
+<text x="32" y="41.5" font-size="9" font-weight="bold" fill="#ECEFF4" text-anchor="middle" font-family="sans-serif">$</text>
 </svg>

@@ -13,8 +13,9 @@ Two full icon suites and one cursor pack ship together:
 | `MT-Nordic-Light-Icons` | Snow Storm (light) | Paper-white folders, slate edges, daylight-legible accents |
 | `MT-Nordic-Blue-Cursors` | both | Nordic pointer set used by either mode |
 
-Coverage: ~480 app names, 119 MIME types, 26 GNOME Settings panels, FreeDesktop symbolics and
-device/media icons, generated from one catalog so both variants never drift apart.
+Coverage: ~370 app icons plus ~400 aliases, 120 MIME types, 26 GNOME Settings panels,
+FreeDesktop symbolics and device/media icons, generated from one catalog so both variants never
+drift apart.
 
 ## Install
 
@@ -35,18 +36,30 @@ Missing icons fall back through `Tela-circle,Adwaita,breeze-dark,breeze,hicolor`
 
 ## Build from source
 
-Requires Python 3 with PyGObject, pycairo, librsvg typelibs and numpy (for cursors).
+Requires Python 3 with PyGObject, pycairo, librsvg **and libadwaita** typelibs, plus numpy for the
+cursors. Rebuilding the symbolic set also harvests whatever GNOME Shell / libadwaita resources the
+build host provides, so a different host can produce a different glyph set — commit the regenerated
+`src/icons/` whenever that happens.
+
+The cursor pack is recoloured from the **Nordic-cursors** theme installed at
+`~/.icons/Nordic-cursors`. Without that source the build fails loudly; pass `--reuse-existing` to
+keep the committed pack instead (this is what CI does).
 
 ```bash
 python3 tools/dev/check_contrast.py             # palette legibility gate
+python3 tools/dev/check_light_remap.py          # palette vs dark->light remap gate
 python3 tools/icons/generate_icons.py --variant both
 python3 tools/dev/check_icon_contexts.py        # lookup-order and alias gate
+python3 tools/dev/check_symbolic_render.py      # every -symbolic glyph honours the ink
 python3 tools/icons/generate_cursors.py
 python3 tools/icons/preview_sheet.py --variant light   # contact sheets in build/preview/
 ```
 
-`tools/release.sh [version]` runs all of the above and writes a `dist/` tarball; pushing a `v*` tag
-publishes it through GitHub Actions.
+After packaging, `tools/dev/check_release_archive.py [tarball]` extracts the archive, installs it
+into a throwaway `HOME` and fails if any pack does not land.
+
+`tools/release.sh [version]` runs the gates, both suites, the cursors and the archive check, then
+writes a `dist/` tarball; pushing a `v*` tag publishes it through GitHub Actions.
 
 ## Relationship to the theme
 

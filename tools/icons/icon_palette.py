@@ -136,8 +136,9 @@ def output_dir(variant_name: str | None = None) -> Path:
 def svg_context(variant_name: str | None = None) -> dict:
     # Placeholder values substituted into the icon SVG templates for one variant.
     name = variant_name or variant()
-    colors = palette(name)["color"]["icon"]
-    accent = palette(name)["color"]["accent"]
+    tokens = palette(name)["color"]
+    colors = tokens["icon"]
+    accent = tokens["accent"]
     return {
         "COLOR_BG_BASE": colors["surface"],
         "COLOR_SURFACE": colors["surface_mid"],
@@ -165,6 +166,9 @@ def svg_context(variant_name: str | None = None) -> dict:
         "COLOR_TILE_TOP": colors["tile_top"],
         "COLOR_TILE_BOTTOM": colors["tile_bottom"],
         "COLOR_TILE_BORDER": colors["tile_border"],
+        # Substituted after remap(), so a value that collides with a dark literal stays exact.
+        "COLOR_TILE_FILL": tokens["bg"]["tile"],
+        "COLOR_BORDER_DEFAULT": tokens["border"]["default"],
     }
 
 

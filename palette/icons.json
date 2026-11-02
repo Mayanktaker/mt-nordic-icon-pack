@@ -89,19 +89,19 @@
         "accent_flavors": {
           "frost": "#4C719C",
           "glacier": "#5E81AC",
-          "aurora": "#8FBCBB",
+          "aurora": "#3E7C7A",
           "arctic": "#88C0D0",
           "cyber": "#0099CC",
-          "blaze": "#D08770"
+          "blaze": "#B0664F"
         },
         "text": {
           "primary": "#2E3440"
         },
         "status": {
           "destructive": "#BF616A",
-          "success": "#A3BE8C",
-          "warning": "#D08770",
-          "petal_decorative": "#B48EAD"
+          "success": "#5B7A45",
+          "warning": "#B0664F",
+          "petal_decorative": "#8B5F86"
         },
         "border": {
           "default": "#D8DEE9"

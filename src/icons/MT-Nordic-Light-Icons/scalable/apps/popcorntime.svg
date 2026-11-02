@@ -11,5 +11,5 @@
 <circle cx="25" cy="23" r="4" fill="#B0664F"/>
 <circle cx="32" cy="20" r="4.6" fill="#2E3440"/>
 <circle cx="39" cy="23" r="4" fill="#B0664F"/>
-<path d="M 22 26 L 42 26 L 39 48 L 25 48 Z" fill="#2E3440" stroke="#B0664F" stroke-width="2" stroke-linejoin="round"/>
+<path d="M 22 26 L 42 26 L 39 48 L 25 48 Z" fill="#ECEFF4" stroke="#B0664F" stroke-width="2" stroke-linejoin="round"/>
 </svg>

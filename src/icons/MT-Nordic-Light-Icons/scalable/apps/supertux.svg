@@ -8,11 +8,11 @@
 <rect x="6" y="6" width="52" height="52" rx="14" fill="url(#bg-supertux)" stroke="#A5B4C7" stroke-width="1.5"/>
 <rect x="8.5" y="8.5" width="47" height="4" rx="2" fill="#4C719C" fill-opacity="0.25"/>
 
-<ellipse cx="32" cy="34" rx="13" ry="15" fill="#2E3440" stroke="#0099CC" stroke-width="2.2"/>
+<ellipse cx="32" cy="34" rx="13" ry="15" fill="#ECEFF4" stroke="#0099CC" stroke-width="2.2"/>
 <circle cx="26" cy="28" r="2.6" fill="#2E3440"/>
 <circle cx="38" cy="28" r="2.6" fill="#2E3440"/>
-<circle cx="26" cy="28" r="1.1" fill="#2E3440"/>
-<circle cx="38" cy="28" r="1.1" fill="#2E3440"/>
+<circle cx="26" cy="28" r="1.1" fill="#ECEFF4"/>
+<circle cx="38" cy="28" r="1.1" fill="#ECEFF4"/>
 <path d="M 29 35 L 35 35 L 32 39 Z" fill="#B0664F"/>
 <ellipse cx="32" cy="44" rx="7" ry="4" fill="#2E3440" fill-opacity="0.85"/>
 </svg>

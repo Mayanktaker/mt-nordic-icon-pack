@@ -19,14 +19,20 @@ so artwork can be versioned and released independently — **this repo must not 
 
 ## Commands
 - Contrast gate: `python3 tools/dev/check_contrast.py` (icon ink/tile/accent pairs, both variants).
+- Remap gate: `python3 tools/dev/check_light_remap.py` (baked colour tokens must survive the
+  dark→light map, or be `{COLOR_*}` placeholders).
 - Cursor guard: `python3 tools/dev/check_cursor_build.py` (a build with no usable source fails loudly).
 - Build: `python3 tools/icons/generate_icons.py --variant both` (or `--variant dark|light`) → `src/icons/<pack>`.
 - Lookup gate: `python3 tools/dev/check_icon_contexts.py` (shadowing + dangling aliases; run after every icon build).
 - Symbolic gate: `python3 tools/dev/check_symbolic_render.py` (every `-symbolic` glyph must honour the theme ink).
 - Preview: `python3 tools/icons/preview_sheet.py --variant light` → contact sheets in `build/preview/<variant>/`.
 - Gallery: `python3 tools/dev/build_icon_gallery.py` → `docs/gallery/{dark,light}/`.
-- Cursors: `python3 tools/icons/generate_cursors.py` → `src/cursors/<pack>`.
-- Package: `tools/icons/package.sh [version]` → `dist/<slug>-v<version>.tar.xz`.
+- Cursors: `python3 tools/icons/generate_cursors.py [--reuse-existing]` → `src/cursors/<pack>`
+  (source theme: `~/.icons/Nordic-cursors`; `--reuse-existing` keeps the committed pack without it).
+- Package: `tools/icons/package.sh [version]` → `dist/<slug>-v<version>.tar.xz` (packs land under
+  `src/icons` and `src/cursors` so the bundled `install.sh` finds them).
+- Archive gate: `python3 tools/dev/check_release_archive.py [tarball]` (extracts, installs into a
+  throwaway `HOME`, asserts every pack lands).
 - Release: `tools/release.sh [version]` (gates + both suites + cursors + tarball).
 - Install: `./install.sh [--dark|--light|--both] [--no-activate] [--icons-only|--cursors-only]`.
 
@@ -42,6 +48,9 @@ so artwork can be versioned and released independently — **this repo must not 
 ## Artwork rules
 - One catalog, two variants: `icon_palette.py` maps dark artwork literals to light equivalents
   (`LIGHT_HEX_MAP`) and resolves `{COLOR_*}` placeholders from `color.icon`.
+- Artwork modules run before `remap()`, so any colour they interpolate must be a `{COLOR_*}`
+  placeholder (resolved after the remap) rather than a baked hex — a baked hex whose value is also
+  a dark literal gets rewritten and the light palette value is lost.
 - Symbolic glyphs are `currentColor`; upstream resources are sanitized at extraction time
   (`sanitize_symbolic`) and camera lenses use an evenodd knockout, never a painted background.
 - App tiles share one edge weight (`icon.tile_border`, 1.5px); folder edges use their own tokens.

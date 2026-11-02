@@ -69,30 +69,48 @@ def check_declared_dirs(theme_dir: Path) -> list[str]:
     ]
 
 
+def check_undeclared_sections(theme_dir: Path, order: list[str]) -> list[str]:
+    # A section outside Directories never gets indexed, so it is dead metadata.
+    declared = set(order)
+    sections = [
+        line.strip()[1:-1]
+        for line in (theme_dir / "index.theme").read_text().splitlines()
+        if line.startswith("[") and line.strip() != "[Icon Theme]"
+    ]
+    return [f"section not in Directories: {name}" for name in sections if name not in declared]
+
+
 def check_aliases(theme_dir: Path) -> list[str]:
-    # Every symlink must resolve to a real file inside the theme.
+    # Every symlink must resolve to a real file inside the theme; a broken alias renders blank.
     problems = []
     for link in theme_dir.rglob("*"):
-        if link.is_symlink() and not link.exists():
+        if not link.is_symlink():
+            continue
+        target = link.resolve()
+        if not target.exists():
             problems.append(f"dangling alias: {link.relative_to(theme_dir)} -> {link.readlink()}")
+        elif theme_dir.resolve() not in target.parents:
+            problems.append(f"alias escapes theme: {link.relative_to(theme_dir)} -> {link.readlink()}")
     return problems
 
 
-def check_variant(variant: str) -> tuple[int, int]:
-    # Run both gates for one variant; returns (errors, warnings).
+def check_variant(variant: str) -> int:
+    # Run every lookup gate for one variant and report its failures.
     theme_dir = ICONS_ROOT / theme_name(variant)
     if not theme_dir.is_dir():
         print(f"FAIL [{variant}] theme directory missing ({theme_dir}); run generate_icons.py --variant {variant}")
-        return 1, 0
-    errors = check_shadowing(theme_dir, directory_order(theme_dir)) + check_declared_dirs(theme_dir)
-    warnings = check_aliases(theme_dir)
+        return 1
+    errors = (
+        check_shadowing(theme_dir, directory_order(theme_dir))
+        + check_declared_dirs(theme_dir)
+        + check_undeclared_sections(theme_dir, directory_order(theme_dir))
+        + check_aliases(theme_dir)
+    )
     for line in errors:
         print(f"FAIL [{variant}] {line}")
-    for line in warnings:
-        print(f"WARN [{variant}] {line}")
     if not errors:
-        print(f"PASS [{variant}] {theme_dir.name}: {len(warnings)} warning(s)")
-    return len(errors), len(warnings)
+        print(f"PASS [{variant}] {theme_dir.name}")
+    return len(errors)
 
 
 def main() -> int:
@@ -101,15 +119,13 @@ def main() -> int:
     parser.add_argument("--variant", choices=("dark", "light", "all"), default="all")
     args = parser.parse_args()
     variants = list(PALETTES) if args.variant == "all" else [args.variant]
-    errors = warnings = 0
+    errors = 0
     for variant in variants:
-        variant_errors, variant_warnings = check_variant(variant)
-        errors += variant_errors
-        warnings += variant_warnings
+        errors += check_variant(variant)
     if errors:
-        print(f"\n{errors} error(s), {warnings} warning(s)")
+        print(f"\n{errors} error(s)")
         return 1
-    print(f"\nIcon context gate passed ({warnings} warning(s))")
+    print("\nIcon context gate passed")
     return 0
 
 

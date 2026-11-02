@@ -8,7 +8,7 @@
 <rect x="6" y="6" width="52" height="52" rx="14" fill="url(#bg-okular)" stroke="#A5B4C7" stroke-width="1.5"/>
 <rect x="8.5" y="8.5" width="47" height="4" rx="2" fill="#4C719C" fill-opacity="0.25"/>
 
-<path d="M 16 12 L 40 12 L 48 20 L 48 52 L 16 52 Z" fill="#2E3440" stroke="#0099CC" stroke-width="2.2"/>
+<path d="M 16 12 L 40 12 L 48 20 L 48 52 L 16 52 Z" fill="#ECEFF4" stroke="#0099CC" stroke-width="2.2"/>
 <path d="M 40 12 L 40 20 L 48 20" fill="none" stroke="#0099CC" stroke-width="2"/>
 <path d="M 23 36 L 29 42 L 41 28" stroke="#5B7A45" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

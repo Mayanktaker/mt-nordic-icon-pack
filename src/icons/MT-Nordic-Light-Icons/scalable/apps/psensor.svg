@@ -8,7 +8,7 @@
 <rect x="6" y="6" width="52" height="52" rx="14" fill="url(#bg-psensor)" stroke="#A5B4C7" stroke-width="1.5"/>
 <rect x="8.5" y="8.5" width="47" height="4" rx="2" fill="#4C719C" fill-opacity="0.25"/>
 
-<path d="M 30 16 C 30 14 34 14 34 16 L 34 36 C 38 38 38 44 34 47 C 30 50 24 47 24 42 C 24 39 26 37 30 36 Z" fill="#2E3440" stroke="#BF616A" stroke-width="2.2"/>
+<path d="M 30 16 C 30 14 34 14 34 16 L 34 36 C 38 38 38 44 34 47 C 30 50 24 47 24 42 C 24 39 26 37 30 36 Z" fill="#ECEFF4" stroke="#BF616A" stroke-width="2.2"/>
 <circle cx="32" cy="42" r="3.4" fill="#BF616A"/>
 <line x1="40" y1="24" x2="46" y2="24" stroke="#4C719C" stroke-width="2" stroke-linecap="round"/>
 <line x1="40" y1="32" x2="48" y2="32" stroke="#4C719C" stroke-width="2" stroke-linecap="round"/>

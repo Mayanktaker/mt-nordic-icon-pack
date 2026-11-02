@@ -15,5 +15,5 @@
   </linearGradient>
 </defs>
 <rect x="14" y="14" width="36" height="36" rx="8" fill="url(#grad-sw)"/>
-<circle cx="32" cy="32" r="6" fill="#2E3440" fill-opacity="0.55"/>
+<circle cx="32" cy="32" r="6" fill="#ECEFF4" fill-opacity="0.55"/>
 </svg>
