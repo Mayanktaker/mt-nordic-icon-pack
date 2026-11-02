@@ -1,0 +1,154 @@
+{
+  "meta": {
+    "name": "MT Nordic Icon Pack",
+    "tech_name": "MT-Nordic-Icon-Pack",
+    "version": "1.0.0",
+    "direction": "Polar Night & Snow Storm companion icon and cursor suite",
+    "source": "Extracted from the MT Nordic Blue theme suite and maintained standalone",
+    "upstream_theme": "https://github.com/Mayanktaker/mt-nordic-blue"
+  },
+  "variants": {
+    "dark": {
+      "tech_name": "MT-Nordic-Blue-Icons",
+      "name": "MT Nordic Blue",
+      "inherits": "Tela-circle,Adwaita,breeze-dark,breeze,hicolor",
+      "color": {
+        "bg": {
+          "base": "#0E141D",
+          "tile": "#151D2A",
+          "surface": "#202D40"
+        },
+        "accent": {
+          "base": "#88C0D0",
+          "strong": "#A3D4E2"
+        },
+        "accent_flavors": {
+          "frost": "#88C0D0",
+          "glacier": "#81A1C1",
+          "aurora": "#8FBCBB",
+          "arctic": "#5E81AC",
+          "cyber": "#00D2FF",
+          "blaze": "#D08770"
+        },
+        "text": {
+          "primary": "#ECEFF4"
+        },
+        "status": {
+          "destructive": "#BF616A",
+          "success": "#A3BE8C",
+          "warning": "#EBCB8B",
+          "petal_decorative": "#B48EAD"
+        },
+        "border": {
+          "default": "#25344A"
+        },
+        "icon": {
+          "surface": "#202D40",
+          "surface_mid": "#2A3A52",
+          "surface_strong": "#354A68",
+          "border": "#486490",
+          "ink": "#ECEFF4",
+          "ink_soft": "#D8DEE9",
+          "paper": "#ECEFF4",
+          "paper_bottom": "#D8DEE9",
+          "paper_edge": "#ECEFF4",
+          "paper_edge_width": 0,
+          "paper_line": "#81A1C1",
+          "folder_back_top": "#243346",
+          "folder_back_bottom": "#141D28",
+          "folder_back_edge": "#2B3C52",
+          "folder_flap_top": "#2E415A",
+          "folder_flap_mid": "#223145",
+          "folder_flap_bottom": "#141D28",
+          "folder_flap_edge": "#2C3F57",
+          "specular_1": "#88C0D0",
+          "specular_2": "#00D2FF",
+          "specular_3": "#81A1C1",
+          "shadow": "#040609",
+          "shadow_alpha": 0.55,
+          "tile_top": "#25344A",
+          "tile_bottom": "#0E141D",
+          "tile_border": "#486490"
+        }
+      }
+    },
+    "light": {
+      "tech_name": "MT-Nordic-Light-Icons",
+      "name": "MT Nordic Light",
+      "inherits": "Tela-circle,Adwaita,breeze,hicolor",
+      "color": {
+        "bg": {
+          "base": "#E5E9F0",
+          "tile": "#ECEFF4",
+          "surface": "#ECEFF4"
+        },
+        "accent": {
+          "base": "#4C719C",
+          "strong": "#5E81AC"
+        },
+        "accent_flavors": {
+          "frost": "#4C719C",
+          "glacier": "#5E81AC",
+          "aurora": "#8FBCBB",
+          "arctic": "#88C0D0",
+          "cyber": "#0099CC",
+          "blaze": "#D08770"
+        },
+        "text": {
+          "primary": "#2E3440"
+        },
+        "status": {
+          "destructive": "#BF616A",
+          "success": "#A3BE8C",
+          "warning": "#D08770",
+          "petal_decorative": "#B48EAD"
+        },
+        "border": {
+          "default": "#D8DEE9"
+        },
+        "icon": {
+          "surface": "#DEE7F2",
+          "surface_mid": "#F1F6FB",
+          "surface_strong": "#CCD8E7",
+          "border": "#7E8FA6",
+          "ink": "#2E3440",
+          "ink_soft": "#4C566A",
+          "paper": "#FFFFFF",
+          "paper_bottom": "#F1F5FA",
+          "paper_edge": "#8C9CB3",
+          "paper_edge_width": 0.8,
+          "paper_line": "#5E81AC",
+          "folder_back_top": "#E3EAF3",
+          "folder_back_bottom": "#C6D2E1",
+          "folder_back_edge": "#9EAEC3",
+          "folder_flap_top": "#FDFEFF",
+          "folder_flap_mid": "#F3F7FC",
+          "folder_flap_bottom": "#E1E9F2",
+          "folder_flap_edge": "#93A3B8",
+          "specular_1": "#4C719C",
+          "specular_2": "#0079A8",
+          "specular_3": "#5E81AC",
+          "shadow": "#7E8FA6",
+          "shadow_alpha": 0.3,
+          "tile_top": "#FFFFFF",
+          "tile_bottom": "#DDE5F0",
+          "tile_border": "#A5B4C7"
+        }
+      }
+    }
+  },
+  "cursors": {
+    "tech_name": "MT-Nordic-Blue-Cursors",
+    "name": "MT Nordic Blue Cursors",
+    "variants": [
+      "dark",
+      "light"
+    ],
+    "comment": "Nordic cursors ship one artwork set used by both modes"
+  },
+  "wcag_minimums": {
+    "body_text": 4.5,
+    "preferred_text": 7.0,
+    "ui_component": 3.0
+  }
+}

@@ -1,0 +1,15 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="bg-mysql-workbench" x1="32" y1="6" x2="32" y2="58" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#FFFFFF"/>
+    <stop offset="100%" stop-color="#DDE5F0"/>
+  </linearGradient>
+</defs>
+<rect x="6" y="6" width="52" height="52" rx="14" fill="url(#bg-mysql-workbench)" stroke="#A5B4C7" stroke-width="1.5"/>
+<rect x="8.5" y="8.5" width="47" height="4" rx="2" fill="#4C719C" fill-opacity="0.25"/>
+
+<ellipse cx="28" cy="24" rx="10" ry="3.6" fill="#0099CC"/>
+<path d="M 18 24 L 18 42 C 18 44 22.5 46 28 46 C 33.5 46 38 44 38 42 L 38 24" fill="#2E3440" stroke="#0099CC" stroke-width="2"/>
+<path d="M 40 22 L 48 30 M 44 18 L 52 26" stroke="#B0664F" stroke-width="3" stroke-linecap="round"/>
+<circle cx="42" cy="24" r="3" fill="#B0664F"/>
+</svg>

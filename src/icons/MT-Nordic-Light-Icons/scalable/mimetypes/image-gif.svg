@@ -1,0 +1,15 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="docGrad" x1="32" y1="8" x2="32" y2="56" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#F1F6FB"/>
+    <stop offset="100%" stop-color="#E9EEF5"/>
+  </linearGradient>
+</defs>
+<rect x="14" y="8" width="36" height="48" rx="6" fill="url(#docGrad)" stroke="#7E8FA6" stroke-width="1.5"/>
+<polygon points="36,8 50,22 36,22" fill="#7E8FA6"/>
+<polygon points="36,8 50,22 36,22" fill="#4C719C" fill-opacity="0.3"/>
+
+<rect x="20" y="26" width="24" height="18" rx="2.5" fill="#F1F5FA" stroke="#4C719C" stroke-width="1.5"/>
+<circle cx="26" cy="31.5" r="2" fill="#B9892F"/>
+<polygon points="22,42 28,35 33,40 37,36 42,42" fill="#4C719C"/>
+</svg>
