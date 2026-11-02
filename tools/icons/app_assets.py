@@ -1,6 +1,6 @@
 # © Mayanktaker Computers & Web Development | https://mayanktaker.com
 # Extended Nordic Application Icons for MT-Nordic-Blue-Icons suite.
-# High-definition vector SVGs (64x64) matching the tokens in palette/tokens.json.
+# High-definition vector SVGs (64x64) matching the tokens in palette/icons.json.
 
 EXTENDED_APP_ICONS = {
     # 1. GNOME Calendar

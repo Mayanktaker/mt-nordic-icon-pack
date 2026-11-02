@@ -1,6 +1,6 @@
 # © Mayanktaker Computers & Web Development | https://mayanktaker.com
 # System utility application icons (KDE wallet, QEMU, IBus, Orca, Rygel, etc.)
-# 64x64 Nordic vector tiles matching palette/tokens.json accents.
+# 64x64 Nordic vector tiles matching palette/icons.json accents.
 
 EXTRA_APP_ICONS = {
     # 1. KWalletManager — leather wallet with card slot

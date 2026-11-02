@@ -32,7 +32,7 @@ def hex_to_rgb(hex_color: str) -> tuple:
     return tuple(int(hex_color[i : i + 2], 16) for i in (1, 3, 5))
 
 
-# Nordic palette color definitions from tokens.json
+# Nordic palette colour definitions from palette/icons.json
 COLOR_BODY_BASE = hex_to_rgb(COLOR["bg"]["base"])               # #0E141D
 COLOR_BODY_SURFACE = hex_to_rgb(COLOR["bg"]["surface"])         # #202D40
 COLOR_BORDER_FROST = hex_to_rgb(COLOR["accent"]["base"])        # #88C0D0
