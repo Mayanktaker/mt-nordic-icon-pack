@@ -60,6 +60,15 @@ def check_shadowing(theme_dir: Path, order: list[str]) -> list[str]:
     return problems
 
 
+def check_declared_dirs(theme_dir: Path) -> list[str]:
+    # Every directory advertised in index.theme must exist, or loaders warn and skip it.
+    return [
+        f"declared directory missing: {entry}"
+        for entry in directory_order(theme_dir)
+        if not (theme_dir / entry).is_dir()
+    ]
+
+
 def check_aliases(theme_dir: Path) -> list[str]:
     # Every symlink must resolve to a real file inside the theme.
     problems = []
@@ -75,7 +84,7 @@ def check_variant(variant: str) -> tuple[int, int]:
     if not theme_dir.is_dir():
         print(f"FAIL [{variant}] theme directory missing ({theme_dir}); run generate_icons.py --variant {variant}")
         return 1, 0
-    errors = check_shadowing(theme_dir, directory_order(theme_dir))
+    errors = check_shadowing(theme_dir, directory_order(theme_dir)) + check_declared_dirs(theme_dir)
     warnings = check_aliases(theme_dir)
     for line in errors:
         print(f"FAIL [{variant}] {line}")

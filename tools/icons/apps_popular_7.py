@@ -218,7 +218,6 @@ POPULAR_ALIASES_7 = {
     "flatsweep-app": "flatsweep",
     "bauh-app": "bauh",
     "gearlever": "it.mijorus.gearlever",
-    "appimagelauncher": "AppImageLauncher",
     "deja-dup-app": "deja-dup",
     "veracrypt-app": "veracrypt",
     "keepassxc-app": "keepassxc",

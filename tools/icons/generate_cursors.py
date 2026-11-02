@@ -28,7 +28,7 @@ XCURSOR_TOC_ENTRY = 12  # type, subtype, chunk offset
 XCURSOR_IMAGE_HEADER = 36  # chunk header plus width/height/hotspot/delay
 
 INDEX_THEME = f"""[Icon Theme]
-Name={TECH_NAME}-Cursors
+Name={TECH_NAME}
 Comment=Authentic Nordic cursor suite for {DISPLAY_NAME}
 Inherits=Adwaita
 """

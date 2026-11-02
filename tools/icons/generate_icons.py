@@ -816,7 +816,6 @@ APP_ALIASES = {
     # Terminal
     "org.gnome.Terminal": "utilities-terminal",
     "kitty": "utilities-terminal",
-    "alacritty": "Alacritty",
     "kgx": "org.gnome.Console",
     # Settings & Tools
     "org.gnome.Settings": "preferences-system",
@@ -1086,7 +1085,7 @@ DialogSizes=16,22,32,48,64,128,256
 FollowsColorScheme=true
 
 KDE-Extensions=.svg
-Directories=scalable/places,scalable/apps,scalable/status,scalable/devices,scalable/actions,scalable/categories,scalable/ui,scalable/mimetypes,symbolic/actions,symbolic/apps,symbolic/categories,symbolic/devices,symbolic/emblems,symbolic/emotes,symbolic/mimetypes,symbolic/places,symbolic/status,symbolic/ui,symbolic/legacy,32x32/places,32x32/apps,32x32/devices,32x32/mimetypes,48x48/places,48x48/apps,48x48/devices,48x48/mimetypes,64x64/places,64x64/apps,64x64/devices,64x64/mimetypes,128x128/places,128x128/apps,128x128/devices,128x128/mimetypes
+Directories=scalable/places,scalable/apps,scalable/status,scalable/devices,scalable/actions,scalable/categories,scalable/ui,scalable/mimetypes,symbolic/actions,symbolic/apps,symbolic/categories,symbolic/devices,symbolic/places,symbolic/status,symbolic/ui,32x32/places,32x32/apps,32x32/devices,32x32/mimetypes,48x48/places,48x48/apps,48x48/devices,48x48/mimetypes,64x64/places,64x64/apps,64x64/devices,64x64/mimetypes,128x128/places,128x128/apps,128x128/devices,128x128/mimetypes
 
 [scalable/places]
 Size=64
@@ -1317,6 +1316,71 @@ SYMBOLIC_DARK_FILLS = (
     r"#000000(?![0-9a-fA-F])",
 )
 
+# Paint values upstream artwork bakes in; a symbolic glyph must inherit the theme ink instead.
+# Upstream ships the same black as a hex, a CSS name, an rgb() triple, the grappa keyword,
+# an inline style declaration, and its negative as white.
+SYMBOLIC_FIXED_PAINTS = frozenset(
+    {
+        "black",
+        "#000",
+        "#000000",
+        "rgb(0,0,0)",
+        "white",
+        "#fff",
+        "#ffffff",
+        "rgb(255,255,255)",
+        "foreground",
+        "#d9d9d9",
+    }
+)
+
+# Paint values that carry no colour and must never be rewritten.
+SYMBOLIC_NEUTRAL_PAINTS = frozenset(
+    {"none", "currentcolor", "inherit", "transparent", "context-fill", "context-stroke"}
+)
+
+# A fill/stroke/color attribute, a style attribute, and a paint declaration inside one.
+PAINT_ATTRIBUTE = re.compile(r'(\b(fill|stroke|color)\s*=\s*")([^"]*)(")', re.IGNORECASE)
+STYLE_ATTRIBUTE = re.compile(r'(\bstyle\s*=\s*")([^"]*)(")', re.IGNORECASE)
+STYLE_PAINT = re.compile(r"((?:^|;)\s*(fill|stroke|color)\s*:\s*)([^;]*)", re.IGNORECASE)
+
+# Root element without a paint of its own; unpainted shapes would otherwise inherit black.
+SVG_ROOT_TAG = re.compile(r"<svg\b(?![^>]*\bfill\s*=)", re.IGNORECASE)
+
+# `color: currentColor` is self-referential; librsvg resolves it to black instead of inheriting.
+SYMBOLIC_SELF_COLOR = re.compile(r"\bcolor\s*:\s*currentColor", re.IGNORECASE)
+
+
+def is_fixed_paint(value: str) -> bool:
+    # True when a paint value hard-codes a colour instead of following the theme.
+    paint = "".join(value.split()).lower()
+    if not paint or paint in SYMBOLIC_NEUTRAL_PAINTS:
+        return False
+    if "gpa:foreground" in paint or paint == "foreground":
+        return True
+    return paint in SYMBOLIC_FIXED_PAINTS
+
+
+def rewrite_paint_attribute(match: "re.Match") -> str:
+    # Attribute paint: fill/stroke become currentColor; a fixed `color` is dropped so it inherits.
+    name, value = match.group(2), match.group(3)
+    if not is_fixed_paint(value):
+        return match.group(0)
+    if name.lower() == "color":
+        return ""
+    return f'{name}="currentColor"'
+
+
+def rewrite_style_attribute(match: "re.Match") -> str:
+    # Inline CSS form: keep opacity, retarget fill/stroke, drop a fixed `color` so it inherits.
+    def convert(inner: "re.Match") -> str:
+        if not is_fixed_paint(inner.group(3)):
+            return inner.group(0)
+        return "" if inner.group(2).lower() == "color" else f"{inner.group(1)}currentColor"
+
+    body = STYLE_PAINT.sub(convert, match.group(2))
+    return f"{match.group(1)}{body}{match.group(3)}"
+
 
 def render_svg_to_png(svg_text: str, out_path: Path, size: int) -> None:
     # Rasterize an SVG string into a pixel-perfect PNG at specified dimensions.
@@ -1324,7 +1388,10 @@ def render_svg_to_png(svg_text: str, out_path: Path, size: int) -> None:
     surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, size, size)
     ctx = cairo.Context(surf)
     ctx.scale(size / 64.0, size / 64.0)
-    handle.render_cairo(ctx)
+    # render_cairo is deprecated in librsvg 2.60; a 64-unit viewport keeps the same framing.
+    viewport = Rsvg.Rectangle()
+    viewport.x, viewport.y, viewport.width, viewport.height = 0, 0, 64, 64
+    handle.render_document(ctx, viewport)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     surf.write_to_png(str(out_path))
 
@@ -1384,11 +1451,14 @@ def build_apps() -> None:
             dst_png.symlink_to(f"{target}.png")
 
 def sanitize_symbolic(svg_text: str) -> str:
-    # Point upstream dark fills at currentColor so symbolic glyphs follow the active theme.
-    svg_text = svg_text.replace("url(#gpa:foreground) rgb(0,0,0)", "currentColor")
+    # Point baked-in fills at currentColor so symbolic glyphs follow the active theme ink.
+    svg_text = SVG_ROOT_TAG.sub(lambda match: f'{match.group(0)} fill="currentColor"', svg_text, count=1)
+    svg_text = STYLE_ATTRIBUTE.sub(rewrite_style_attribute, svg_text)
+    svg_text = PAINT_ATTRIBUTE.sub(rewrite_paint_attribute, svg_text)
     for dark_fill in SYMBOLIC_DARK_FILLS:
         svg_text = re.sub(dark_fill, "currentColor", svg_text, flags=re.IGNORECASE)
-    return svg_text
+    # Runs last: the blocklist above can turn `color:#363636` into a self-referential value.
+    return SYMBOLIC_SELF_COLOR.sub("color:inherit", svg_text)
 
 
 def build_symbolic() -> None:
@@ -1461,7 +1531,10 @@ def build_symbolic() -> None:
     # 5. Write curated MT-Nordic-Blue symbolic SVGs (takes precedence over extracted icons)
     # Guard: never replace an existing full-color icon inside its scalable context.
     color_icon_names = set(APP_ICONS) | set(DEVICE_ICONS) | set(PLACES_EMBLEMS)
-    for name, svg_content in SYMBOLIC_ICONS.items():
+    # Curated artwork is authored in currentColor, but it goes through the same sanitiser so a
+    # fixed colour cannot slip in from an upstream-derived entry.
+    curated_symbolics = {name: sanitize_symbolic(svg) for name, svg in SYMBOLIC_ICONS.items()}
+    for name, svg_content in curated_symbolics.items():
         ctx_list = ["status", "actions"]
 
         # Applications and Settings panels
@@ -1504,8 +1577,8 @@ def build_symbolic() -> None:
         "media-optical-bd-symbolic": "media-optical-symbolic",
     }
     for alias, target in storage_sym_aliases.items():
-        if target in SYMBOLIC_ICONS:
-            write_icon(["status", "actions", "devices"], alias, SYMBOLIC_ICONS[target])
+        if target in curated_symbolics:
+            write_icon(["status", "actions", "devices"], alias, curated_symbolics[target])
 
     # 7. Navigation & UI symbolic aliases
     ui_sym_aliases = {

@@ -742,7 +742,6 @@ EXTENDED_APP_ALIASES = {
     "gnome-connections": "org.gnome.Connections",
     "gnome-weather": "org.gnome.Weather",
     "gnome-clocks": "org.gnome.clocks",
-    "org.gnome.Clocks": "org.gnome.clocks",
     "snapshot": "org.gnome.Snapshot",
     "loupe": "org.gnome.Loupe",
     "showtime": "org.gnome.Showtime",

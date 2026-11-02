@@ -22,6 +22,7 @@ so artwork can be versioned and released independently — **this repo must not 
 - Cursor guard: `python3 tools/dev/check_cursor_build.py` (a build with no usable source fails loudly).
 - Build: `python3 tools/icons/generate_icons.py --variant both` (or `--variant dark|light`) → `src/icons/<pack>`.
 - Lookup gate: `python3 tools/dev/check_icon_contexts.py` (shadowing + dangling aliases; run after every icon build).
+- Symbolic gate: `python3 tools/dev/check_symbolic_render.py` (every `-symbolic` glyph must honour the theme ink).
 - Preview: `python3 tools/icons/preview_sheet.py --variant light` → contact sheets in `build/preview/<variant>/`.
 - Gallery: `python3 tools/dev/build_icon_gallery.py` → `docs/gallery/{dark,light}/`.
 - Cursors: `python3 tools/icons/generate_cursors.py` → `src/cursors/<pack>`.

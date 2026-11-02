@@ -17,11 +17,11 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 try:
-    from icon_palette import output_dir, palette, set_variant, theme_name, variant as active_variant
+    from icon_palette import meta, output_dir, set_variant, theme_name, variant as active_variant
 except ImportError:
     from tools.icons.icon_palette import (
+        meta,
         output_dir,
-        palette,
         set_variant,
         theme_name,
         variant as active_variant,
@@ -32,6 +32,10 @@ CELL = 88
 ICON = 64
 PAD = 12
 COLUMNS = 12
+
+# librsvg 2.60 deprecated render_cairo; a fixed 64-unit viewport keeps the sheet framing.
+VIEWPORT = Rsvg.Rectangle()
+VIEWPORT.x, VIEWPORT.y, VIEWPORT.width, VIEWPORT.height = 0, 0, 64, 64
 
 # Categories previewed per sheet plus the backdrop each variant is judged on.
 SHEETS = ("places", "apps", "devices", "mimetypes", "status")
@@ -73,7 +77,7 @@ def draw_sheet(variant: str, theme_dir: Path, context: str, out_path: Path) -> i
         ctx.save()
         ctx.translate(x, y)
         ctx.scale(ICON / 64.0, ICON / 64.0)
-        handle.render_cairo(ctx)
+        handle.render_document(ctx, VIEWPORT)
         ctx.restore()
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -102,7 +106,7 @@ def main() -> int:
         if drawn:
             print(f"{theme_name()} {context}: {drawn} icons -> {target}")
             total += drawn
-    print(f"{palette()['meta']['name']}: {total} preview icons rendered")
+    print(f"{meta()['name']}: {total} preview icons rendered")
     return 0
 
 
