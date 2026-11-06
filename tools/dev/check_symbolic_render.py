@@ -48,6 +48,22 @@ PAINT_DECLARATION = re.compile(r'(?<![-\w])(fill|stroke)\s*:\s*([^;"]+)', re.IGN
 # they are allowed to keep. A colour picker showing a swatch is the only sanctioned case.
 COLOUR_ALLOWLIST = {"color-pick": {"#50dbb5"}}
 
+# One case per syntax upstream has shipped: attribute paint, inline style, root default and the
+# self-referential forms the hex blocklist can mint. Exact outputs, so a tightening is visible.
+SANITISER_CASES = (
+    ('fill="black"', 'fill="currentColor"'),
+    ('fill="white"', 'fill="currentColor"'),
+    ('stroke="rgb(0,0,0)"', 'stroke="currentColor"'),
+    ('stroke="url(&quot;#gpa:foreground&quot;) rgb(0,0,0)"', 'stroke="currentColor"'),
+    ('fill="foreground"', 'fill="currentColor"'),
+    ('fill="#D9D9D9"', 'fill="currentColor"'),
+    ('style="fill:#ffffff;fill-opacity:1"', 'style="fill:currentColor;fill-opacity:1"'),
+    ('color="#363636"', ""),
+    ('fill="none"', 'fill="none"'),
+    ('fill="currentColor"', 'fill="currentColor"'),
+    ('fill="#88C0D0"', 'fill="#88C0D0"'),
+)
+
 
 def intrinsic_size(svg_text: str) -> tuple[float, float]:
     # Coordinate-system size, so a glyph is fitted instead of clipped by its own canvas.
@@ -116,6 +132,21 @@ def classify(svg_text: str) -> str:
     return "accent"
 
 
+def check_sanitiser(failures: list[str]) -> None:
+    # Pin the sanitiser's syntax coverage and idempotency, which the render check cannot isolate.
+    try:
+        from generate_icons import sanitize_symbolic
+    except ImportError as exc:
+        failures.append(f"sanitiser: cannot import sanitize_symbolic ({exc})")
+        return
+    for source, expected in SANITISER_CASES:
+        actual = sanitize_symbolic(source)
+        if actual != expected:
+            failures.append(f"sanitiser: {source!r} -> {actual!r}, expected {expected!r}")
+        elif sanitize_symbolic(actual) != actual:
+            failures.append(f"sanitiser: {source!r} is not idempotent")
+
+
 def symbolic_glyphs(theme_dir: Path) -> list[Path]:
     # Every symbolic glyph, following the dedupe symlinks so each real file is checked once.
     glyphs = []
@@ -158,9 +189,15 @@ def main() -> int:
             if result in ("fixed-dark", "fixed-light", "blank"):
                 failures.append(f"{result}: {name}")
             elif result == "accent":
-                accents.append(name)
+                # A rendered colour that no paint token explains must be an explicit exception.
+                if svg.stem in COLOUR_ALLOWLIST:
+                    accents.append(name)
+                else:
+                    failures.append(f"accent: {name}")
             for paint in sorted(fixed_paints(text, svg.stem)):
                 failures.append(f"fixed-paint {paint}: {name}")
+
+    check_sanitiser(failures)
 
     for line in failures[:MAX_REPORTED]:
         print(f"FAIL  {line}")

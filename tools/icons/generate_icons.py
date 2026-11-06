@@ -1323,7 +1323,9 @@ STYLE_PAINT = re.compile(r"((?:^|;)\s*(fill|stroke|color)\s*:\s*)([^;]*)", re.IG
 SVG_ROOT_TAG = re.compile(r"<svg\b(?![^>]*\bfill\s*=)", re.IGNORECASE)
 
 # `color: currentColor` is self-referential; librsvg resolves it to black instead of inheriting.
+# The blocklist can also mint the attribute form from `color="#363636"`, so both are normalised.
 SYMBOLIC_SELF_COLOR = re.compile(r"\bcolor\s*:\s*currentColor", re.IGNORECASE)
+SYMBOLIC_SELF_COLOR_ATTR = re.compile(r'\s*\bcolor\s*=\s*"currentColor"', re.IGNORECASE)
 
 
 def is_fixed_paint(value: str) -> bool:
@@ -1438,7 +1440,8 @@ def sanitize_symbolic(svg_text: str) -> str:
     for dark_fill in SYMBOLIC_DARK_FILLS:
         svg_text = re.sub(dark_fill, "currentColor", svg_text, flags=re.IGNORECASE)
     # Runs last: the blocklist above can turn `color:#363636` into a self-referential value.
-    return SYMBOLIC_SELF_COLOR.sub("color:inherit", svg_text)
+    svg_text = SYMBOLIC_SELF_COLOR.sub("color:inherit", svg_text)
+    return SYMBOLIC_SELF_COLOR_ATTR.sub("", svg_text)
 
 
 def build_symbolic() -> None:
@@ -1575,8 +1578,8 @@ def build_symbolic() -> None:
         "camera-on-symbolic": "camera-photo-symbolic",
     }
     for alias, target in ui_sym_aliases.items():
-        if target in SYMBOLIC_ICONS:
-            write_icon(["actions", "status", "ui", "apps", "places"], alias, SYMBOLIC_ICONS[target])
+        if target in curated_symbolics:
+            write_icon(["actions", "status", "ui", "apps", "places"], alias, curated_symbolics[target])
 
 def build_devices() -> None:
     # Build hardware storage devices icons (HDD, SSD, USB external, Partition).
