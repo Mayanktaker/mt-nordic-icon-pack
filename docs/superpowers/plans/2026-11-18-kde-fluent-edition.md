@@ -147,3 +147,38 @@
 - [ ] **Step 1:** `./install.sh --dark` on the host; run the three kiconfinder lookups → all resolve to our pack.
 - [ ] **Step 2:** Assert the two kreadconfig6 values; ask Mayank before restarting plasmashell; visual confirm.
 - [ ] **Step 3:** Roll call — record results in the PR/description; revert activation if Mayank prefers his previous theme.
+
+### Task 7: Tela name-parity snapshot + deterministic mapping (follow-up, Mayank 2026-11-18)
+
+**Context:** Mayank reverted to Tela because icons were missing and asked to "complete the icon pack", choosing **full Tela name parity** over desktop-complete or broken-only. This is NAME coverage: every icon name Tela ships resolves inside our pack; artwork is a token-matched Nordic glyph or a context-appropriate Nordic generic for the tail. Tela inheritance stays as a safety net.
+
+**Files:**
+- Create: `tools/dev/snapshot_tela_names.py` (one-shot, refreshable; reads a Tela theme dir given as argv[1])
+- Create: `tools/icons/tela_parity_names.json` (committed snapshot: name → sorted Tela contexts)
+- Create: `tools/icons/catalog_names.json` (committed snapshot of canonical glyph names from `src/icons/MT-Nordic-Blue-Icons`)
+- Create: `tools/icons/parity_aliases.py` (`PARITY_ALIASES`, `PARITY_CONTEXTS`, `MATCH_STATS`, `map_parity_name(name, catalog) -> str`)
+- Create: `tools/dev/check_tela_parity.py` (determinism + snapshot integrity gate)
+
+**Interfaces:**
+- Snapshot JSON shape: `{"theme": "Tela-circle", "generated_by": "tools/dev/snapshot_tela_names.py", "names": {"<name>": ["apps", "status", ...]}}`; no absolute host paths.
+- `map_parity_name(name: str, catalog: set[str]) -> str` — pure: normalize name (lowercase; strip `-symbolic`/`-app`/`-panel`/`-gui`/`-icon`/`-desktop`; split non-alnum; drop stopwords `org,kde,gnome,the,app`); symbolic requests only match symbolic candidates; score = token-overlap count; tie-break = smallest token-count delta, then lexicographic; threshold ≥1; zero-match → context generic: apps→`applications-symbolic`/`application-x-generic`, places→`folder-symbolic`/`folder`, status/actions→`dialog-information-symbolic`/`application-x-generic`, mimetypes→`document-open-symbolic`/`application-x-generic`, devices→`network-symbolic`/`computer` (symbolic / plain as requested).
+- Known scale from recon: 15,290 Tela names, 1,290 ours, 14,458 missing; 9,937 have ≥1 token match; ~4,500 need generics; 1,389 `-symbolic` names; 39 Wine `.0` names.
+
+- [ ] **Step 1: TDD gate first** — `check_tela_parity.py` asserts snapshot shape, every name has a deterministic mapping equal to `PARITY_ALIASES`, and match/generic counts equal `MATCH_STATS`; run → FAIL.
+- [ ] **Step 2: Implement snapshot scripts + mapping module**; verify: `python3 tools/dev/check_tela_parity.py` PASS with counts printed; commit.
+- [ ] **Step 3: Commit** — `git commit -m "feat: Tela name-parity snapshot and deterministic alias map"`
+
+### Task 8: Emit parity aliases + verify + docs (follow-up)
+
+**Files:**
+- Modify: `tools/icons/generate_icons.py` (import parity module; `build_parity_aliases()` after app + symbolic builds)
+- Modify: `README.md`, `AGENTS.md`, `docs/design.md` (name parity ≠ artwork parity; new gate command)
+- Artifacts: ~25-30k SVG symlinks per variant in declared contexts (no PNG aliases — scalable dirs cover all sizes)
+
+**Interfaces:**
+- `build_parity_aliases()` creates one relative symlink per (name, context) from `PARITY_CONTEXTS`, normalized to our declared contexts (`apps, actions, status, places, devices, mimetypes, ui, categories`); `-symbolic` names also mirrored into `symbolic/<ctx>`; target = first real (non-symlink) SVG of the mapped name, chosen by sorted-context scan, relative to link location; zero dangling links.
+- Gate: `tools/dev/check_tela_parity.py` additionally asserts every snapshotted name resolves in both built variants.
+
+- [ ] **Step 1: Implement emission**, run `python3 tools/icons/generate_icons.py --variant both`, then `python3 tools/dev/check_tela_parity.py`, `python3 tools/dev/check_icon_contexts.py`, `python3 tools/dev/check_symbolic_render.py`, `python3 tools/dev/check_contrast.py` — all PASS.
+- [ ] **Step 2: Controller checkpoint** — render a sample of 10 matched + 10 generic mappings for Mayank (no theme activation — he is on Tela and said not to surprise him).
+- [ ] **Step 3: Full release run** (`tools/release.sh`), revert PNG churn, commit artifacts + code + docs — `git commit -m "feat: full Tela name parity for both icon suites"`.
