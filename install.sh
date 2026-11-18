@@ -104,8 +104,7 @@ sync_gtk_settings() {
   done
 }
 
-# KDE Plasma reads kdeglobals and kcminputrc; an empty argument skips that write so
-# --icons-only/--cursors-only keep the same semantics as their gsettings counterparts.
+# KDE Plasma reads kdeglobals/kcminputrc; empty arguments skip that write, matching the gsettings path.
 activate_kde() {
   target="${1:-}"
   cursors="${2:-}"
