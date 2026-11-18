@@ -94,6 +94,11 @@ try:
 except ImportError:
     from tools.icons.apps_popular import POPULAR_APP_ICONS, POPULAR_APP_ALIASES
 
+try:
+    from apps_kde import KDE_APP_ICONS, KDE_APP_ALIASES
+except ImportError:
+    from tools.icons.apps_kde import KDE_APP_ICONS, KDE_APP_ALIASES
+
 REPO_ROOT = Path(__file__).resolve().parents[2]
 TECH_NAME = palette()["tech_name"]
 OUT_DIR = output_dir()
@@ -812,6 +817,8 @@ APP_ICONS.update(EXTRA_APP_ICONS)
 # Merge popular application batches (browsers, IDEs, media, office, admin)
 # POPULAR batches win over earlier modules on duplicate names (e.g. vivaldi art).
 APP_ICONS.update(POPULAR_APP_ICONS)
+# Merge KDE fluent-edition tiles (dolphin, konsole, systemsettings, …)
+APP_ICONS.update(KDE_APP_ICONS)
 
 APP_ALIASES = {
     # File manager
@@ -883,6 +890,7 @@ APP_ALIASES = {
 APP_ALIASES.update(EXTENDED_APP_ALIASES)
 APP_ALIASES.update(EXTRA_APP_ALIASES)
 APP_ALIASES.update(POPULAR_APP_ALIASES)
+APP_ALIASES.update(KDE_APP_ALIASES)
 
 # =========================================================================
 # MIME Type Document Icons (Clean botanical file-type suite for Nautilus)
