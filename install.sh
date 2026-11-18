@@ -79,10 +79,44 @@ install_pack() {
 
 # Which icon variant the desktop is currently using.
 current_variant() {
+  # KDE Plasma: colour schemes containing "dark" mean dark; Plasma otherwise leans light.
+  if command -v kreadconfig6 >/dev/null 2>&1; then
+    scheme="$(kreadconfig6 --file kdeglobals --group General --key ColorScheme 2>/dev/null | tr '[:upper:]' '[:lower:]')"
+    case "${scheme}" in
+      *dark*) echo "dark" ;;
+      *) echo "light" ;;
+    esac
+    return
+  fi
   case "$(gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null | tr -d "'")" in
     prefer-light|default) echo "light" ;;
     *) echo "dark" ;;
   esac
+}
+
+# GTK3/GTK4 read settings.ini before the session bus, so keep their icon name in sync.
+sync_gtk_settings() {
+  target="${1:?missing icon name}"
+  for ini in "${HOME}/.config/gtk-3.0/settings.ini" "${HOME}/.config/gtk-4.0/settings.ini"; do
+    if [ -f "${ini}" ] && grep -q "^gtk-icon-theme-name=" "${ini}"; then
+      sed -i "s|^gtk-icon-theme-name=.*|gtk-icon-theme-name=${target}|" "${ini}"
+    fi
+  done
+}
+
+# KDE Plasma reads kdeglobals and kcminputrc; an empty argument skips that write so
+# --icons-only/--cursors-only keep the same semantics as their gsettings counterparts.
+activate_kde() {
+  target="${1:-}"
+  cursors="${2:-}"
+  if [ -n "${target}" ]; then
+    kwriteconfig6 --file kdeglobals --group Icons --key Theme "${target}" 2>/dev/null || true
+    echo "Activated icon theme: ${target} (KDE)"
+  fi
+  if [ -n "${cursors}" ]; then
+    kwriteconfig6 --file kcminputrc --group Mouse --key cursorTheme "${cursors}" 2>/dev/null || true
+    echo "Activated cursor theme: ${cursors} (KDE)"
+  fi
 }
 
 # Removal only deletes packs this repository owns; the active theme is left to the user.
@@ -93,7 +127,7 @@ if [ "${UNINSTALL}" -eq 1 ]; then
       echo "  ✗ removed ${pack}"
     fi
   done
-  echo "Uninstalled ${PACK_NAME}. Pick another icon theme with gsettings if one is still active."
+  echo "Uninstalled ${PACK_NAME}. Pick another theme in KDE System Settings or with gsettings if one is still active."
   exit 0
 fi
 
@@ -110,26 +144,40 @@ fi
 
 # Activation follows the desktop mode unless an explicit variant was requested.
 if [ "${ACTIVATE}" -eq 1 ]; then
+  # Resolve the icon target once so both backends activate the same pack.
+  if [ "${WANT_ICONS}" -eq 1 ]; then
+    case "${VARIANT}" in
+      dark) target="${ICONS_DARK}" ;;
+      light) target="${ICONS_LIGHT}" ;;
+      both) target="${ICONS_DARK}" ;;
+      *) if [ "$(current_variant)" = "light" ]; then target="${ICONS_LIGHT}"; else target="${ICONS_DARK}"; fi ;;
+    esac
+  fi
+  # KDE Plasma first: kwriteconfig6 edits kdeglobals/kcminputrc without a session bus.
+  kde_ran=0
+  if command -v kwriteconfig6 >/dev/null 2>&1; then
+    kde_ran=1
+    kde_icons=""
+    kde_cursors=""
+    if [ "${WANT_ICONS}" -eq 1 ]; then
+      kde_icons="${target}"
+      sync_gtk_settings "${target}"
+    fi
+    if [ "${WANT_CURSORS}" -eq 1 ]; then
+      kde_cursors="${CURSORS}"
+    fi
+    activate_kde "${kde_icons}" "${kde_cursors}"
+  fi
+  # gsettings still gets a best-effort write; it is harmless without a GNOME session.
   if command -v gsettings >/dev/null 2>&1; then
     if [ "${WANT_ICONS}" -eq 1 ]; then
-      case "${VARIANT}" in
-        dark) target="${ICONS_DARK}" ;;
-        light) target="${ICONS_LIGHT}" ;;
-        both) target="${ICONS_DARK}" ;;
-        *) if [ "$(current_variant)" = "light" ]; then target="${ICONS_LIGHT}"; else target="${ICONS_DARK}"; fi ;;
-      esac
       gsettings set org.gnome.desktop.interface icon-theme "${target}" 2>/dev/null || true
-      # GTK3/GTK4 read settings.ini before the session bus, so keep their icon name in sync.
-      for ini in "${HOME}/.config/gtk-3.0/settings.ini" "${HOME}/.config/gtk-4.0/settings.ini"; do
-        if [ -f "${ini}" ] && grep -q "^gtk-icon-theme-name=" "${ini}"; then
-          sed -i "s|^gtk-icon-theme-name=.*|gtk-icon-theme-name=${target}|" "${ini}"
-        fi
-      done
-      echo "Activated icon theme: ${target}"
+      sync_gtk_settings "${target}"
+      [ "${kde_ran}" -eq 1 ] || echo "Activated icon theme: ${target}"
     fi
     if [ "${WANT_CURSORS}" -eq 1 ]; then
       gsettings set org.gnome.desktop.interface cursor-theme "${CURSORS}" 2>/dev/null || true
-      echo "Activated cursor theme: ${CURSORS}"
+      [ "${kde_ran}" -eq 1 ] || echo "Activated cursor theme: ${CURSORS}"
     fi
   fi
 fi

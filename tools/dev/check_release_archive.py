@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 # © Mayanktaker Computers & Web Development | https://mayanktaker.com
 # Release archive gate: extracts a tarball, runs its installer in a throwaway HOME and
-# verifies every pack lands, so a release can never ship an archive that cannot install.
+# verifies every pack lands plus KDE activation, so a release can never ship an archive
+# that cannot install or activate.
 # Usage: tools/dev/check_release_archive.py [tarball]   (defaults to the newest dist/*.tar.xz)
 
+import configparser
 import os
+import shutil
 import subprocess
 import sys
 import tarfile
@@ -77,6 +80,84 @@ def run_installer(root: Path, workdir: Path, errors: list[str]) -> None:
             errors.append(f"installer did not lay down {pack}/index.theme")
 
 
+def ini_key(path: Path, group: str, key: str) -> str | None:
+    # Read one key from an ini-style file (KDE or GTK), tolerating missing files.
+    if not path.is_file():
+        return None
+    parser = configparser.ConfigParser(interpolation=None, strict=False)
+    parser.optionxform = str  # keep key case so Theme/ColorScheme match exactly
+    try:
+        parser.read(path, encoding="utf-8")
+    except configparser.Error:
+        return None
+    return parser.get(group, key, fallback=None)
+
+
+def run_activation(root: Path, scratch: Path, args: list[str], errors: list[str]) -> None:
+    # Activate inside an isolated XDG environment so no session or real config is touched.
+    scratch.mkdir(parents=True, exist_ok=True)
+    (scratch / ".config").mkdir(parents=True, exist_ok=True)
+    (scratch / "xdg").mkdir(parents=True, exist_ok=True)
+    env = dict(os.environ, HOME=str(scratch), XDG_CONFIG_HOME=str(scratch / ".config"),
+               XDG_CONFIG_DIRS=str(scratch / "xdg"), DBUS_SESSION_BUS_ADDRESS="")
+    result = subprocess.run(
+        ["sh", str(root / "install.sh"), *args],
+        env=env, capture_output=True, text=True,
+    )
+    if result.returncode != 0:
+        errors.append(f"install.sh {' '.join(args)} exited {result.returncode}: {(result.stderr or result.stdout).strip()}")
+
+
+def check_kde_activation(root: Path, workdir: Path, errors: list[str]) -> None:
+    # Activation must reach KDE's config files when kwriteconfig6 is available.
+    if shutil.which("kwriteconfig6") is None:
+        print("SKIP  KDE activation (kwriteconfig6 not installed)")
+        return
+    dark, light = theme_name("dark"), theme_name("light")
+    cursors = cursors_meta()["tech_name"]
+    kde = workdir / "kde"
+
+    # (a) explicit --dark writes both keys and rewrites the seeded GTK settings.ini.
+    home_a = kde / "dark-explicit"
+    seed_gtk(home_a)
+    run_activation(root, home_a, ["--dark"], errors)
+    if ini_key(home_a / ".config" / "kdeglobals", "Icons", "Theme") != dark:
+        errors.append("kdeglobals [Icons] Theme not set to the dark pack")
+    if ini_key(home_a / ".config" / "kcminputrc", "Mouse", "cursorTheme") != cursors:
+        errors.append("kcminputrc [Mouse] cursorTheme not set to the cursor pack")
+    for gtk in ("gtk-3.0", "gtk-4.0"):
+        if ini_key(home_a / ".config" / gtk / "settings.ini", "Settings", "gtk-icon-theme-name") != dark:
+            errors.append(f"{gtk}/settings.ini not rewritten to the dark pack")
+
+    # (b) auto-detect: BreezeDark selects dark, no kdeglobals at all leans light.
+    home_dark = kde / "auto-dark"
+    seed_kde_scheme(home_dark, "BreezeDark")
+    run_activation(root, home_dark, ["--icons-only"], errors)
+    if ini_key(home_dark / ".config" / "kdeglobals", "Icons", "Theme") != dark:
+        errors.append("BreezeDark colour scheme did not auto-select the dark icon pack")
+    if (home_dark / ".config" / "kcminputrc").exists():
+        errors.append("--icons-only unexpectedly wrote kcminputrc")
+    home_light = kde / "auto-light"
+    run_activation(root, home_light, ["--icons-only"], errors)
+    if ini_key(home_light / ".config" / "kdeglobals", "Icons", "Theme") != light:
+        errors.append("missing colour scheme did not fall back to the light icon pack")
+
+
+def seed_gtk(home: Path) -> None:
+    # Plant GTK settings.ini files so the installer's sync has something to rewrite.
+    for gtk in ("gtk-3.0", "gtk-4.0"):
+        ini = home / ".config" / gtk / "settings.ini"
+        ini.parent.mkdir(parents=True, exist_ok=True)
+        ini.write_text("[Settings]\ngtk-icon-theme-name=Adwaita\n", encoding="utf-8")
+
+
+def seed_kde_scheme(home: Path, scheme: str) -> None:
+    # Plant a kdeglobals colour scheme for the auto-detect path.
+    ini = home / ".config" / "kdeglobals"
+    ini.parent.mkdir(parents=True, exist_ok=True)
+    ini.write_text(f"[General]\nColorScheme={scheme}\n", encoding="utf-8")
+
+
 def main() -> int:
     # Check one archive end to end and report a compact verdict.
     archive = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else newest_archive()
@@ -87,6 +168,8 @@ def main() -> int:
         check_payload(root, errors)
         if not errors:
             run_installer(root, workdir, errors)
+        if not errors:
+            check_kde_activation(root, workdir, errors)
     for line in errors:
         print(f"FAIL  {line}")
     if errors:
