@@ -13,8 +13,10 @@ Two full icon suites and one cursor pack ship together:
 | `MT-Nordic-Light-Icons` | Snow Storm (light) | Paper-white folders, slate edges, daylight-legible accents |
 | `MT-Nordic-Blue-Cursors` | both | Nordic pointer set used by either mode |
 
-Coverage: ~370 app icons plus ~400 aliases, 120 MIME types, 26 GNOME Settings panels,
-FreeDesktop symbolics (folder, edit, document, dialog, media, device and MIME families) and
+Coverage: 387 authored app icons plus 475 app-name aliases per suite — GNOME Settings panels
+(`org.gnome.Settings*`) and KDE Plasma's `org.kde.*` names (dolphin, konsole, systemsettings and
+friends) included — 120 MIME types, the 13 KDE `preferences-*` settings names, FreeDesktop
+symbolics (folder, edit, document, dialog, media, device and MIME families) and
 device/media icons, generated from one catalog so both variants never drift apart.
 
 ## Install
@@ -27,12 +29,30 @@ device/media icons, generated from one catalog so both variants never drift apar
 ./install.sh --cursors-only  # skip the icon suites
 ```
 
-Everything lands in `~/.icons` only — no root, no system directories. GNOME picks the icon theme
-through `org.gnome.desktop.interface icon-theme`; GTK3 `~/.config/gtk-3.0/settings.ini` is kept in
-sync so older apps follow along.
+Everything lands in `~/.icons` only — no root, no system directories. Activation follows the
+running desktop, KDE first: Plasma gets `kdeglobals` `[Icons] Theme` and `kcminputrc`
+`[Mouse] cursorTheme` through `kwriteconfig6`, while GNOME's `org.gnome.desktop.interface
+icon-theme` still receives a best-effort write. GTK3/GTK4 `settings.ini` icon names are kept in
+sync either way. Without an explicit `--dark`/`--light` the variant is detected from the desktop:
+on KDE a `kdeglobals` colour scheme containing "dark" picks Polar Night, anything else Snow Storm;
+without KDE tools the GNOME `color-scheme` decides.
 
 Missing icons fall back through `Tela-circle,Adwaita,breeze-dark,breeze,hicolor` (dark) and
 `Tela-circle,Adwaita,breeze,hicolor` (light).
+
+### Verify the activation
+
+```bash
+kreadconfig6 --file kdeglobals --group Icons --key Theme        # -> MT-Nordic-Blue-Icons or MT-Nordic-Light-Icons
+kreadconfig6 --file kcminputrc --group Mouse --key cursorTheme  # -> MT-Nordic-Blue-Cursors
+kiconfinder dolphin                                             # resolves inside ~/.icons/MT-Nordic-*-Icons
+kiconfinder org.kde.systemsettings                              # KDE alias resolves
+kiconfinder preferences-system                                  # settings tile resolves
+```
+
+`kiconfinder` ships with a standard Plasma session and reports where the active theme serves a
+name, so each lookup above should print a path under `~/.icons/MT-Nordic-*-Icons`. On GNOME the
+same spot-check is `gsettings get org.gnome.desktop.interface icon-theme`.
 
 ## Build from source
 

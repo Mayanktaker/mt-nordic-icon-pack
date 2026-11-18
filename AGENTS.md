@@ -56,6 +56,8 @@ so artwork can be versioned and released independently — **this repo must not 
   a dark literal gets rewritten and the light palette value is lost.
 - Symbolic glyphs are `currentColor`; vendored upstream resources are sanitized at build time
   (`sanitize_symbolic`) and camera lenses use an evenodd knockout, never a painted background.
+- Every symbolic carries the KIconLoader recolour contract — `ColorScheme-Text` classes plus a
+  `current-color-scheme` style block with the variant ink; details and proving gate: `docs/design.md`.
 - Each glyph is written once: repeated contexts and the `symbolic/` mirror are relative symlinks,
   which is why the pack ships ~820 real SVGs alongside ~2,000 links.
 - App tiles share one edge weight (`icon.tile_border`, 1.5px); folder edges use their own tokens.

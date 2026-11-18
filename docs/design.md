@@ -40,6 +40,19 @@ artwork literal makes the remap rewrite it and the light palette value is lost
 - Upstream GNOME Shell, Adwaita and extension icons ship hardcoded near-blacks (`#241f31`,
   `#363636`, `#dedede`, `#0e141d`); `sanitize_symbolic()` rewrites them at build time from the
   vendored copies in `tools/icons/upstream/` (see `provenance.json` for origin and licence).
+- **KIconLoader contract.** Every element painted in `currentColor` carries
+  `class="ColorScheme-Text"`, and `sanitize_symbolic()` injects a
+  `<style id="current-color-scheme">` block right after the root tag — the id KDE's loader
+  recognises. An existing block wins, so re-sanitising is idempotent and a glyph never gains a
+  second block.
+- **Per-variant ink fallback.** The block's colour and a `color:` declaration on the root `<svg>`
+  bake the variant's `icon.ink`, read per build call so dark and light each bake their own: plain
+  renderers resolve `currentColor` from the fallback, while KIconLoader drives the classes and
+  ignores it.
+- **Proven by a gate.** `tools/dev/check_symbolic_render.py` renders each glyph twice: Mode A
+  strips the baked fallbacks and drives the scheme classes with a test ink far from both palette
+  inks (KIconLoader behaviour), Mode B keeps only the fallbacks (a plain renderer); it also
+  re-sanitises every glyph to prove the injection is idempotent.
 - Detail knockouts (camera lenses) are evenodd subpaths, so the ring stays transparent on any surface.
 
 ## Storage
