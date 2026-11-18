@@ -15,7 +15,7 @@ Two full icon suites and one cursor pack ship together:
 
 Coverage: 387 authored app icons plus 475 app-name aliases per suite — GNOME Settings panels
 (`org.gnome.Settings*`) and KDE Plasma's `org.kde.*` names (dolphin, konsole, systemsettings and
-friends) included — 120 MIME types, the 13 KDE `preferences-*` settings names, FreeDesktop
+friends) included — 120 MIME types, 16 KDE `preferences-*` settings names, FreeDesktop
 symbolics (folder, edit, document, dialog, media, device and MIME families) and
 device/media icons, generated from one catalog so both variants never drift apart.
 
@@ -50,7 +50,7 @@ kiconfinder org.kde.systemsettings                              # KDE alias reso
 kiconfinder preferences-system                                  # settings tile resolves
 ```
 
-`kiconfinder` ships with a standard Plasma session and reports where the active theme serves a
+`kiconfinder` ships with a full Plasma install and reports where the active theme serves a
 name, so each lookup above should print a path under `~/.icons/MT-Nordic-*-Icons`. On GNOME the
 same spot-check is `gsettings get org.gnome.desktop.interface icon-theme`.
 
