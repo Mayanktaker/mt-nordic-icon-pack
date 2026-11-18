@@ -75,9 +75,9 @@ except ImportError:
     from tools.icons.settings_symbolics import SETTINGS_SYMBOLIC_ICONS
 
 try:
-    from misc_symbolics import MISC_SYMBOLIC_ICONS
+    from misc_symbolics import MISC_SYMBOLIC_ICONS, PREFERENCES_SYMBOLIC_ALIASES
 except ImportError:
-    from tools.icons.misc_symbolics import MISC_SYMBOLIC_ICONS
+    from tools.icons.misc_symbolics import MISC_SYMBOLIC_ICONS, PREFERENCES_SYMBOLIC_ALIASES
 
 try:
     from apps_extra import EXTRA_APP_ICONS, EXTRA_APP_ALIASES
@@ -1634,6 +1634,11 @@ def build_symbolic() -> None:
     for alias, target in ui_sym_aliases.items():
         if target in curated_symbolics:
             write_icon(["actions", "status", "ui", "apps", "places"], alias, curated_symbolics[target])
+
+    # 8. KDE preferences-* panel aliases; categories is the canonical context for settings names.
+    for alias, target in PREFERENCES_SYMBOLIC_ALIASES.items():
+        if target in curated_symbolics:
+            write_icon(["categories", "apps", "actions", "status", "ui"], alias, curated_symbolics[target])
 
 def build_devices() -> None:
     # Build hardware storage devices icons (HDD, SSD, USB external, Partition).
