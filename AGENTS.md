@@ -44,10 +44,10 @@ so artwork can be versioned and released independently — **this repo must not 
 - `palette/icons.json` — variant + cursor tokens (metadata, inheritance chains, colours)
 - `src/icons/` — generated `MT-Nordic-Blue-Icons` and `MT-Nordic-Light-Icons` (committed artifacts)
 - `src/cursors/` — generated `MT-Nordic-Blue-Cursors`
-- `tools/icons/` — generators, artwork catalog, `icon_palette.py`, `package.sh`
+- `tools/icons/` — generators, artwork catalog, `icon_palette.py`, `package.sh`, `parity_aliases.py` + committed snapshots (`tela_parity_names.json`, `catalog_names.json`)
 - `tools/icons/upstream/` — vendored GNOME Shell / libadwaita / extension glyphs + `provenance.json`
-- `tools/dev/` — contrast gate, lookup gate, gallery builder
-- `docs/` — `design.md` (palette rules), `gallery/` (curated preview SVGs)
+- `tools/dev/` — contrast gate, lookup gate, parity gate + snapshot refresher, gallery builder
+- `docs/` — `design.md` (palette rules), `gallery/` (curated preview SVGs), `superpowers/` (plans + reports)
 - `build/`, `dist/` — generated output (gitignored)
 
 ## Artwork rules

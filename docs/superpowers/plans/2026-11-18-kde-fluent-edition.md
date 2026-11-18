@@ -133,7 +133,7 @@
 - Modify: `README.md` (KDE activation/verification section), `AGENTS.md` (commands + artwork rules note), `docs/design.md` (symbolic artwork section: ColorScheme-Text contract)
 - Modify: `tools/release.sh` only if gate names/numbering shifted
 
-- [ ] **Step 1: Full local release run** — `tools/release.sh` end-to-end → all 10 gates PASS, tarball produced.
+- [ ] **Step 1: Full local release run** — `tools/release.sh` end-to-end → all 11 gates PASS, tarball produced.
 - [ ] **Step 2: Update the three docs** (trigger skill `lolu-docs-sync` rules: behaviour changed ⇒ README + AGENTS + design.md in the same commit).
 - [ ] **Step 3: Commit** — `git commit -m "docs: KDE-fluent edition documentation"`
 

@@ -1642,6 +1642,8 @@ def build_symbolic() -> None:
             write_icon(["actions", "status", "ui", "apps", "places"], alias, curated_symbolics[target])
 
     # 8. KDE preferences-* panel aliases; categories is the canonical context for settings names.
+    # Hard fail if a target glyph vanished: two of these names are absent from Tela, so no gate would catch the silent skip.
+    assert set(PREFERENCES_SYMBOLIC_ALIASES.values()) <= set(curated_symbolics), f"PREFERENCES_SYMBOLIC_ALIASES targets missing from curated symbolics: {sorted(set(PREFERENCES_SYMBOLIC_ALIASES.values()) - set(curated_symbolics))}"
     for alias, target in PREFERENCES_SYMBOLIC_ALIASES.items():
         if target in curated_symbolics:
             write_icon(["categories", "apps", "actions", "status", "ui"], alias, curated_symbolics[target])

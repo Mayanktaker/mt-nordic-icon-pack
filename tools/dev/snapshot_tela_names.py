@@ -15,7 +15,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 ICONS_TOOLS = REPO_ROOT / "tools" / "icons"
 sys.path.insert(0, str(ICONS_TOOLS))
 
-from parity_aliases import CATALOG_PACK_NAME, classify_parity, map_parity_name, primary_context
+from parity_aliases import CATALOG_PACK_NAME, PARITY_ALIASES, classify_parity, map_parity_name, primary_context
 
 ICON_SUFFIXES = (".svg", ".png")
 SIZE_DIR_RE = re.compile(r"^(?:\d+x\d+|\d+)$")
@@ -68,8 +68,11 @@ def write_snapshot(data: dict, path: Path) -> None:
 
 
 def snapshot_catalog() -> None:
-    # Refresh the committed catalog snapshot from the committed pack.
+    # Refresh the committed catalog snapshot from the committed pack, minus emitted parity
+    # links — mirrors check_tela_parity.check_catalog_fresh so the documented flow stays green.
     names = collect_names(PACK_DIR)
+    for name in PARITY_ALIASES:
+        names.pop(name, None)
     write_snapshot({"pack": PACK_DIR.name, "generated_by": GENERATED_BY, "names": names}, CATALOG_SNAPSHOT)
     print(f"{CATALOG_SNAPSHOT.relative_to(REPO_ROOT)}: {len(names)} names from {PACK_DIR.name}")
 
