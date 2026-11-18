@@ -1339,7 +1339,9 @@ STYLE_PAINT = re.compile(r"((?:^|;)\s*(fill|stroke|color)\s*:\s*)([^;]*)", re.IG
 SVG_ROOT_TAG = re.compile(r"<svg\b(?![^>]*\bfill\s*=)", re.IGNORECASE)
 
 # `color: currentColor` is self-referential; librsvg resolves it to black instead of inheriting.
+# The blocklist can also mint the attribute form, so both spellings are normalised.
 SYMBOLIC_SELF_COLOR = re.compile(r"\bcolor\s*:\s*currentColor", re.IGNORECASE)
+SYMBOLIC_SELF_COLOR_ATTR = re.compile(r'\s*\bcolor\s*=\s*"currentColor"', re.IGNORECASE)
 
 
 def is_fixed_paint(value: str) -> bool:
@@ -1494,6 +1496,7 @@ def sanitize_symbolic(svg_text: str) -> str:
         svg_text = re.sub(dark_fill, "currentColor", svg_text, flags=re.IGNORECASE)
     # Runs last: the blocklist above can turn `color:#363636` into a self-referential value.
     svg_text = SYMBOLIC_SELF_COLOR.sub("color:inherit", svg_text)
+    svg_text = SYMBOLIC_SELF_COLOR_ATTR.sub("", svg_text)
     # KIconLoader drives scheme classes; third-party renderers only see the root fallback.
     # Ink is read per call so each variant build bakes its own; an existing scheme block wins.
     ink = icon_colors()["ink"]

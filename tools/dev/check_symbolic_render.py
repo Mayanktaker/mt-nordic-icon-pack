@@ -51,6 +51,21 @@ PAINT_DECLARATION = re.compile(r'(?<![-\w])(fill|stroke)\s*:\s*([^;"]+)', re.IGN
 # they are allowed to keep. A colour picker showing a swatch is the only sanctioned case.
 COLOUR_ALLOWLIST = {"color-pick": {"#50dbb5"}}
 
+# One case per syntax upstream has shipped; fragments, since the KIconLoader pass adds scheme metadata.
+SANITISER_CASES = (
+    ('fill="black"', 'fill="currentColor"'),
+    ('fill="white"', 'fill="currentColor"'),
+    ('stroke="rgb(0,0,0)"', 'stroke="currentColor"'),
+    ('stroke="url(&quot;#gpa:foreground&quot;) rgb(0,0,0)"', 'stroke="currentColor"'),
+    ('fill="foreground"', 'fill="currentColor"'),
+    ('fill="#D9D9D9"', 'fill="currentColor"'),
+    ('style="fill:#ffffff;fill-opacity:1"', 'style="fill:currentColor;fill-opacity:1"'),
+    ('color="#363636"', ""),
+    ('fill="none"', 'fill="none"'),
+    ('fill="currentColor"', 'fill="currentColor"'),
+    ('fill="#88C0D0"', 'fill="#88C0D0"'),
+)
+
 # The sanitiser's injected scheme block, in any attribute order, for the Mode A strip.
 SCHEME_BLOCK = re.compile(
     r"<style[^>]*\bid\s*=\s*[\"']current-color-scheme[\"'][^>]*>.*?</style\s*>",
@@ -200,6 +215,23 @@ def check_idempotency(sample: Path) -> str | None:
     return None
 
 
+def check_sanitiser(failures: list[str]) -> None:
+    # Pin the sanitiser's syntax coverage and idempotency, which the render check cannot isolate.
+    try:
+        from generate_icons import sanitize_symbolic
+    except ImportError as exc:
+        failures.append(f"sanitiser: cannot import sanitize_symbolic ({exc})")
+        return
+    for source, expected in SANITISER_CASES:
+        actual = sanitize_symbolic(source)
+        if expected and expected not in actual:
+            failures.append(f"sanitiser: {source!r} -> {actual!r}, expected {expected!r}")
+        elif not expected and source in actual:
+            failures.append(f"sanitiser: {source!r} survived as {actual!r}")
+        elif sanitize_symbolic(actual) != actual:
+            failures.append(f"sanitiser: {source!r} is not idempotent")
+
+
 def main() -> int:
     # Check every unique symbolic glyph across both suites in both render modes.
     failures = []
@@ -238,10 +270,14 @@ def main() -> int:
                 if verdict == "blank" or verdict.startswith("fixed-"):
                     failures.append(f"{mode}-{verdict}: {name}")
                 elif verdict == "accent":
-                    accents.append(name)
+                    if svg.stem in COLOUR_ALLOWLIST:
+                        accents.append(name)
+                    else:
+                        failures.append(f"accent: {name}")
             for paint in sorted(fixed_paints(text, svg.stem)):
                 failures.append(f"fixed-paint {paint}: {name}")
 
+    check_sanitiser(failures)
     if idempotency_error:
         failures.append(f"idempotency: {idempotency_error}")
     for line in failures[:MAX_REPORTED]:
