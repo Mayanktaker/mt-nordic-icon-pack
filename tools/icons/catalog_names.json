@@ -1,0 +1,4573 @@
+{
+  "generated_by": "tools/dev/snapshot_tela_names.py",
+  "names": {
+    "0ad": [
+      "apps"
+    ],
+    "0ad-app": [
+      "apps"
+    ],
+    "1password": [
+      "apps"
+    ],
+    "1password-beta": [
+      "apps"
+    ],
+    "Alacritty": [
+      "apps"
+    ],
+    "Android_Studio": [
+      "apps"
+    ],
+    "AppImageLauncher": [
+      "apps"
+    ],
+    "CMakeSetup": [
+      "apps"
+    ],
+    "LimineSnapperSync": [
+      "apps"
+    ],
+    "MetadataCleaner": [
+      "apps"
+    ],
+    "Ripcord_Icon": [
+      "apps"
+    ],
+    "WebApp-CCTV": [
+      "apps"
+    ],
+    "accessibility-bounce-keys-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "accessibility-high-contrast-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "accessibility-keyboard-keys-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "accessibility-large-text-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "accessibility-menu-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "accessibility-mouse-keys-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "accessibility-screen-reader-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "accessibility-slow-keys-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "accessibility-sticky-keys-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "accessibility-visual-alerts-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "accessibility-zoom-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "accessories-calculator": [
+      "apps"
+    ],
+    "accessories-text-editor": [
+      "apps"
+    ],
+    "add-row-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "add-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "adw-adaptive-preview-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "adw-application-exit-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "adw-application-exit-symbolic-rtl": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "adw-avatar-default-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "adw-entry-apply-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "adw-entry-edit-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "adw-expander-arrow-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "adw-external-link-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "adw-mail-send-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "adw-rotate-acw-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "adw-rotate-cw-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "adw-screenshot-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "adw-sidebar-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "adw-sidebar-symbolic-rtl": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "adw-tab-counter-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "adw-tab-icon-missing-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "adw-tab-new-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "adw-tab-overflow-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "adw-tab-unpin-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "ai.lmstudio.LMStudio": [
+      "apps"
+    ],
+    "amberol": [
+      "apps"
+    ],
+    "android-studio": [
+      "apps"
+    ],
+    "androidstudio": [
+      "apps"
+    ],
+    "anthropic-claude": [
+      "apps"
+    ],
+    "antigravity": [
+      "apps"
+    ],
+    "anydesk": [
+      "apps"
+    ],
+    "anytype": [
+      "apps"
+    ],
+    "anytype-app": [
+      "apps"
+    ],
+    "application-epub+zip": [
+      "mimetypes"
+    ],
+    "application-exit": [
+      "actions",
+      "status"
+    ],
+    "application-font-woff": [
+      "mimetypes"
+    ],
+    "application-gzip": [
+      "mimetypes"
+    ],
+    "application-javascript": [
+      "mimetypes"
+    ],
+    "application-json": [
+      "mimetypes"
+    ],
+    "application-msword": [
+      "mimetypes"
+    ],
+    "application-pdf": [
+      "mimetypes"
+    ],
+    "application-rtf": [
+      "mimetypes"
+    ],
+    "application-vnd.android.package-archive": [
+      "mimetypes"
+    ],
+    "application-vnd.flatpak": [
+      "mimetypes"
+    ],
+    "application-vnd.iccprofile": [
+      "mimetypes"
+    ],
+    "application-vnd.ms-excel": [
+      "mimetypes"
+    ],
+    "application-vnd.ms-fontobject": [
+      "mimetypes"
+    ],
+    "application-vnd.ms-powerpoint": [
+      "mimetypes"
+    ],
+    "application-vnd.oasis.opendocument.graphics": [
+      "mimetypes"
+    ],
+    "application-vnd.oasis.opendocument.presentation": [
+      "mimetypes"
+    ],
+    "application-vnd.oasis.opendocument.spreadsheet": [
+      "mimetypes"
+    ],
+    "application-vnd.oasis.opendocument.text": [
+      "mimetypes"
+    ],
+    "application-vnd.oasis.opendocument.text-template": [
+      "mimetypes"
+    ],
+    "application-vnd.openxmlformats-officedocument.presentationml.presentation": [
+      "mimetypes"
+    ],
+    "application-vnd.openxmlformats-officedocument.spreadsheetml.sheet": [
+      "mimetypes"
+    ],
+    "application-vnd.openxmlformats-officedocument.wordprocessingml.document": [
+      "mimetypes"
+    ],
+    "application-x-7z-compressed": [
+      "mimetypes"
+    ],
+    "application-x-appimage": [
+      "mimetypes"
+    ],
+    "application-x-bittorrent": [
+      "mimetypes"
+    ],
+    "application-x-blender": [
+      "mimetypes"
+    ],
+    "application-x-bzip2": [
+      "mimetypes"
+    ],
+    "application-x-cd-image": [
+      "mimetypes"
+    ],
+    "application-x-compressed-tar": [
+      "mimetypes"
+    ],
+    "application-x-database": [
+      "mimetypes"
+    ],
+    "application-x-deb": [
+      "mimetypes"
+    ],
+    "application-x-desktop": [
+      "mimetypes"
+    ],
+    "application-x-executable": [
+      "mimetypes"
+    ],
+    "application-x-font-bdf": [
+      "mimetypes"
+    ],
+    "application-x-font-otf": [
+      "mimetypes"
+    ],
+    "application-x-font-ttf": [
+      "mimetypes"
+    ],
+    "application-x-generic": [
+      "mimetypes"
+    ],
+    "application-x-iso9660-image": [
+      "mimetypes"
+    ],
+    "application-x-java-archive": [
+      "mimetypes"
+    ],
+    "application-x-lz4": [
+      "mimetypes"
+    ],
+    "application-x-lzma": [
+      "mimetypes"
+    ],
+    "application-x-mobipocket-ebook": [
+      "mimetypes"
+    ],
+    "application-x-msi": [
+      "mimetypes"
+    ],
+    "application-x-rar": [
+      "mimetypes"
+    ],
+    "application-x-raw-disk-image": [
+      "mimetypes"
+    ],
+    "application-x-rpm": [
+      "mimetypes"
+    ],
+    "application-x-sharedlib": [
+      "mimetypes"
+    ],
+    "application-x-shellscript": [
+      "mimetypes"
+    ],
+    "application-x-sqlite3": [
+      "mimetypes"
+    ],
+    "application-x-tar": [
+      "mimetypes"
+    ],
+    "application-x-wine-extension-ini": [
+      "mimetypes"
+    ],
+    "application-x-xz": [
+      "mimetypes"
+    ],
+    "application-x-zerosize": [
+      "mimetypes"
+    ],
+    "application-x-zstd": [
+      "mimetypes"
+    ],
+    "application-xml": [
+      "mimetypes"
+    ],
+    "application-zip": [
+      "mimetypes"
+    ],
+    "applications": [
+      "places"
+    ],
+    "applications-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "applications-system-symbolic": [
+      "actions",
+      "categories",
+      "status"
+    ],
+    "appointment-soon": [
+      "actions",
+      "status"
+    ],
+    "arduino": [
+      "apps"
+    ],
+    "arduino-ide": [
+      "apps"
+    ],
+    "ark": [
+      "apps"
+    ],
+    "audacious": [
+      "apps"
+    ],
+    "audacious-app": [
+      "apps"
+    ],
+    "audacity": [
+      "apps"
+    ],
+    "audio-flac": [
+      "mimetypes"
+    ],
+    "audio-mp4": [
+      "mimetypes"
+    ],
+    "audio-mpeg": [
+      "mimetypes"
+    ],
+    "audio-ogg": [
+      "mimetypes"
+    ],
+    "audio-opus": [
+      "mimetypes"
+    ],
+    "audio-volume-high-symbolic": [
+      "actions",
+      "status"
+    ],
+    "audio-volume-muted-symbolic": [
+      "actions",
+      "status"
+    ],
+    "audio-wav": [
+      "mimetypes"
+    ],
+    "audio-x-aac": [
+      "mimetypes"
+    ],
+    "audio-x-generic": [
+      "mimetypes"
+    ],
+    "audio-x-generic-symbolic": [
+      "actions",
+      "status"
+    ],
+    "audio-x-m4a": [
+      "mimetypes"
+    ],
+    "audio-x-midi": [
+      "mimetypes"
+    ],
+    "audio-x-wav": [
+      "mimetypes"
+    ],
+    "background-app-ghost-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "baobab": [
+      "apps"
+    ],
+    "battery-symbolic": [
+      "actions",
+      "status"
+    ],
+    "bauh": [
+      "apps"
+    ],
+    "bauh-app": [
+      "apps"
+    ],
+    "beekeeper-studio": [
+      "apps"
+    ],
+    "beekeeperstudio": [
+      "apps"
+    ],
+    "betterbird": [
+      "apps"
+    ],
+    "betterbird-app": [
+      "apps"
+    ],
+    "bitwarden": [
+      "apps"
+    ],
+    "bleachbit": [
+      "apps"
+    ],
+    "bleachbit-app": [
+      "apps"
+    ],
+    "blender": [
+      "apps"
+    ],
+    "blockbench": [
+      "apps"
+    ],
+    "blockbench-app": [
+      "apps"
+    ],
+    "bluetooth": [
+      "apps"
+    ],
+    "bluetooth-active": [
+      "apps"
+    ],
+    "bluetooth-inactive": [
+      "apps"
+    ],
+    "bookmark-new-symbolic": [
+      "actions",
+      "status"
+    ],
+    "bottles": [
+      "apps"
+    ],
+    "bottom-panel-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "boxes": [
+      "apps"
+    ],
+    "brasero": [
+      "apps"
+    ],
+    "brasero-app": [
+      "apps"
+    ],
+    "brave": [
+      "apps"
+    ],
+    "brave-beta": [
+      "apps"
+    ],
+    "brave-browser": [
+      "apps"
+    ],
+    "brave-dev": [
+      "apps"
+    ],
+    "brave-nightly": [
+      "apps"
+    ],
+    "browser-tor": [
+      "apps"
+    ],
+    "bruno": [
+      "apps"
+    ],
+    "bruno-app": [
+      "apps"
+    ],
+    "btop": [
+      "apps"
+    ],
+    "btrfs-assistant": [
+      "apps"
+    ],
+    "bullet": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "bullet-symbolic": [
+      "actions",
+      "status"
+    ],
+    "c79147cee8ede1984bce7a5b18094090c566746c0dbe5f892dbc69a0b0521144": [
+      "apps"
+    ],
+    "cachyos-package-installer": [
+      "apps"
+    ],
+    "cachyos-pi": [
+      "apps"
+    ],
+    "caffeine": [
+      "apps"
+    ],
+    "caffeine-app": [
+      "apps"
+    ],
+    "calculator": [
+      "apps"
+    ],
+    "calibre": [
+      "apps"
+    ],
+    "calibre-ebook-viewer": [
+      "apps"
+    ],
+    "calibre-gui": [
+      "apps"
+    ],
+    "calibre-viewer": [
+      "apps"
+    ],
+    "camera-off-symbolic": [
+      "actions",
+      "devices",
+      "status",
+      "ui"
+    ],
+    "camera-on-symbolic": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "camera-photo-symbolic": [
+      "actions",
+      "devices",
+      "status",
+      "ui"
+    ],
+    "camera-video-symbolic": [
+      "actions",
+      "devices",
+      "status",
+      "ui"
+    ],
+    "cancel-operation-symbolic": [
+      "actions",
+      "status"
+    ],
+    "cancel-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "canon-ufr": [
+      "apps"
+    ],
+    "cantata": [
+      "apps"
+    ],
+    "cantata-app": [
+      "apps"
+    ],
+    "carousel-arrow-next-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "carousel-arrow-previous-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "cawbird": [
+      "apps"
+    ],
+    "cawbird-app": [
+      "apps"
+    ],
+    "cctv": [
+      "apps"
+    ],
+    "cctv-symbolic": [
+      "actions",
+      "status"
+    ],
+    "chatgpt": [
+      "apps"
+    ],
+    "chatgpt-desktop": [
+      "apps"
+    ],
+    "check-plain-symbolic": [
+      "actions",
+      "status"
+    ],
+    "check-symbolic": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "checkbox-active-symbolic": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "checkbox-checked-symbolic": [
+      "actions",
+      "status"
+    ],
+    "checkbox-mixed-symbolic": [
+      "actions",
+      "status"
+    ],
+    "checkbox-symbolic": [
+      "actions",
+      "status"
+    ],
+    "cherrytree": [
+      "apps"
+    ],
+    "cherrytree-app": [
+      "apps"
+    ],
+    "chevron-left-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "chevron-right-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "chromium": [
+      "apps"
+    ],
+    "chromium-browser": [
+      "apps"
+    ],
+    "claude": [
+      "apps"
+    ],
+    "claude-ai": [
+      "apps"
+    ],
+    "claude-desktop": [
+      "apps"
+    ],
+    "clementine": [
+      "apps"
+    ],
+    "clementine-app": [
+      "apps"
+    ],
+    "clion": [
+      "apps"
+    ],
+    "clion-2024": [
+      "apps"
+    ],
+    "cmake": [
+      "apps"
+    ],
+    "co.hyprlab.Hylki": [
+      "apps"
+    ],
+    "co.hyprlab.Hylki-squircle": [
+      "apps"
+    ],
+    "code": [
+      "apps"
+    ],
+    "codeblocks": [
+      "apps"
+    ],
+    "codeblocks-ide": [
+      "apps"
+    ],
+    "codeium-windsurf": [
+      "apps"
+    ],
+    "codex": [
+      "apps"
+    ],
+    "codex-editor": [
+      "apps"
+    ],
+    "cog-wheel-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "color-pick": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "colorgrab": [
+      "apps"
+    ],
+    "colorgrab-app": [
+      "apps"
+    ],
+    "com.anthropic.Claude": [
+      "apps"
+    ],
+    "com.bitwarden.desktop": [
+      "apps"
+    ],
+    "com.brave.Browser": [
+      "apps"
+    ],
+    "com.discordapp.Discord": [
+      "apps"
+    ],
+    "com.getpostman.Postman": [
+      "apps"
+    ],
+    "com.github.GradienceTeam.Gradience": [
+      "apps"
+    ],
+    "com.github.louis77.tuner": [
+      "apps"
+    ],
+    "com.google.AndroidStudio": [
+      "apps"
+    ],
+    "com.heroicgameslauncher.hgl": [
+      "apps"
+    ],
+    "com.jetbrains.IntelliJ-IDEA-Community": [
+      "apps"
+    ],
+    "com.jetbrains.PyCharm-Community": [
+      "apps"
+    ],
+    "com.jgraph.drawio.desktop": [
+      "apps"
+    ],
+    "com.mattjakeman.ExtensionManager": [
+      "apps"
+    ],
+    "com.mayanktaker.fetchflow": [
+      "apps"
+    ],
+    "com.microsoft.Edge": [
+      "apps"
+    ],
+    "com.mitchellh.ghostty": [
+      "apps"
+    ],
+    "com.obsproject.Studio": [
+      "apps"
+    ],
+    "com.qoder.app.stable": [
+      "apps"
+    ],
+    "com.shellyorg.shelly": [
+      "apps"
+    ],
+    "com.shellyorg.shelly-notifications": [
+      "apps"
+    ],
+    "com.slack.Slack": [
+      "apps"
+    ],
+    "com.spotify.Client": [
+      "apps"
+    ],
+    "com.t3tools.T3Code": [
+      "apps"
+    ],
+    "com.t3tools.T3Code.desktop": [
+      "apps"
+    ],
+    "com.usebottles.bottles": [
+      "apps"
+    ],
+    "com.valvesoftware.Steam": [
+      "apps"
+    ],
+    "com.visualstudio.code": [
+      "apps"
+    ],
+    "computer-symbolic": [
+      "actions",
+      "status"
+    ],
+    "converseen": [
+      "apps"
+    ],
+    "converseen-app": [
+      "apps"
+    ],
+    "coverflow-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "cpu-x": [
+      "apps"
+    ],
+    "cpu-x-app": [
+      "apps"
+    ],
+    "cups": [
+      "apps"
+    ],
+    "cursor": [
+      "apps"
+    ],
+    "cursor-bin": [
+      "apps"
+    ],
+    "cursor-ide": [
+      "apps"
+    ],
+    "curtail": [
+      "apps"
+    ],
+    "dark-mode-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "darktable": [
+      "apps"
+    ],
+    "dash-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "datagrip": [
+      "apps"
+    ],
+    "datagrip-2024": [
+      "apps"
+    ],
+    "dbeaver": [
+      "apps"
+    ],
+    "dbeaver-ce": [
+      "apps"
+    ],
+    "decibels": [
+      "apps"
+    ],
+    "deezer": [
+      "apps"
+    ],
+    "deezer-app": [
+      "apps"
+    ],
+    "deja-dup": [
+      "apps"
+    ],
+    "deja-dup-app": [
+      "apps"
+    ],
+    "delete-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "desktop": [
+      "places"
+    ],
+    "dev.zed.Zed": [
+      "apps"
+    ],
+    "dialog-error-symbolic": [
+      "actions",
+      "status"
+    ],
+    "dialog-information-symbolic": [
+      "actions",
+      "status"
+    ],
+    "dialog-password": [
+      "actions",
+      "status"
+    ],
+    "dialog-password-symbolic": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "dialog-warning-symbolic": [
+      "actions",
+      "status"
+    ],
+    "digikam": [
+      "apps"
+    ],
+    "digikam-app": [
+      "apps"
+    ],
+    "dingtalk": [
+      "apps"
+    ],
+    "dingtalk-app": [
+      "apps"
+    ],
+    "discord": [
+      "apps"
+    ],
+    "discord-canary": [
+      "apps"
+    ],
+    "discover": [
+      "apps"
+    ],
+    "docker": [
+      "apps"
+    ],
+    "docker-desktop": [
+      "apps"
+    ],
+    "document-new": [
+      "actions",
+      "status"
+    ],
+    "document-new-symbolic": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "document-open-recent-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "document-open-symbolic": [
+      "actions",
+      "status"
+    ],
+    "document-print-preview": [
+      "actions",
+      "status"
+    ],
+    "document-save-symbolic": [
+      "actions",
+      "status"
+    ],
+    "dolphin": [
+      "apps"
+    ],
+    "dolphin-emu": [
+      "apps"
+    ],
+    "dolphin-emu-app": [
+      "apps"
+    ],
+    "donation-symbolic": [
+      "actions",
+      "status"
+    ],
+    "dosbox": [
+      "apps"
+    ],
+    "dosbox-x": [
+      "apps"
+    ],
+    "down-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "dragonplayer": [
+      "apps"
+    ],
+    "draw-io": [
+      "apps"
+    ],
+    "drawio": [
+      "apps"
+    ],
+    "drive": [
+      "devices"
+    ],
+    "drive-harddisk": [
+      "devices"
+    ],
+    "drive-harddisk-ieee1394-symbolic": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "drive-harddisk-root": [
+      "devices"
+    ],
+    "drive-harddisk-root-symbolic": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "drive-harddisk-solidstate": [
+      "devices"
+    ],
+    "drive-harddisk-solidstate-symbolic": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "drive-harddisk-symbolic": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "drive-harddisk-system": [
+      "devices"
+    ],
+    "drive-harddisk-system-symbolic": [
+      "actions",
+      "categories",
+      "devices",
+      "status"
+    ],
+    "drive-harddisk-usb": [
+      "devices"
+    ],
+    "drive-harddisk-usb-symbolic": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "drive-multidisk": [
+      "devices"
+    ],
+    "drive-multidisk-symbolic": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "drive-partition": [
+      "devices"
+    ],
+    "drive-partition-symbolic": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "drive-removable-media": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "drive-removable-media-symbolic": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "drive-removable-media-usb": [
+      "devices"
+    ],
+    "drive-removable-media-usb-symbolic": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "drive-symbolic": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "dropbox": [
+      "apps"
+    ],
+    "dropbox-app": [
+      "apps"
+    ],
+    "duplicate-row-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "dynamic-mode-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "easytag": [
+      "apps"
+    ],
+    "easytag-app": [
+      "apps"
+    ],
+    "edge": [
+      "apps"
+    ],
+    "edit-copy-symbolic": [
+      "actions",
+      "status"
+    ],
+    "edit-delete-symbolic": [
+      "actions",
+      "status"
+    ],
+    "edit-find-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "edit-paste-symbolic": [
+      "actions",
+      "status"
+    ],
+    "edit-row-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "edit-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "element": [
+      "apps"
+    ],
+    "element-desktop": [
+      "apps"
+    ],
+    "elisa": [
+      "apps"
+    ],
+    "elisa-app": [
+      "apps"
+    ],
+    "emacs": [
+      "apps"
+    ],
+    "emacs-gtk": [
+      "apps"
+    ],
+    "emacsclient": [
+      "apps"
+    ],
+    "emblem-favorite-symbolic": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "emblem-important-symbolic": [
+      "actions",
+      "status"
+    ],
+    "epiphany": [
+      "apps"
+    ],
+    "etcher": [
+      "apps"
+    ],
+    "etcher-app": [
+      "apps"
+    ],
+    "extension-manager": [
+      "apps"
+    ],
+    "external-link-symbolic": [
+      "actions",
+      "status"
+    ],
+    "factorio": [
+      "apps"
+    ],
+    "factorio-app": [
+      "apps"
+    ],
+    "ferdium": [
+      "apps"
+    ],
+    "fetchflow": [
+      "apps"
+    ],
+    "figma": [
+      "apps"
+    ],
+    "figma-linux": [
+      "apps"
+    ],
+    "file-manager": [
+      "apps"
+    ],
+    "file-operation-cancelled-symbolic": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "filelight": [
+      "apps"
+    ],
+    "filezilla": [
+      "apps"
+    ],
+    "fingerprint-auth-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "firefox": [
+      "apps"
+    ],
+    "firefox-developer-edition": [
+      "apps"
+    ],
+    "firefox-developer-icon": [
+      "apps"
+    ],
+    "flameshot": [
+      "apps"
+    ],
+    "flameshot-app": [
+      "apps"
+    ],
+    "flatpak-discover": [
+      "apps"
+    ],
+    "flatpak-discover-app": [
+      "apps"
+    ],
+    "flatpak-symbolic": [
+      "actions",
+      "status"
+    ],
+    "flatseal": [
+      "apps"
+    ],
+    "flatseal-app": [
+      "apps"
+    ],
+    "flatsweep": [
+      "apps"
+    ],
+    "flatsweep-app": [
+      "apps"
+    ],
+    "fleet": [
+      "apps"
+    ],
+    "floorp": [
+      "apps"
+    ],
+    "folder": [
+      "places"
+    ],
+    "folder-applications": [
+      "places"
+    ],
+    "folder-apps": [
+      "places"
+    ],
+    "folder-archive": [
+      "places"
+    ],
+    "folder-books": [
+      "places"
+    ],
+    "folder-calibre": [
+      "places"
+    ],
+    "folder-code": [
+      "places"
+    ],
+    "folder-desktop": [
+      "places"
+    ],
+    "folder-development": [
+      "places"
+    ],
+    "folder-documents": [
+      "places"
+    ],
+    "folder-documents-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "folder-download": [
+      "places"
+    ],
+    "folder-download-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "folder-downloads": [
+      "places"
+    ],
+    "folder-github": [
+      "places"
+    ],
+    "folder-home": [
+      "places"
+    ],
+    "folder-locked": [
+      "places"
+    ],
+    "folder-music": [
+      "places"
+    ],
+    "folder-music-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "folder-network": [
+      "places"
+    ],
+    "folder-new-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "folder-open": [
+      "places"
+    ],
+    "folder-open-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "folder-pictures": [
+      "places"
+    ],
+    "folder-pictures-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "folder-projects": [
+      "places"
+    ],
+    "folder-projects-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "folder-publicshare": [
+      "places"
+    ],
+    "folder-publicshare-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "folder-recent": [
+      "places"
+    ],
+    "folder-recent-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "folder-remote": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "folder-remote-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "folder-root": [
+      "places"
+    ],
+    "folder-saved-search": [
+      "places"
+    ],
+    "folder-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "folder-tar": [
+      "places"
+    ],
+    "folder-templates": [
+      "places"
+    ],
+    "folder-templates-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "folder-videos": [
+      "places"
+    ],
+    "folder-videos-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "folder-zip": [
+      "places"
+    ],
+    "folder_color": [
+      "places"
+    ],
+    "foliate": [
+      "apps"
+    ],
+    "foliate-app": [
+      "apps"
+    ],
+    "font-viewer": [
+      "apps"
+    ],
+    "font-x-generic": [
+      "mimetypes"
+    ],
+    "fr.handbrake.ghb": [
+      "apps"
+    ],
+    "fr.romainvigier.MetadataCleaner": [
+      "apps"
+    ],
+    "fractal": [
+      "apps"
+    ],
+    "fractal-client": [
+      "apps"
+    ],
+    "franz": [
+      "apps"
+    ],
+    "franz-app": [
+      "apps"
+    ],
+    "freecad": [
+      "apps"
+    ],
+    "freecad-app": [
+      "apps"
+    ],
+    "freedownloadmanager": [
+      "apps"
+    ],
+    "freedownloadmanager-app": [
+      "apps"
+    ],
+    "freeoffice-planmaker": [
+      "apps"
+    ],
+    "freeoffice-planmaker-app": [
+      "apps"
+    ],
+    "freeoffice-presentations": [
+      "apps"
+    ],
+    "freeoffice-presentations-app": [
+      "apps"
+    ],
+    "freeoffice-textmaker": [
+      "apps"
+    ],
+    "freeoffice-textmaker-app": [
+      "apps"
+    ],
+    "freetube": [
+      "apps"
+    ],
+    "freetube-desktop": [
+      "apps"
+    ],
+    "gdebi": [
+      "apps"
+    ],
+    "gdebi-app": [
+      "apps"
+    ],
+    "geany": [
+      "apps"
+    ],
+    "gearlever": [
+      "apps"
+    ],
+    "geary": [
+      "apps"
+    ],
+    "genymotion": [
+      "apps"
+    ],
+    "genymotion-app": [
+      "apps"
+    ],
+    "ghostty": [
+      "apps"
+    ],
+    "ghostwriter": [
+      "apps"
+    ],
+    "ghostwriter-app": [
+      "apps"
+    ],
+    "gimp": [
+      "apps"
+    ],
+    "gimp-2.10": [
+      "apps"
+    ],
+    "github-desktop": [
+      "apps"
+    ],
+    "gitkraken": [
+      "apps"
+    ],
+    "gitkraken-desktop": [
+      "apps"
+    ],
+    "gnome-boxes": [
+      "apps"
+    ],
+    "gnome-builder": [
+      "apps"
+    ],
+    "gnome-builder-app": [
+      "apps"
+    ],
+    "gnome-calendar": [
+      "apps"
+    ],
+    "gnome-characters": [
+      "apps"
+    ],
+    "gnome-clocks": [
+      "apps"
+    ],
+    "gnome-color-manager": [
+      "apps"
+    ],
+    "gnome-connections": [
+      "apps"
+    ],
+    "gnome-contacts": [
+      "apps"
+    ],
+    "gnome-disk-utility": [
+      "apps"
+    ],
+    "gnome-disks": [
+      "apps"
+    ],
+    "gnome-logs": [
+      "apps"
+    ],
+    "gnome-maps": [
+      "apps"
+    ],
+    "gnome-music": [
+      "apps"
+    ],
+    "gnome-software": [
+      "apps"
+    ],
+    "gnome-system-monitor": [
+      "apps"
+    ],
+    "gnome-tour": [
+      "apps"
+    ],
+    "gnome-tweak-tool": [
+      "apps"
+    ],
+    "gnome-tweaks": [
+      "apps"
+    ],
+    "gnome-usage": [
+      "apps"
+    ],
+    "gnome-usage-app": [
+      "apps"
+    ],
+    "gnome-weather": [
+      "apps"
+    ],
+    "gnome-web": [
+      "apps"
+    ],
+    "gns3": [
+      "apps"
+    ],
+    "gns3-app": [
+      "apps"
+    ],
+    "gnucash": [
+      "apps"
+    ],
+    "gnucash-icon": [
+      "apps"
+    ],
+    "go-next-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "go-previous-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "godot": [
+      "apps"
+    ],
+    "godot-engine": [
+      "apps"
+    ],
+    "goland": [
+      "apps"
+    ],
+    "goland-2024": [
+      "apps"
+    ],
+    "google-chrome": [
+      "apps"
+    ],
+    "google-chrome-stable": [
+      "apps"
+    ],
+    "google-drive": [
+      "apps"
+    ],
+    "google-drive-app": [
+      "apps"
+    ],
+    "gparted": [
+      "apps"
+    ],
+    "gpodder": [
+      "apps"
+    ],
+    "gpodder-app": [
+      "apps"
+    ],
+    "gradience": [
+      "apps"
+    ],
+    "group-collapse-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "gtkhash": [
+      "apps"
+    ],
+    "gtkhash-app": [
+      "apps"
+    ],
+    "gufw": [
+      "apps"
+    ],
+    "gufw-app": [
+      "apps"
+    ],
+    "gvim": [
+      "apps"
+    ],
+    "gwenview": [
+      "apps"
+    ],
+    "gwenview-app": [
+      "apps"
+    ],
+    "handbrake": [
+      "apps"
+    ],
+    "haruna": [
+      "apps"
+    ],
+    "helix": [
+      "apps"
+    ],
+    "heroic": [
+      "apps"
+    ],
+    "hexchat": [
+      "apps"
+    ],
+    "hexchat-client": [
+      "apps"
+    ],
+    "homebank": [
+      "apps"
+    ],
+    "homebank-app": [
+      "apps"
+    ],
+    "htop": [
+      "apps"
+    ],
+    "hwinfo": [
+      "apps"
+    ],
+    "hwinfo-app": [
+      "apps"
+    ],
+    "hwloc": [
+      "apps"
+    ],
+    "hx": [
+      "apps"
+    ],
+    "hylki": [
+      "apps"
+    ],
+    "ibus": [
+      "apps"
+    ],
+    "ibus-engine": [
+      "apps"
+    ],
+    "ibus-setup": [
+      "apps"
+    ],
+    "idea": [
+      "apps"
+    ],
+    "image-avif": [
+      "mimetypes"
+    ],
+    "image-bmp": [
+      "mimetypes"
+    ],
+    "image-gif": [
+      "mimetypes"
+    ],
+    "image-heic": [
+      "mimetypes"
+    ],
+    "image-jpeg": [
+      "mimetypes"
+    ],
+    "image-png": [
+      "mimetypes"
+    ],
+    "image-svg+xml": [
+      "mimetypes"
+    ],
+    "image-tiff": [
+      "mimetypes"
+    ],
+    "image-vnd.adobe.photoshop": [
+      "mimetypes"
+    ],
+    "image-webp": [
+      "mimetypes"
+    ],
+    "image-x-generic": [
+      "mimetypes"
+    ],
+    "image-x-generic-symbolic": [
+      "actions",
+      "status"
+    ],
+    "image-x-icon": [
+      "mimetypes"
+    ],
+    "image-x-xcf": [
+      "mimetypes"
+    ],
+    "indicator-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "info-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "inkscape": [
+      "apps"
+    ],
+    "inode-directory": [
+      "places"
+    ],
+    "insomnia": [
+      "apps"
+    ],
+    "intellij-idea-community": [
+      "apps"
+    ],
+    "io.bassi.Amberol": [
+      "apps"
+    ],
+    "io.dbeaver.DBeaverCommunity": [
+      "apps"
+    ],
+    "io.github.alainm23.paseo": [
+      "apps"
+    ],
+    "io.github.flattool.Warehouse": [
+      "apps"
+    ],
+    "io.github.shifteight.GitHubDesktop": [
+      "apps"
+    ],
+    "io.missioncenter.MissionCenter": [
+      "apps"
+    ],
+    "io.stremio.Stremio": [
+      "apps"
+    ],
+    "it.mijorus.gearlever": [
+      "apps"
+    ],
+    "jd2": [
+      "apps"
+    ],
+    "jdownloader": [
+      "apps"
+    ],
+    "jellyfin": [
+      "apps"
+    ],
+    "jellyfin-desktop": [
+      "apps"
+    ],
+    "joplin": [
+      "apps"
+    ],
+    "joplin-desktop": [
+      "apps"
+    ],
+    "juk": [
+      "apps"
+    ],
+    "jupyter": [
+      "apps"
+    ],
+    "jupyter-lab": [
+      "apps"
+    ],
+    "jupyter-notebook": [
+      "apps"
+    ],
+    "k3b": [
+      "apps"
+    ],
+    "k3b-app": [
+      "apps"
+    ],
+    "kaddressbook": [
+      "apps"
+    ],
+    "karbon": [
+      "apps"
+    ],
+    "karbon-app": [
+      "apps"
+    ],
+    "kate": [
+      "apps"
+    ],
+    "kate-editor": [
+      "apps"
+    ],
+    "kcalc": [
+      "apps"
+    ],
+    "kclock": [
+      "apps"
+    ],
+    "kdeconnect": [
+      "apps"
+    ],
+    "kdenlive": [
+      "apps"
+    ],
+    "keepassxc": [
+      "apps"
+    ],
+    "keepassxc-app": [
+      "apps"
+    ],
+    "keyboard-brightness-high-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "keyboard-brightness-medium-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "keyboard-brightness-off-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "kfind": [
+      "apps"
+    ],
+    "kgpg": [
+      "apps"
+    ],
+    "kgx": [
+      "apps"
+    ],
+    "kicad": [
+      "apps"
+    ],
+    "kicad-app": [
+      "apps"
+    ],
+    "kid3": [
+      "apps"
+    ],
+    "kid3-app": [
+      "apps"
+    ],
+    "kitty": [
+      "apps"
+    ],
+    "kitty-terminal": [
+      "apps"
+    ],
+    "kmail": [
+      "apps"
+    ],
+    "kodi": [
+      "apps"
+    ],
+    "kodi-app": [
+      "apps"
+    ],
+    "konsole": [
+      "apps"
+    ],
+    "kontact": [
+      "apps"
+    ],
+    "krdc": [
+      "apps"
+    ],
+    "krfb": [
+      "apps"
+    ],
+    "krita": [
+      "apps"
+    ],
+    "kwalletmanager": [
+      "apps"
+    ],
+    "kwalletmanager5": [
+      "apps"
+    ],
+    "kwrite": [
+      "apps"
+    ],
+    "kwrite-editor": [
+      "apps"
+    ],
+    "libreoffice": [
+      "apps"
+    ],
+    "libreoffice-base": [
+      "apps"
+    ],
+    "libreoffice-calc": [
+      "apps"
+    ],
+    "libreoffice-draw": [
+      "apps"
+    ],
+    "libreoffice-impress": [
+      "apps"
+    ],
+    "libreoffice-main": [
+      "apps"
+    ],
+    "libreoffice-math": [
+      "apps"
+    ],
+    "libreoffice-startcenter": [
+      "apps"
+    ],
+    "libreoffice-writer": [
+      "apps"
+    ],
+    "librewolf": [
+      "apps"
+    ],
+    "limine-snapper-restore": [
+      "apps"
+    ],
+    "linuxqq": [
+      "apps"
+    ],
+    "list-drag-handle-symbolic": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "lm-studio": [
+      "apps"
+    ],
+    "lmms": [
+      "apps"
+    ],
+    "lmms-app": [
+      "apps"
+    ],
+    "localsend": [
+      "apps"
+    ],
+    "localsend-app": [
+      "apps"
+    ],
+    "lockscreen-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "logseq": [
+      "apps"
+    ],
+    "logseq-app": [
+      "apps"
+    ],
+    "lollypop": [
+      "apps"
+    ],
+    "lollypop-app": [
+      "apps"
+    ],
+    "losslesscut": [
+      "apps"
+    ],
+    "losslesscut-app": [
+      "apps"
+    ],
+    "loupe": [
+      "apps"
+    ],
+    "lutris": [
+      "apps"
+    ],
+    "malcontent-control": [
+      "apps"
+    ],
+    "map-globe": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "mark-location-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "marker": [
+      "apps"
+    ],
+    "marker-editor": [
+      "apps"
+    ],
+    "master-pdf-editor": [
+      "apps"
+    ],
+    "masterpdfeditor": [
+      "apps"
+    ],
+    "md.obsidian.Obsidian": [
+      "apps"
+    ],
+    "media-eject-symbolic": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "media-flash": [
+      "devices"
+    ],
+    "media-flash-symbolic": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "media-memory-symbolic": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "media-optical": [
+      "devices"
+    ],
+    "media-optical-bd-symbolic": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "media-optical-cd-symbolic": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "media-optical-dvd-symbolic": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "media-optical-symbolic": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "media-playback-start-symbolic": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "media-removable-symbolic": [
+      "actions",
+      "devices",
+      "status"
+    ],
+    "mega": [
+      "apps"
+    ],
+    "meld": [
+      "apps"
+    ],
+    "menu-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "message-indicator-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "micro": [
+      "apps"
+    ],
+    "microsoft-edge": [
+      "apps"
+    ],
+    "microsoft-teams": [
+      "apps"
+    ],
+    "minecraft": [
+      "apps"
+    ],
+    "minecraft-launcher": [
+      "apps"
+    ],
+    "minetest": [
+      "apps"
+    ],
+    "minetest-app": [
+      "apps"
+    ],
+    "missioncenter": [
+      "apps"
+    ],
+    "mkvmerge": [
+      "apps"
+    ],
+    "mkvmerge-gui": [
+      "apps"
+    ],
+    "model-gltf-binary": [
+      "mimetypes"
+    ],
+    "model-obj": [
+      "mimetypes"
+    ],
+    "model-stl": [
+      "mimetypes"
+    ],
+    "mongodb-compass": [
+      "apps"
+    ],
+    "mongodb-compass-app": [
+      "apps"
+    ],
+    "motrix": [
+      "apps"
+    ],
+    "mpv": [
+      "apps"
+    ],
+    "musescore": [
+      "apps"
+    ],
+    "musescore-app": [
+      "apps"
+    ],
+    "mysql-workbench": [
+      "apps"
+    ],
+    "mysql-workbench-community": [
+      "apps"
+    ],
+    "nautilus": [
+      "apps"
+    ],
+    "nautilus-folder-search-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "nautilus-search-filters-symbolic": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "neovim": [
+      "apps"
+    ],
+    "net.lutris.Lutris": [
+      "apps"
+    ],
+    "network": [
+      "places"
+    ],
+    "network-server-symbolic": [
+      "actions",
+      "devices",
+      "places",
+      "status"
+    ],
+    "network-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "network-wired-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "network-wireless-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "network-workgroup": [
+      "places"
+    ],
+    "network-workgroup-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "newsflash": [
+      "apps"
+    ],
+    "nextcloud": [
+      "apps"
+    ],
+    "nextcloud-client": [
+      "apps"
+    ],
+    "nmap": [
+      "apps"
+    ],
+    "nmap_icon": [
+      "apps"
+    ],
+    "no-notifications-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "nomacs": [
+      "apps"
+    ],
+    "nomacs-app": [
+      "apps"
+    ],
+    "non-starred-symbolic": [
+      "actions",
+      "status"
+    ],
+    "nordvpn": [
+      "apps"
+    ],
+    "notesnook": [
+      "apps"
+    ],
+    "notesnook-app": [
+      "apps"
+    ],
+    "notification-expand-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "notion": [
+      "apps"
+    ],
+    "notion-app": [
+      "apps"
+    ],
+    "nvim": [
+      "apps"
+    ],
+    "object-select-symbolic": [
+      "actions",
+      "status"
+    ],
+    "obs": [
+      "apps"
+    ],
+    "obs-studio": [
+      "apps"
+    ],
+    "obsidian": [
+      "apps"
+    ],
+    "offline-symbolic": [
+      "actions",
+      "status"
+    ],
+    "okular": [
+      "apps"
+    ],
+    "okular-app": [
+      "apps"
+    ],
+    "olive-editor": [
+      "apps"
+    ],
+    "olive-video-editor": [
+      "apps"
+    ],
+    "ollama": [
+      "apps"
+    ],
+    "ollama-gui": [
+      "apps"
+    ],
+    "onboard": [
+      "apps"
+    ],
+    "onboard-app": [
+      "apps"
+    ],
+    "open-menu-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "openai": [
+      "apps"
+    ],
+    "openai-codex": [
+      "apps"
+    ],
+    "openchamber": [
+      "apps"
+    ],
+    "openchamber-2.1.0-linux-x86_64": [
+      "apps"
+    ],
+    "openrgb": [
+      "apps"
+    ],
+    "openrgb-app": [
+      "apps"
+    ],
+    "openscad": [
+      "apps"
+    ],
+    "openscad-app": [
+      "apps"
+    ],
+    "openshot": [
+      "apps"
+    ],
+    "openshot-qt": [
+      "apps"
+    ],
+    "opensnitch": [
+      "apps"
+    ],
+    "opensnitch-ui": [
+      "apps"
+    ],
+    "opera": [
+      "apps"
+    ],
+    "opera-beta": [
+      "apps"
+    ],
+    "opera-stable": [
+      "apps"
+    ],
+    "orca": [
+      "apps"
+    ],
+    "orca-screen-reader": [
+      "apps"
+    ],
+    "org.audacityteam.Audacity": [
+      "apps"
+    ],
+    "org.blender.Blender": [
+      "apps"
+    ],
+    "org.cachyos.KernelManager": [
+      "apps"
+    ],
+    "org.cachyos.PackageInstaller": [
+      "apps"
+    ],
+    "org.cachyos.cachyos-pi": [
+      "apps"
+    ],
+    "org.cachyos.hello": [
+      "apps"
+    ],
+    "org.cachyos.scx-manager": [
+      "apps"
+    ],
+    "org.coolercontrol.CoolerControl": [
+      "apps"
+    ],
+    "org.darktable.Darktable": [
+      "apps"
+    ],
+    "org.filezillaproject.Filezilla": [
+      "apps"
+    ],
+    "org.freedesktop.IBus": [
+      "apps"
+    ],
+    "org.freedesktop.MalcontentControl": [
+      "apps"
+    ],
+    "org.gimp.GIMP": [
+      "apps"
+    ],
+    "org.gnome.Calculator": [
+      "apps"
+    ],
+    "org.gnome.Calendar": [
+      "apps"
+    ],
+    "org.gnome.Characters": [
+      "apps"
+    ],
+    "org.gnome.Connections": [
+      "apps"
+    ],
+    "org.gnome.Console": [
+      "apps"
+    ],
+    "org.gnome.Contacts": [
+      "apps"
+    ],
+    "org.gnome.Decibels": [
+      "apps"
+    ],
+    "org.gnome.DiskUtility": [
+      "apps"
+    ],
+    "org.gnome.Epiphany": [
+      "apps"
+    ],
+    "org.gnome.Evolution-alarm-notify": [
+      "apps"
+    ],
+    "org.gnome.EvolutionAlarmNotify": [
+      "apps"
+    ],
+    "org.gnome.Geary": [
+      "apps"
+    ],
+    "org.gnome.Logs": [
+      "apps"
+    ],
+    "org.gnome.Loupe": [
+      "apps"
+    ],
+    "org.gnome.Maps": [
+      "apps"
+    ],
+    "org.gnome.Meld": [
+      "apps"
+    ],
+    "org.gnome.Music": [
+      "apps"
+    ],
+    "org.gnome.Mutter.Mdk": [
+      "apps"
+    ],
+    "org.gnome.Nautilus": [
+      "apps"
+    ],
+    "org.gnome.Nautilus-symbolic": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "org.gnome.NautilusPreview": [
+      "apps"
+    ],
+    "org.gnome.NautilusPreviewer": [
+      "apps"
+    ],
+    "org.gnome.Orca": [
+      "apps"
+    ],
+    "org.gnome.Papers": [
+      "apps"
+    ],
+    "org.gnome.Settings": [
+      "apps"
+    ],
+    "org.gnome.Settings-about-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-accessibility-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-appearance-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-applications-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-bluetooth-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-color-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-display-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "devices",
+      "status"
+    ],
+    "org.gnome.Settings-keyboard-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "devices",
+      "status"
+    ],
+    "org.gnome.Settings-mobile-network-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "places",
+      "status"
+    ],
+    "org.gnome.Settings-mouse-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "devices",
+      "status"
+    ],
+    "org.gnome.Settings-multitasking-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-network-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "places",
+      "status"
+    ],
+    "org.gnome.Settings-notifications-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-online-accounts-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-power-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-printers-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-privacy-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-region-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-search-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-sharing-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-sound-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-system-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-time-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-users-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-wacom-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Settings-wellbeing-symbolic": [
+      "actions",
+      "apps",
+      "categories",
+      "status"
+    ],
+    "org.gnome.Shell.CaptivePortal": [
+      "apps"
+    ],
+    "org.gnome.Shell.CaptivePortalNetwork": [
+      "apps"
+    ],
+    "org.gnome.Shell.Extensions": [
+      "apps"
+    ],
+    "org.gnome.Showtime": [
+      "apps"
+    ],
+    "org.gnome.SimpleScan": [
+      "apps"
+    ],
+    "org.gnome.Snapshot": [
+      "apps"
+    ],
+    "org.gnome.Software": [
+      "apps"
+    ],
+    "org.gnome.SystemMonitor": [
+      "apps"
+    ],
+    "org.gnome.Tecla": [
+      "apps"
+    ],
+    "org.gnome.Terminal": [
+      "apps"
+    ],
+    "org.gnome.TextEditor": [
+      "apps"
+    ],
+    "org.gnome.Tour": [
+      "apps"
+    ],
+    "org.gnome.Transmission": [
+      "apps"
+    ],
+    "org.gnome.Weather": [
+      "apps"
+    ],
+    "org.gnome.Yelp": [
+      "apps"
+    ],
+    "org.gnome.baobab": [
+      "apps"
+    ],
+    "org.gnome.clocks": [
+      "apps"
+    ],
+    "org.gnome.font-viewer": [
+      "apps"
+    ],
+    "org.gnome.goa-daemon-symbolic": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "org.gnome.gparted": [
+      "apps"
+    ],
+    "org.gnome.tweaks": [
+      "apps"
+    ],
+    "org.inkscape.Inkscape": [
+      "apps"
+    ],
+    "org.kde.ark": [
+      "apps"
+    ],
+    "org.kde.discover": [
+      "apps"
+    ],
+    "org.kde.dolphin": [
+      "apps"
+    ],
+    "org.kde.dragonplayer": [
+      "apps"
+    ],
+    "org.kde.elisa": [
+      "apps"
+    ],
+    "org.kde.filelight": [
+      "apps"
+    ],
+    "org.kde.gwenview": [
+      "apps"
+    ],
+    "org.kde.juk": [
+      "apps"
+    ],
+    "org.kde.kaddressbook": [
+      "apps"
+    ],
+    "org.kde.kate": [
+      "apps"
+    ],
+    "org.kde.kcalc": [
+      "apps"
+    ],
+    "org.kde.kclock": [
+      "apps"
+    ],
+    "org.kde.kdeconnect": [
+      "apps"
+    ],
+    "org.kde.kdeconnect.app": [
+      "apps"
+    ],
+    "org.kde.kdenlive": [
+      "apps"
+    ],
+    "org.kde.kfind": [
+      "apps"
+    ],
+    "org.kde.kgpg": [
+      "apps"
+    ],
+    "org.kde.kmail": [
+      "apps"
+    ],
+    "org.kde.konsole": [
+      "apps"
+    ],
+    "org.kde.kontact": [
+      "apps"
+    ],
+    "org.kde.krdc": [
+      "apps"
+    ],
+    "org.kde.krfb": [
+      "apps"
+    ],
+    "org.kde.krita": [
+      "apps"
+    ],
+    "org.kde.kwalletmanager": [
+      "apps"
+    ],
+    "org.kde.kwalletmanager5": [
+      "apps"
+    ],
+    "org.kde.kwrite": [
+      "apps"
+    ],
+    "org.kde.okular": [
+      "apps"
+    ],
+    "org.kde.partitionmanager": [
+      "apps"
+    ],
+    "org.kde.print-manager": [
+      "apps"
+    ],
+    "org.kde.skanpage": [
+      "apps"
+    ],
+    "org.kde.spectacle": [
+      "apps"
+    ],
+    "org.kde.systemsettings": [
+      "apps"
+    ],
+    "org.kde.yakuake": [
+      "apps"
+    ],
+    "org.libretro.RetroArch": [
+      "apps"
+    ],
+    "org.mozilla.Thunderbird": [
+      "apps"
+    ],
+    "org.prismlauncher.PrismLauncher": [
+      "apps"
+    ],
+    "org.pulseaudio.pavucontrol": [
+      "apps"
+    ],
+    "org.qbittorrent.qBittorrent": [
+      "apps"
+    ],
+    "org.signal.Signal": [
+      "apps"
+    ],
+    "org.telegram.desktop": [
+      "apps"
+    ],
+    "org.videolan.VLC": [
+      "apps"
+    ],
+    "org.wezfurlong.wezterm": [
+      "apps"
+    ],
+    "org.wireshark.Wireshark": [
+      "apps"
+    ],
+    "ornament-check-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "ornament-dot-checked-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "ornament-dot-unchecked-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "osk-caps-lock-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "osk-delete-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "osk-emoji-picker-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "osk-enter-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "osk-hide-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "osk-layout-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "osk-shift-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "osk-zwnj-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "overview-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "owncloud": [
+      "apps"
+    ],
+    "owncloud-client": [
+      "apps"
+    ],
+    "package-x-generic": [
+      "mimetypes"
+    ],
+    "pan-down-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "pan-end-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "pan-start-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "pan-up-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "papers": [
+      "apps"
+    ],
+    "partitionmanager": [
+      "apps"
+    ],
+    "partitionmanager-app": [
+      "apps"
+    ],
+    "paseo": [
+      "apps"
+    ],
+    "paseo-x86_64": [
+      "apps"
+    ],
+    "pavucontrol": [
+      "apps"
+    ],
+    "pcloud": [
+      "apps"
+    ],
+    "peek": [
+      "apps"
+    ],
+    "peek-recorder": [
+      "apps"
+    ],
+    "persepolis": [
+      "apps"
+    ],
+    "photoflare": [
+      "apps"
+    ],
+    "photoflare-app": [
+      "apps"
+    ],
+    "phpstorm": [
+      "apps"
+    ],
+    "phpstorm-2024": [
+      "apps"
+    ],
+    "pi-desktop": [
+      "apps"
+    ],
+    "pi-desktop-icon": [
+      "apps"
+    ],
+    "pidgin": [
+      "apps"
+    ],
+    "pidgin-im": [
+      "apps"
+    ],
+    "pinentry": [
+      "apps"
+    ],
+    "pinentry-gtk": [
+      "apps"
+    ],
+    "pinentry-qt": [
+      "apps"
+    ],
+    "pinta": [
+      "apps"
+    ],
+    "pinta-app": [
+      "apps"
+    ],
+    "pipelines-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "piper": [
+      "apps"
+    ],
+    "piper-app": [
+      "apps"
+    ],
+    "plex": [
+      "apps"
+    ],
+    "pointer-double-click-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "pointer-drag-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "pointer-primary-click-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "pointer-secondary-click-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "polari": [
+      "apps"
+    ],
+    "polari-client": [
+      "apps"
+    ],
+    "pomotroid": [
+      "apps"
+    ],
+    "pomotroid-app": [
+      "apps"
+    ],
+    "popcorn-time": [
+      "apps"
+    ],
+    "popcorntime": [
+      "apps"
+    ],
+    "popup-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "postman": [
+      "apps"
+    ],
+    "ppsspp": [
+      "apps"
+    ],
+    "ppsspp-qt": [
+      "apps"
+    ],
+    "preferences-desktop-cursor": [
+      "actions",
+      "categories",
+      "status"
+    ],
+    "preferences-desktop-display": [
+      "actions",
+      "apps",
+      "categories",
+      "status",
+      "ui"
+    ],
+    "preferences-desktop-font": [
+      "actions",
+      "categories",
+      "status"
+    ],
+    "preferences-desktop-keyboard": [
+      "actions",
+      "categories",
+      "devices",
+      "status"
+    ],
+    "preferences-desktop-locale": [
+      "actions",
+      "apps",
+      "categories",
+      "status",
+      "ui"
+    ],
+    "preferences-desktop-notifications": [
+      "actions",
+      "apps",
+      "categories",
+      "status",
+      "ui"
+    ],
+    "preferences-desktop-sound": [
+      "actions",
+      "apps",
+      "categories",
+      "status",
+      "ui"
+    ],
+    "preferences-desktop-theme": [
+      "apps"
+    ],
+    "preferences-desktop-user": [
+      "actions",
+      "apps",
+      "categories",
+      "status",
+      "ui"
+    ],
+    "preferences-desktop-wallpaper": [
+      "actions",
+      "categories",
+      "status"
+    ],
+    "preferences-system": [
+      "apps"
+    ],
+    "preferences-system-bluetooth": [
+      "actions",
+      "apps",
+      "categories",
+      "status",
+      "ui"
+    ],
+    "preferences-system-network": [
+      "actions",
+      "apps",
+      "categories",
+      "status",
+      "ui"
+    ],
+    "preferences-system-power": [
+      "actions",
+      "apps",
+      "categories",
+      "status",
+      "ui"
+    ],
+    "preferences-system-printer": [
+      "actions",
+      "apps",
+      "categories",
+      "status",
+      "ui"
+    ],
+    "preferences-system-windows": [
+      "actions",
+      "apps",
+      "categories",
+      "status",
+      "ui"
+    ],
+    "prefs-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "preview-close-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "printer": [
+      "apps"
+    ],
+    "printer-manager": [
+      "apps"
+    ],
+    "printer-symbolic": [
+      "actions",
+      "status"
+    ],
+    "prismlauncher": [
+      "apps"
+    ],
+    "process-stop-symbolic": [
+      "actions",
+      "status"
+    ],
+    "proton-vpn-logo": [
+      "apps"
+    ],
+    "protonplus": [
+      "apps"
+    ],
+    "protonvpn": [
+      "apps"
+    ],
+    "psensor": [
+      "apps"
+    ],
+    "psensor-app": [
+      "apps"
+    ],
+    "puddletag": [
+      "apps"
+    ],
+    "puddletag-app": [
+      "apps"
+    ],
+    "putty": [
+      "apps"
+    ],
+    "putty-ssh": [
+      "apps"
+    ],
+    "puzzle-piece-symbolic": [
+      "actions",
+      "categories",
+      "status"
+    ],
+    "pycharm": [
+      "apps"
+    ],
+    "pycharm-community": [
+      "apps"
+    ],
+    "qbittorrent": [
+      "apps"
+    ],
+    "qemu": [
+      "apps"
+    ],
+    "qemu-system": [
+      "apps"
+    ],
+    "qoder": [
+      "apps"
+    ],
+    "qoder-ide": [
+      "apps"
+    ],
+    "qpdfview": [
+      "apps"
+    ],
+    "qpdfview-app": [
+      "apps"
+    ],
+    "qq": [
+      "apps"
+    ],
+    "quodlibet": [
+      "apps"
+    ],
+    "quodlibet-app": [
+      "apps"
+    ],
+    "qutebrowser": [
+      "apps"
+    ],
+    "qv4l2": [
+      "apps"
+    ],
+    "qv4l2-capture": [
+      "apps"
+    ],
+    "qvidcap": [
+      "apps"
+    ],
+    "radio-active-symbolic": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "radio-checked-symbolic": [
+      "actions",
+      "status"
+    ],
+    "radio-symbolic": [
+      "actions",
+      "status"
+    ],
+    "rambox": [
+      "apps"
+    ],
+    "rambox-app": [
+      "apps"
+    ],
+    "recent-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "record-screen-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "redshift": [
+      "apps"
+    ],
+    "redshift-app": [
+      "apps"
+    ],
+    "remmina": [
+      "apps"
+    ],
+    "remove-row-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "rest.insomnia.Insomnia": [
+      "apps"
+    ],
+    "retext": [
+      "apps"
+    ],
+    "retext-app": [
+      "apps"
+    ],
+    "retroarch": [
+      "apps"
+    ],
+    "rhythmbox": [
+      "apps"
+    ],
+    "rhythmbox-app": [
+      "apps"
+    ],
+    "rider": [
+      "apps"
+    ],
+    "rider-2024": [
+      "apps"
+    ],
+    "ripcord": [
+      "apps"
+    ],
+    "robo3t": [
+      "apps"
+    ],
+    "rstudio": [
+      "apps"
+    ],
+    "rstudio-desktop": [
+      "apps"
+    ],
+    "rubymine": [
+      "apps"
+    ],
+    "rubymine-2024": [
+      "apps"
+    ],
+    "rustdesk": [
+      "apps"
+    ],
+    "rustdesk-desktop": [
+      "apps"
+    ],
+    "rustrover": [
+      "apps"
+    ],
+    "rygel": [
+      "apps"
+    ],
+    "rygel-media-server": [
+      "apps"
+    ],
+    "safeeyes": [
+      "apps"
+    ],
+    "safeeyes-app": [
+      "apps"
+    ],
+    "save-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "screen-privacy-disabled-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "screen-privacy-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "screencast-recorded-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "screencast-stop-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "screenshooter-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "screenshot-recorded-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "screenshot-ui-area-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "screenshot-ui-display-symbolic": [
+      "actions",
+      "devices",
+      "status",
+      "ui"
+    ],
+    "screenshot-ui-show-pointer-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "screenshot-ui-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "screenshot-ui-window-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "scribus": [
+      "apps"
+    ],
+    "scribus-app": [
+      "apps"
+    ],
+    "security-camera-symbolic": [
+      "actions",
+      "devices",
+      "status",
+      "ui"
+    ],
+    "security-medium": [
+      "actions",
+      "status"
+    ],
+    "select-row-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "select-window-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "sequeler": [
+      "apps"
+    ],
+    "server-database-symbolic": [
+      "actions",
+      "devices",
+      "status",
+      "ui"
+    ],
+    "settings-symbolic": [
+      "actions",
+      "categories",
+      "status"
+    ],
+    "shell-display-built-in-only-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "shell-display-extend-all-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "shell-display-external-only-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "shell-display-mirror-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "shell-focus-app-grid-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "shell-focus-dash-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "shell-focus-dash-symbolic-rtl": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "shell-focus-desktop-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "shell-focus-desktop-symbolic-rtl": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "shell-focus-search-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "shell-focus-top-bar-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "shell-focus-top-bar-symbolic-rtl": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "shell-focus-windows-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "shelly": [
+      "apps"
+    ],
+    "shelly-shell": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "shelly-shell-symbolic": [
+      "actions",
+      "status"
+    ],
+    "shelly-symbolic": [
+      "actions",
+      "status"
+    ],
+    "shelly-tray": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "shelly-update": [
+      "apps"
+    ],
+    "shelly-updates": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "shelly-updates-symbolic": [
+      "actions",
+      "status"
+    ],
+    "shotcut": [
+      "apps"
+    ],
+    "shotcut-app": [
+      "apps"
+    ],
+    "showtime": [
+      "apps"
+    ],
+    "shutter": [
+      "apps"
+    ],
+    "shutter-app": [
+      "apps"
+    ],
+    "sidebar-show-right-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "sidebar-show-right-symbolic-rtl": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "sidebar-show-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "sidebar-show-symbolic-rtl": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "signal": [
+      "apps"
+    ],
+    "signal-desktop": [
+      "apps"
+    ],
+    "simple-scan": [
+      "apps"
+    ],
+    "simplescreenrecorder": [
+      "apps"
+    ],
+    "simplex": [
+      "apps"
+    ],
+    "simplex-chat": [
+      "apps"
+    ],
+    "skanpage": [
+      "apps"
+    ],
+    "skype": [
+      "apps"
+    ],
+    "skypeforlinux": [
+      "apps"
+    ],
+    "slack": [
+      "apps"
+    ],
+    "smartgit": [
+      "apps"
+    ],
+    "smartgit-app": [
+      "apps"
+    ],
+    "smplayer": [
+      "apps"
+    ],
+    "smplayer-app": [
+      "apps"
+    ],
+    "snapper": [
+      "apps"
+    ],
+    "snapshot": [
+      "apps"
+    ],
+    "software-properties-symbolic": [
+      "actions",
+      "status"
+    ],
+    "solaar": [
+      "apps"
+    ],
+    "solaar-app": [
+      "apps"
+    ],
+    "sound-output-device-chooser": [
+      "actions",
+      "status"
+    ],
+    "sound-output-device-chooser@kgshank.net": [
+      "actions",
+      "status"
+    ],
+    "spectacle": [
+      "apps"
+    ],
+    "spotify": [
+      "apps"
+    ],
+    "spotify-client": [
+      "apps"
+    ],
+    "spotube": [
+      "apps"
+    ],
+    "spotube-app": [
+      "apps"
+    ],
+    "sqlitebrowser": [
+      "apps"
+    ],
+    "ssr": [
+      "apps"
+    ],
+    "stacer": [
+      "apps"
+    ],
+    "stacer-app": [
+      "apps"
+    ],
+    "star-filled-rounded-symbolic": [
+      "actions",
+      "status"
+    ],
+    "star-outline-rounded-symbolic": [
+      "actions",
+      "status"
+    ],
+    "starred-symbolic": [
+      "actions",
+      "status"
+    ],
+    "static-mode-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "steam": [
+      "apps"
+    ],
+    "strawberry": [
+      "apps"
+    ],
+    "strawberry-app": [
+      "apps"
+    ],
+    "stremio": [
+      "apps"
+    ],
+    "stremio-desktop": [
+      "apps"
+    ],
+    "studio": [
+      "apps"
+    ],
+    "sublime": [
+      "apps"
+    ],
+    "sublime-merge": [
+      "apps"
+    ],
+    "sublime-merge-app": [
+      "apps"
+    ],
+    "sublime-text": [
+      "apps"
+    ],
+    "sublime_text": [
+      "apps"
+    ],
+    "supertux": [
+      "apps"
+    ],
+    "supertux-app": [
+      "apps"
+    ],
+    "supertuxkart": [
+      "apps"
+    ],
+    "supertuxkart-app": [
+      "apps"
+    ],
+    "svgcleaner": [
+      "apps"
+    ],
+    "svgcleaner-app": [
+      "apps"
+    ],
+    "switch-off-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "switch-on-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "syncthing": [
+      "apps"
+    ],
+    "syncthing-gtk": [
+      "apps"
+    ],
+    "synfig": [
+      "apps"
+    ],
+    "synfig-studio": [
+      "apps"
+    ],
+    "system-config-printer": [
+      "apps"
+    ],
+    "system-file-manager": [
+      "apps"
+    ],
+    "system-file-manager-symbolic": [
+      "actions",
+      "categories",
+      "status"
+    ],
+    "system-search-symbolic": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "system-software-update-symbolic": [
+      "actions",
+      "categories",
+      "status"
+    ],
+    "system-update-symbolic": [
+      "actions",
+      "categories",
+      "status"
+    ],
+    "systemsettings": [
+      "apps"
+    ],
+    "t3-code": [
+      "apps"
+    ],
+    "t3code": [
+      "apps"
+    ],
+    "tab-new": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "tartube": [
+      "apps"
+    ],
+    "tartube-check-tray": [
+      "actions",
+      "apps",
+      "status"
+    ],
+    "tartube-download-tray": [
+      "actions",
+      "apps",
+      "status"
+    ],
+    "tartube-tray": [
+      "actions",
+      "apps",
+      "status"
+    ],
+    "tartube-update-tray": [
+      "actions",
+      "apps",
+      "status"
+    ],
+    "teams": [
+      "apps"
+    ],
+    "teams-for-linux": [
+      "apps"
+    ],
+    "teamviewer": [
+      "apps"
+    ],
+    "teamviewer-desktop": [
+      "apps"
+    ],
+    "telegram": [
+      "apps"
+    ],
+    "telegram-desktop": [
+      "apps"
+    ],
+    "texstudio": [
+      "apps"
+    ],
+    "texstudio-app": [
+      "apps"
+    ],
+    "text-css": [
+      "mimetypes"
+    ],
+    "text-csv": [
+      "mimetypes"
+    ],
+    "text-editor": [
+      "apps"
+    ],
+    "text-html": [
+      "mimetypes"
+    ],
+    "text-javascript": [
+      "mimetypes"
+    ],
+    "text-markdown": [
+      "mimetypes"
+    ],
+    "text-plain": [
+      "mimetypes"
+    ],
+    "text-x-c++src": [
+      "mimetypes"
+    ],
+    "text-x-csrc": [
+      "mimetypes"
+    ],
+    "text-x-generic": [
+      "mimetypes"
+    ],
+    "text-x-go": [
+      "mimetypes"
+    ],
+    "text-x-java": [
+      "mimetypes"
+    ],
+    "text-x-lua": [
+      "mimetypes"
+    ],
+    "text-x-markdown": [
+      "mimetypes"
+    ],
+    "text-x-perl": [
+      "mimetypes"
+    ],
+    "text-x-php": [
+      "mimetypes"
+    ],
+    "text-x-python": [
+      "mimetypes"
+    ],
+    "text-x-ruby": [
+      "mimetypes"
+    ],
+    "text-x-rust": [
+      "mimetypes"
+    ],
+    "text-x-script-symbolic": [
+      "actions",
+      "status"
+    ],
+    "text-x-shellscript": [
+      "mimetypes"
+    ],
+    "text-xml": [
+      "mimetypes"
+    ],
+    "thunderbird": [
+      "apps"
+    ],
+    "timeshift": [
+      "apps"
+    ],
+    "timeshift-gtk": [
+      "apps"
+    ],
+    "tixati": [
+      "apps"
+    ],
+    "tor-browser": [
+      "apps"
+    ],
+    "torbrowser-launcher": [
+      "apps"
+    ],
+    "totem": [
+      "apps"
+    ],
+    "totem-video": [
+      "apps"
+    ],
+    "transmission": [
+      "apps"
+    ],
+    "transmission-gtk": [
+      "apps"
+    ],
+    "tuner": [
+      "apps"
+    ],
+    "tutanota": [
+      "apps"
+    ],
+    "tutanota-desktop": [
+      "apps"
+    ],
+    "tv.plex.PlexDesktop": [
+      "apps"
+    ],
+    "typora": [
+      "apps"
+    ],
+    "typora-app": [
+      "apps"
+    ],
+    "usb-creator": [
+      "apps"
+    ],
+    "usb-creator-gtk": [
+      "apps"
+    ],
+    "user-desktop": [
+      "places"
+    ],
+    "user-desktop-symbolic": [
+      "actions",
+      "status"
+    ],
+    "user-home": [
+      "places"
+    ],
+    "user-home-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "user-trash": [
+      "places"
+    ],
+    "user-trash-full": [
+      "places"
+    ],
+    "user-trash-full-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "user-trash-symbolic": [
+      "actions",
+      "places",
+      "status"
+    ],
+    "utilities-system-monitor": [
+      "apps"
+    ],
+    "utilities-terminal": [
+      "apps"
+    ],
+    "variety": [
+      "apps"
+    ],
+    "variety-app": [
+      "apps"
+    ],
+    "vcard-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "ventoy": [
+      "apps"
+    ],
+    "ventoy-app": [
+      "apps"
+    ],
+    "veracrypt": [
+      "apps"
+    ],
+    "veracrypt-app": [
+      "apps"
+    ],
+    "viber": [
+      "apps"
+    ],
+    "viber-app": [
+      "apps"
+    ],
+    "video-3gpp": [
+      "mimetypes"
+    ],
+    "video-mp4": [
+      "mimetypes"
+    ],
+    "video-mpeg": [
+      "mimetypes"
+    ],
+    "video-ogg": [
+      "mimetypes"
+    ],
+    "video-quicktime": [
+      "mimetypes"
+    ],
+    "video-webm": [
+      "mimetypes"
+    ],
+    "video-x-flv": [
+      "mimetypes"
+    ],
+    "video-x-generic": [
+      "mimetypes"
+    ],
+    "video-x-generic-symbolic": [
+      "actions",
+      "status"
+    ],
+    "video-x-matroska": [
+      "mimetypes"
+    ],
+    "video-x-msvideo": [
+      "mimetypes"
+    ],
+    "view-grid-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "view-list-bullet-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "view-list-ordered-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "view-list-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "view-more-horizontal-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "view-more-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "view-refresh-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "view-sidebar-end-symbolic": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "view-sidebar-end-symbolic-rtl": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "view-sidebar-start-symbolic": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "view-sidebar-start-symbolic-rtl": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "vim": [
+      "apps"
+    ],
+    "virt-manager": [
+      "apps"
+    ],
+    "virt-manager-app": [
+      "apps"
+    ],
+    "visual-studio-code": [
+      "apps"
+    ],
+    "vivaldi": [
+      "apps"
+    ],
+    "vivaldi-stable": [
+      "apps"
+    ],
+    "vlc": [
+      "apps"
+    ],
+    "vmware-player": [
+      "apps"
+    ],
+    "vmware-workstation": [
+      "apps"
+    ],
+    "vscode": [
+      "apps"
+    ],
+    "warehouse": [
+      "apps"
+    ],
+    "warpinator": [
+      "apps"
+    ],
+    "warpinator-app": [
+      "apps"
+    ],
+    "waterfox": [
+      "apps"
+    ],
+    "web-browser": [
+      "apps"
+    ],
+    "webapp-manager": [
+      "apps"
+    ],
+    "webcord": [
+      "apps"
+    ],
+    "webcord-app": [
+      "apps"
+    ],
+    "webstorm": [
+      "apps"
+    ],
+    "webstorm-2024": [
+      "apps"
+    ],
+    "wechat": [
+      "apps"
+    ],
+    "wechat-app": [
+      "apps"
+    ],
+    "weechat": [
+      "apps"
+    ],
+    "weechat-client": [
+      "apps"
+    ],
+    "wellbeing-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "wezterm": [
+      "apps"
+    ],
+    "whatsapp": [
+      "apps"
+    ],
+    "whatsapp-desktop": [
+      "apps"
+    ],
+    "window-close": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "window-close-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "window-list-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "window-maximize": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "window-maximize-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "window-minimize": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "window-minimize-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "window-new": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "window-restore": [
+      "actions",
+      "apps",
+      "places",
+      "status",
+      "ui"
+    ],
+    "window-restore-symbolic": [
+      "actions",
+      "status",
+      "ui"
+    ],
+    "windsurf": [
+      "apps"
+    ],
+    "windsurf-editor": [
+      "apps"
+    ],
+    "wireshark": [
+      "apps"
+    ],
+    "wps-office": [
+      "apps"
+    ],
+    "wps-office2019-wpsmain": [
+      "apps"
+    ],
+    "wps-office2023-wpsmain": [
+      "apps"
+    ],
+    "x-office-address-book": [
+      "mimetypes"
+    ],
+    "x-office-calendar": [
+      "mimetypes"
+    ],
+    "x-office-document": [
+      "mimetypes"
+    ],
+    "x-office-presentation": [
+      "mimetypes"
+    ],
+    "x-office-spreadsheet": [
+      "mimetypes"
+    ],
+    "xdm": [
+      "apps"
+    ],
+    "xdman": [
+      "apps"
+    ],
+    "xmind": [
+      "apps"
+    ],
+    "xmind-app": [
+      "apps"
+    ],
+    "xournal": [
+      "apps"
+    ],
+    "xournal-app": [
+      "apps"
+    ],
+    "yakuake": [
+      "apps"
+    ],
+    "yandex-browser": [
+      "apps"
+    ],
+    "yelp": [
+      "apps"
+    ],
+    "zeal": [
+      "apps"
+    ],
+    "zeal-docs": [
+      "apps"
+    ],
+    "zed": [
+      "apps"
+    ],
+    "zen": [
+      "apps"
+    ],
+    "zen-browser": [
+      "apps"
+    ],
+    "zoom": [
+      "apps"
+    ],
+    "zoom-client": [
+      "apps"
+    ],
+    "zotero": [
+      "apps"
+    ],
+    "zotero-app": [
+      "apps"
+    ]
+  },
+  "pack": "MT-Nordic-Blue-Icons"
+}
