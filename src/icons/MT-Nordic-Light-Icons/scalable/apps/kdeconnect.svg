@@ -1,0 +1,15 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="bg-kdeconnect" x1="32" y1="6" x2="32" y2="58" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#FFFFFF"/>
+    <stop offset="100%" stop-color="#DDE5F0"/>
+  </linearGradient>
+</defs>
+<rect x="6" y="6" width="52" height="52" rx="14" fill="url(#bg-kdeconnect)" stroke="#A5B4C7" stroke-width="1.5"/>
+<rect x="8.5" y="8.5" width="47" height="4" rx="2" fill="#4C719C" fill-opacity="0.25"/>
+
+<rect x="17" y="14" width="16" height="32" rx="3.5" fill="#ECEFF4" stroke="#0099CC" stroke-width="2"/>
+<circle cx="25" cy="41" r="1.5" fill="#4C719C"/>
+<path d="M 38 25 C 43 29 43 35 38 39" stroke="#4C719C" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M 43 20 C 50 26 50 38 43 44" stroke="#0099CC" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+</svg>
