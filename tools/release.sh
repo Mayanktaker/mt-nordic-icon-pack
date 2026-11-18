@@ -28,7 +28,7 @@ python3 tools/icons/generate_icons.py --variant both
 echo "6/10 icon lookup gate"
 python3 tools/dev/check_icon_contexts.py
 
-echo "7/10 symbolic render gate"
+echo "7/10 symbolic render gate (KIconLoader + third-party)"
 python3 tools/dev/check_symbolic_render.py
 
 echo "8/10 cursors"

@@ -11,6 +11,7 @@ from pathlib import Path
 
 try:
     from icon_palette import (
+        icon_colors,
         inherits,
         output_dir,
         palette,
@@ -21,6 +22,7 @@ try:
     )
 except ImportError:
     from tools.icons.icon_palette import (
+        icon_colors,
         inherits,
         output_dir,
         palette,
@@ -1428,6 +1430,45 @@ def build_apps() -> None:
 # Inkscape/Sodipodi editor state: not rendering, not attribution, and it carries stray hex colours.
 EDITOR_STATE = re.compile(r"<sodipodi:namedview\b[^>]*/>", re.IGNORECASE | re.DOTALL)
 
+# KDE-style scheme recognition: the class KIconLoader recolours and the block id every theme uses.
+SCHEME_CLASS = "ColorScheme-Text"
+SCHEME_BLOCK_ID = "current-color-scheme"
+
+# An element tag with its attribute blob (quoted values may span lines) and a class attribute.
+SYMBOLIC_ELEMENT_TAG = re.compile(r"<([a-zA-Z][\w:-]*)((?:\"[^\"]*\"|'[^']*'|[^>\"'])*)>")
+SYMBOLIC_CLASS_ATTR = re.compile(r'\bclass\s*=\s*"([^"]*)"', re.IGNORECASE)
+# A currentColor paint as an attribute value or a style declaration on the element itself.
+SYMBOLIC_CURRENT_COLOR = re.compile(r'(?<![-\w])(fill|stroke)\s*[=:]\s*["\']?\s*currentColor\b', re.IGNORECASE)
+# A colour declaration inside a style attribute; not `border-color` and friends.
+SYMBOLIC_COLOR_DECL = re.compile(r"(?<![-\w])color\s*:", re.IGNORECASE)
+# The root tag (block injection point) and an existing scheme block id, proving injection ran.
+SYMBOLIC_SVG_TAG = re.compile(r"<svg\b[^>]*>", re.IGNORECASE)
+SYMBOLIC_SCHEME_ID = re.compile(rf"\bid\s*=\s*[\"']{SCHEME_BLOCK_ID}[\"']", re.IGNORECASE)
+
+
+def add_scheme_class(match: "re.Match") -> str:
+    # Append the scheme class to an element painted in currentColor that lacks a scheme class.
+    name, attrs = match.group(1), match.group(2)
+    if not SYMBOLIC_CURRENT_COLOR.search(attrs):
+        return match.group(0)
+    class_attr = SYMBOLIC_CLASS_ATTR.search(attrs)
+    if class_attr and SCHEME_CLASS in class_attr.group(1):
+        return match.group(0)
+    if class_attr:
+        return f"<{name}{attrs.replace(class_attr.group(0), f'class=\"{class_attr.group(1)} {SCHEME_CLASS}\"', 1)}>"
+    return f'<{name} class="{SCHEME_CLASS}"{attrs}>'
+
+
+def add_root_fallback(match: "re.Match", ink: str) -> str:
+    # Bake the variant ink into the root so plain renderers resolve currentColor without classes.
+    tag = match.group(0)
+    style = STYLE_ATTRIBUTE.search(tag)
+    if style:
+        if SYMBOLIC_COLOR_DECL.search(style.group(2)):
+            return tag
+        return tag.replace(style.group(0), f"{style.group(1)}color:{ink};{style.group(2)}{style.group(3)}", 1)
+    return f'{tag[:4]} style="color:{ink}"{tag[4:]}'
+
 
 def sanitize_symbolic(svg_text: str) -> str:
     # Point baked-in fills at currentColor so symbolic glyphs follow the active theme ink.
@@ -1438,7 +1479,15 @@ def sanitize_symbolic(svg_text: str) -> str:
     for dark_fill in SYMBOLIC_DARK_FILLS:
         svg_text = re.sub(dark_fill, "currentColor", svg_text, flags=re.IGNORECASE)
     # Runs last: the blocklist above can turn `color:#363636` into a self-referential value.
-    return SYMBOLIC_SELF_COLOR.sub("color:inherit", svg_text)
+    svg_text = SYMBOLIC_SELF_COLOR.sub("color:inherit", svg_text)
+    # KIconLoader drives scheme classes; third-party renderers only see the root fallback.
+    # Ink is read per call so each variant build bakes its own; an existing scheme block wins.
+    ink = icon_colors()["ink"]
+    if not SYMBOLIC_SCHEME_ID.search(svg_text):
+        block = f'<style id="{SCHEME_BLOCK_ID}" type="text/css">.{SCHEME_CLASS} {{ color:{ink}; }}</style>'
+        svg_text = SYMBOLIC_SVG_TAG.sub(lambda match: f"{match.group(0)}{block}", svg_text, count=1)
+    svg_text = SYMBOLIC_SVG_TAG.sub(lambda match: add_root_fallback(match, ink), svg_text, count=1)
+    return SYMBOLIC_ELEMENT_TAG.sub(add_scheme_class, svg_text)
 
 
 def build_symbolic() -> None:
@@ -1575,8 +1624,8 @@ def build_symbolic() -> None:
         "camera-on-symbolic": "camera-photo-symbolic",
     }
     for alias, target in ui_sym_aliases.items():
-        if target in SYMBOLIC_ICONS:
-            write_icon(["actions", "status", "ui", "apps", "places"], alias, SYMBOLIC_ICONS[target])
+        if target in curated_symbolics:
+            write_icon(["actions", "status", "ui", "apps", "places"], alias, curated_symbolics[target])
 
 def build_devices() -> None:
     # Build hardware storage devices icons (HDD, SSD, USB external, Partition).
