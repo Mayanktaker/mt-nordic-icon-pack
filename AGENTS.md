@@ -27,6 +27,8 @@ so artwork can be versioned and released independently — **this repo must not 
 - Build: `python3 tools/icons/generate_icons.py --variant both` (or `--variant dark|light`) → `src/icons/<pack>`.
 - Lookup gate: `python3 tools/dev/check_icon_contexts.py` (shadowing + dangling aliases; run after every icon build).
 - Symbolic gate: `python3 tools/dev/check_symbolic_render.py` (every `-symbolic` glyph must honour the theme ink).
+- Parity gate: `python3 tools/dev/check_tela_parity.py` (snapshot shape, deterministic alias map, both built suites resolve every Tela name).
+- Parity refresh: `python3 tools/dev/snapshot_tela_names.py --catalog` then `python3 tools/dev/snapshot_tela_names.py /path/to/Tela-circle` (committed snapshots; builds never read the Tela theme).
 - Preview: `python3 tools/icons/preview_sheet.py --variant light` → contact sheets in `build/preview/<variant>/`.
 - Gallery: `python3 tools/dev/build_icon_gallery.py` → `docs/gallery/{dark,light}/`.
 - Cursors: `python3 tools/icons/generate_cursors.py [--reuse-existing]` → `src/cursors/<pack>`
@@ -59,7 +61,8 @@ so artwork can be versioned and released independently — **this repo must not 
 - Every symbolic carries the KIconLoader recolour contract — `ColorScheme-Text` classes plus a
   `current-color-scheme` style block with the variant ink; details and proving gate: `docs/design.md`.
 - Each glyph is written once: repeated contexts and the `symbolic/` mirror are relative symlinks,
-  which is why the pack ships ~820 real SVGs alongside ~2,000 links.
+  which is why the pack ships ~820 real SVGs alongside ~2,000 links. Tela name-parity aliases add
+  ~16k more links per suite (same rule: one real file, relative one-hop links, no PNG aliases).
 - App tiles share one edge weight (`icon.tile_border`, 1.5px); folder edges use their own tokens.
 - Dark generation must stay backward-compatible when touching shared artwork.
 

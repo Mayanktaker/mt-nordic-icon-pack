@@ -19,6 +19,14 @@ friends) included — 120 MIME types, 16 KDE `preferences-*` settings names, Fre
 symbolics (folder, edit, document, dialog, media, device and MIME families) and
 device/media icons, generated from one catalog so both variants never drift apart.
 
+Tela name parity: every one of the 15,290 icon names the committed Tela-circle snapshot
+declares also resolves here — 832 are authored outright, the rest are emitted as relative SVG
+symlinks pointing at the best token-matched catalog glyph or a context-appropriate generic.
+Name coverage is not artwork parity: a parity alias serves **this pack's** artwork under the
+Tela name; it never clones Tela's designs. The mapping is committed data
+(`tools/icons/parity_aliases.py`) and `tools/dev/check_tela_parity.py` proves both built
+suites resolve every snapshotted name with zero dangling links.
+
 ## Install
 
 ```bash
@@ -73,6 +81,7 @@ python3 tools/dev/check_upstream_assets.py      # vendored glyphs match provenan
 python3 tools/icons/generate_icons.py --variant both
 python3 tools/dev/check_icon_contexts.py        # lookup-order and alias gate
 python3 tools/dev/check_symbolic_render.py      # every -symbolic glyph honours the ink
+python3 tools/dev/check_tela_parity.py          # every Tela name resolves in both suites
 python3 tools/icons/generate_cursors.py
 python3 tools/icons/preview_sheet.py --variant light   # contact sheets in build/preview/
 ```

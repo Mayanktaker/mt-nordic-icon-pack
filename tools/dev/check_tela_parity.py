@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # © Mayanktaker Computers & Web Development | https://mayanktaker.com
-# Tela name-parity gate: snapshot integrity + deterministic alias mapping.
-# Symlink emission is NOT checked here (Task 8 extends this gate).
+# Tela name-parity gate: snapshot integrity, deterministic alias mapping, and built artifacts.
+# Artifacts: every snapshotted name must resolve in both built suites and no parity link may dangle.
 # Run: python3 tools/dev/check_tela_parity.py
 
 import json
@@ -16,12 +16,14 @@ sys.path.insert(0, str(REPO_ROOT / "tools" / "dev"))
 try:
     import parity_aliases
     import snapshot_tela_names
+    from icon_palette import PALETTES, theme_name
 except ImportError as exc:
     sys.exit(f"cannot import parity modules ({exc}); run tools/dev/snapshot_tela_names.py first")
 
 TELA_SNAPSHOT = ICONS_TOOLS / "tela_parity_names.json"
 CATALOG_SNAPSHOT = ICONS_TOOLS / "catalog_names.json"
-PACK_DIR = REPO_ROOT / "src" / "icons" / parity_aliases.CATALOG_PACK_NAME
+ICONS_ROOT = REPO_ROOT / "src" / "icons"
+PACK_DIR = ICONS_ROOT / parity_aliases.CATALOG_PACK_NAME
 SNAPSHOT_GENERATOR = "tools/dev/snapshot_tela_names.py"
 STAT_KEYS = ("tela_names", "already_present", "matched", "generic")
 
@@ -64,10 +66,12 @@ def check_shape(data: dict, source: str) -> list[str]:
 
 
 def check_catalog_fresh(data: dict) -> list[str]:
-    # The committed catalog snapshot must equal the live committed pack, so mapping targets stay real.
-    live = snapshot_tela_names.collect_names(PACK_DIR)
-    if set(data.get("names", {})) != set(live):
-        stale = set(data.get("names", {})) ^ set(live)
+    # The committed catalog snapshot must equal the live authored pack (parity aliases excluded),
+    # so mapping targets stay real while emitted parity names cannot leak into the catalog pool.
+    live = set(snapshot_tela_names.collect_names(PACK_DIR))
+    live -= set(parity_aliases.PARITY_ALIASES)
+    if set(data.get("names", {})) != live:
+        stale = set(data.get("names", {})) ^ live
         preview = ", ".join(sorted(stale)[:5])
         return [f"catalog_names.json stale vs {PACK_DIR.name} ({len(stale)} differed, e.g. {preview}); rerun with --catalog"]
     return []
@@ -123,6 +127,73 @@ def check_mapping(tela: dict, catalog: set[str]) -> tuple[list[str], dict[str, i
     return problems, stats
 
 
+def mapped_real_file(pack: Path, mapped: str) -> Path | None:
+    # First existing SVG of a mapped name (sorted scalable-then-symbolic scan), resolved to a real file.
+    for ctx in sorted(parity_aliases.DECLARED_CONTEXTS):
+        for tree in ("scalable", "symbolic"):
+            candidate = pack / tree / ctx / f"{mapped}.svg"
+            if candidate.exists():
+                return candidate.resolve()
+    return None
+
+
+def check_parity_link(problems: list[str], pack: Path, variant: str, name: str, expected: Path | None, dest: Path) -> None:
+    # A parity destination must exist, resolve inside the theme, and point at the mapped real file.
+    where = f"[{variant}] {name} in {dest.parent.name}: "
+    if not dest.exists():
+        problems.append(f"{where}parity link missing")
+        return
+    if not dest.is_symlink():
+        return  # a real file (only possible if the name joined the catalog)
+    resolved = dest.resolve()
+    if not resolved.exists():
+        problems.append(f"{where}dangling -> {dest.readlink()}")
+    elif pack.resolve() not in resolved.parents:
+        problems.append(f"{where}escapes the theme -> {dest.readlink()}")
+    elif expected is not None and resolved != expected:
+        problems.append(f"{where}points at {resolved.name}, expected {expected.name}")
+
+
+def check_built_artifacts(tela: dict) -> list[str]:
+    # Both built suites must resolve every snapshotted name with zero dangling parity links.
+    problems: list[str] = []
+    names = tela.get("names", {})
+    aliases = parity_aliases.PARITY_ALIASES
+    for variant in PALETTES:
+        pack = ICONS_ROOT / theme_name(variant)
+        if not pack.is_dir():
+            problems.append(f"[{variant}] suite not built ({pack.name}); run generate_icons.py --variant both")
+            continue
+        built: set[str] = set()
+        for ctx in sorted(parity_aliases.DECLARED_CONTEXTS):
+            for tree in ("scalable", "symbolic"):
+                ctx_dir = pack / tree / ctx
+                if ctx_dir.is_dir():
+                    built |= {p.stem for p in ctx_dir.iterdir() if p.suffix == ".svg"}
+        unresolved = set(names) - built
+        if unresolved:
+            preview = sorted(unresolved)[:5]
+            problems.append(f"[{variant}] {len(unresolved)} snapshotted names do not resolve, e.g. {preview}")
+        links = 0
+        expected_cache: dict[str, Path | None] = {}
+        for name, mapped in sorted(aliases.items()):
+            contexts = parity_aliases.emission_contexts(names.get(name, []))
+            if mapped not in expected_cache:
+                expected_cache[mapped] = mapped_real_file(pack, mapped)
+            expected = expected_cache[mapped]
+            for ctx in contexts:
+                check_parity_link(problems, pack, variant, name, expected, pack / "scalable" / ctx / f"{name}.svg")
+                links += 1
+            if name.endswith("-symbolic"):
+                for ctx in contexts:
+                    mirror = pack / "symbolic" / ctx
+                    if mirror.is_dir():
+                        check_parity_link(problems, pack, variant, name, expected, mirror / f"{name}.svg")
+                        links += 1
+        print(f"  [{variant}] {len(built)} built names, {links} parity links checked")
+    return problems
+
+
 def main() -> int:
     # Run every parity check and print the coverage counts.
     problems = []
@@ -139,6 +210,7 @@ def main() -> int:
     problems += check_generics_in_catalog(catalog)
     mapping_problems, stats = check_mapping(tela, catalog)
     problems += mapping_problems
+    problems += check_built_artifacts(tela)
     for line in problems:
         print(f"FAIL {line}")
     if problems:

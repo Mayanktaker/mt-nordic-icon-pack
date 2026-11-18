@@ -64,3 +64,19 @@ artwork literal makes the remap rewrite it and the light palette value is lost
 ## Fallback chains
 - Dark: `Tela-circle,Adwaita,breeze-dark,breeze,hicolor`
 - Light: `Tela-circle,Adwaita,breeze,hicolor` (never falls back to a dark pack)
+
+## Tela name parity
+- Every name in the committed Tela snapshot (`tools/icons/tela_parity_names.json`) resolves in
+  both suites: authored glyphs serve their own names, and each missing name becomes a relative
+  SVG symlink into the contexts the snapshot lists, normalized to the declared contexts
+  (`panel → status`, `emblems`/`emotes → actions`, `animations → status`).
+- A parity link targets the first existing SVG of its mapped glyph found by a sorted
+  scalable-then-symbolic context scan (resolved through any catalog alias hop), so every link is
+  one hop from a real file; `-symbolic` names mirror into `symbolic/<ctx>` (which declares no
+  mimetypes directory). No PNG aliases — the scalable tree covers every requested size.
+- Name coverage is not artwork parity: the link serves this pack's artwork under the Tela name.
+  The mapping is pure data in `tools/icons/parity_aliases.py` (token matching drops stopwords,
+  the `com` TLD token and pure-digit noise), regenerated only through
+  `tools/dev/snapshot_tela_names.py`; `tools/dev/check_tela_parity.py` proves the map is
+  deterministic and that both built suites resolve every snapshotted name with zero dangling
+  links.

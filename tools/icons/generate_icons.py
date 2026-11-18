@@ -2,6 +2,7 @@
 # Generates the Nordic icon suite: vector SVGs, multi-res PNGs, and theme metadata.
 # --variant dark|light|both picks the palette, the artwork recolouring and the output dir.
 
+import json
 import os
 import re
 import shutil
@@ -98,6 +99,11 @@ try:
     from apps_kde import KDE_APP_ICONS, KDE_APP_ALIASES
 except ImportError:
     from tools.icons.apps_kde import KDE_APP_ICONS, KDE_APP_ALIASES
+
+try:
+    from parity_aliases import DECLARED_CONTEXTS, PARITY_ALIASES, emission_contexts
+except ImportError:
+    from tools.icons.parity_aliases import DECLARED_CONTEXTS, PARITY_ALIASES, emission_contexts
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 TECH_NAME = palette()["tech_name"]
@@ -1682,6 +1688,57 @@ def build_mimetypes() -> None:
             png_file = OUT_DIR / f"{size}x{size}" / "mimetypes" / f"{name}.png"
             render_svg_to_png(svg_content, png_file, size)
 
+# Committed Tela name snapshot; builds never read the Tela theme itself.
+PARITY_SNAPSHOT = REPO_ROOT / "tools" / "icons" / "tela_parity_names.json"
+
+
+def build_parity_aliases() -> None:
+    # Emit Tela name-parity SVG symlinks (scalable only; the symbolic tree mirrors -symbolic names).
+    snapshot = json.loads(PARITY_SNAPSHOT.read_text())["names"]
+    real_targets: dict[str, Path] = {}
+
+    def real_target(name: str) -> Path:
+        # First existing SVG of a mapped name via a sorted scalable-then-symbolic context scan,
+        # resolved through any catalog alias hop so every parity link points at one real file.
+        if name not in real_targets:
+            found = None
+            for ctx in sorted(DECLARED_CONTEXTS):
+                for tree in ("scalable", "symbolic"):
+                    candidate = OUT_DIR / tree / ctx / f"{name}.svg"
+                    if candidate.exists():
+                        found = candidate.resolve()
+                        break
+                if found is not None:
+                    break
+            if found is None or not found.is_file() or OUT_DIR.resolve() not in found.parents:
+                raise SystemExit(f"parity alias target has no real SVG in the suite: {name}")
+            real_targets[name] = found
+        return real_targets[name]
+
+    def link(dest: Path, target: Path) -> int:
+        # Idempotent relative symlink into the destination context directory.
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        if dest.exists() or dest.is_symlink():
+            dest.unlink()
+        dest.symlink_to(os.path.relpath(target, dest.parent))
+        return 1
+
+    scalable_links = mirror_links = 0
+    for name in sorted(PARITY_ALIASES):
+        contexts = emission_contexts(snapshot.get(name, []))
+        target = real_target(PARITY_ALIASES[name])
+        for ctx in contexts:
+            scalable_links += link(OUT_DIR / "scalable" / ctx / f"{name}.svg", target)
+        if not name.endswith("-symbolic"):
+            continue
+        # The symbolic tree declares no mimetypes directory, so that mirror is skipped.
+        for ctx in contexts:
+            mirror_dir = OUT_DIR / "symbolic" / ctx
+            if mirror_dir.is_dir():
+                mirror_links += link(mirror_dir / f"{name}.svg", target)
+    print(f"  Tela name parity: {len(PARITY_ALIASES)} names -> {scalable_links} scalable + {mirror_links} symbolic links")
+
+
 def build_variant() -> None:
     # Clean and assemble one icon suite (dark or light) for the active variant.
     if OUT_DIR.exists():
@@ -1704,6 +1761,9 @@ def build_variant() -> None:
 
     print("  MIME Type Icons...")
     build_mimetypes()
+
+    print("  Tela name-parity aliases...")
+    build_parity_aliases()
 
     print(f"  {TECH_NAME} suite assembled in {OUT_DIR}")
 

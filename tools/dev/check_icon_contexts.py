@@ -56,6 +56,9 @@ def check_shadowing(theme_dir: Path, order: list[str]) -> list[str]:
                 color_file = theme_dir / color_dir / f"{name}.svg"
                 if color_file.is_file() and "currentColor" in color_file.read_text(errors="ignore"):
                     continue  # same symbolic glyph in both places, nothing hidden
+                sym_file = theme_dir / sym_dir / f"{name}.svg"
+                if sym_file.is_file() and color_file.is_file() and sym_file.resolve() == color_file.resolve():
+                    continue  # same artwork aliased into both contexts (name-parity link), nothing hidden
                 problems.append(f"shadowing: {name} resolves to {sym_dir} before {color_dir}")
     return problems
 
